@@ -29,6 +29,9 @@ importers:
       babel-loader:
         specifier: ^9.2.1
         version: 9.2.1(@babel/core@7.29.7)(webpack@5.107.2)
+      babel-plugin-prismjs:
+        specifier: ^2.1.0
+        version: 2.1.0(prismjs@1.30.0)
       css-loader:
         specifier: ^7.1.2
         version: 7.1.4(webpack@5.107.2)
@@ -62,6 +65,9 @@ importers:
       postcss-loader:
         specifier: ^8.1.0
         version: 8.2.1(postcss@8.5.10)(webpack@5.107.2)
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
       reframe.js:
         specifier: ^3.0.1
         version: 3.0.3
@@ -1970,6 +1976,11 @@ packages:
     peerDependencies:
       '@babel/core': ^7.4.0 || ^8.0.0-0 <8.0.0
 
+  babel-plugin-prismjs@2.1.0:
+    resolution: {integrity: sha512-ehzSKYfeAz4U78zi/sfwsjDPlq0LvDKxNefcZTJ/iKBu+plsHsLqZhUeGf1+82LAcA35UZGbU6ksEx2Utphc/g==}
+    peerDependencies:
+      prismjs: ^1.18.0
+
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
@@ -3480,6 +3491,10 @@ packages:
   prettyjson@1.2.5:
     resolution: {integrity: sha512-rksPWtoZb2ZpT5OVgtmy0KHVM+Dca3iVwWY9ifwhcexfjebtgjg3wmrUt9PvJ59XIYBcknQeYHD8IAnVlh9lAw==}
     hasBin: true
+
+  prismjs@1.30.0:
+    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
+    engines: {node: '>=6'}
 
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
@@ -6328,6 +6343,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  babel-plugin-prismjs@2.1.0(prismjs@1.30.0):
+    dependencies:
+      prismjs: 1.30.0
+
   balanced-match@1.0.2: {}
 
   balanced-match@4.0.4: {}
@@ -7790,6 +7809,8 @@ snapshots:
     dependencies:
       colors: 1.4.0
       minimist: 1.2.8
+
+  prismjs@1.30.0: {}
 
   process-nextick-args@2.0.1: {}
 

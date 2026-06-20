@@ -12,6 +12,7 @@ module.exports = {
     entry: {
         screen: './assets/css/screen.css',
         source: './assets/js/main.js',
+        posts: './assets/js/posts.js',
     },
 
     output: {
