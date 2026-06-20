@@ -1,4 +1,4 @@
-function pagination(isInfinite = true, done, isMasonry = false) {
+export default function pagination(isInfinite = true, done, isMasonry = false) {
     const feedElement = document.querySelector('.gh-feed');
     if (!feedElement) return;
 

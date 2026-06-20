@@ -1,3 +1,8 @@
+import reframe from 'reframe.js';
+import lightbox from './lightbox.js';
+import dropdown from './dropdown.js';
+import pagination from './pagination.js';
+
 /* Mobile menu burger toggle */
 (function () {
     const navigation = document.querySelector('.gh-navigation');
