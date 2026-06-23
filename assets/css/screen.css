@@ -944,7 +944,7 @@ Search                         LOGO                    Login Subscribe
     font-size: calc(1.9rem * var(--factor, 1));
     font-weight: 725;
     letter-spacing: -0.014em;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
 .gh-card-link:hover .gh-card-title {
@@ -955,9 +955,9 @@ Search                         LOGO                    Login Subscribe
     display: -webkit-box;
     overflow-y: hidden;
     margin-top: 8px;
-    font-size: 1.45rem;
+    font-size: 1.8rem;
     line-height: 1.4;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
@@ -1575,7 +1575,7 @@ Search                         LOGO                    Login Subscribe
 
 .gh-container-inner {
     display: grid;
-    grid-template-columns: repeat(16, 1fr);
+    grid-template-columns: repeat(18, 1fr);
     column-gap: var(--grid-gap);
 }
 
@@ -1707,8 +1707,8 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container.is-list .gh-card-link {
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 24px;
 }
 
@@ -1718,8 +1718,8 @@ Search                         LOGO                    Login Subscribe
 
 .gh-container.is-list .gh-card-image {
     flex-shrink: 0;
-    width: 220px;
-    aspect-ratio: 1.618033;
+    width: 640px;
+    /* aspect-ratio: 1.618033; */
 }
 
 @container list-feed (width < 600px) {
@@ -1733,7 +1733,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container.is-list .gh-card-title {
-    --factor: 1.05;
+    --factor: 2;
 }
 
 .gh-container.is-list .no-image .gh-card-title {
@@ -2792,15 +2792,6 @@ body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-head
     margin: 0;
     padding: 0;
     list-style-type: none;
-}
-
-.gh-footer-copyright {
-    text-align: right;
-    white-space: nowrap;
-}
-
-.gh-footer-copyright a {
-    text-decoration: underline;
 }
 
 /* 21.3. Footer signup */
