@@ -1,4 +1,6 @@
-function dropdown() {
+import imagesLoaded from 'imagesloaded';
+
+export default function dropdown() {
     const mediaQuery = window.matchMedia('(max-width: 767px)');
 
     const head = document.querySelector('.gh-navigation');

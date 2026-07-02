@@ -1,1 +1,5641 @@
-function dropdown(){let r=window.matchMedia("(max-width: 767px)"),a=document.querySelector(".gh-navigation"),s=a.querySelector(".gh-navigation-menu"),l=s?.querySelector(".nav");if(l){let e=document.querySelector(".gh-navigation-logo"),t=l.innerHTML;r.matches&&l.querySelectorAll("li").forEach(function(e,t){e.style.transitionDelay=.03*(t+1)+"s"});let n=function(){if(!r.matches){for(var e=[];l.offsetWidth+64>s.offsetWidth&&l.lastElementChild;)e.unshift(l.lastElementChild),l.lastElementChild.remove();if(e.length){let t=document.createElement("button"),n=(t.setAttribute("class","gh-more-toggle gh-icon-button"),t.setAttribute("aria-label","More"),t.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M21.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM13.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM5.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0z"></path></svg>',document.createElement("div"));n.setAttribute("class","gh-dropdown"),10<=e.length?(a.classList.add("is-dropdown-mega"),n.style.gridTemplateRows=`repeat(${Math.ceil(e.length/2)}, 1fr)`):a.classList.remove("is-dropdown-mega"),e.forEach(function(e){n.appendChild(e)}),t.appendChild(n),l.appendChild(t);var o=t.getBoundingClientRect(),i=window.innerWidth/2;o.left<i&&n.classList.add("is-left"),a.classList.add("is-dropdown-loaded"),window.addEventListener("click",function(e){a.classList.contains("is-dropdown-open")?a.classList.remove("is-dropdown-open"):t.contains(e.target)&&a.classList.add("is-dropdown-open")})}else a.classList.add("is-dropdown-loaded")}};imagesLoaded(e,function(){n()}),window.addEventListener("load",function(){e||n()}),window.addEventListener("resize",function(){setTimeout(()=>{l.innerHTML=t,n()},1)})}}function lightbox(e){document.querySelectorAll(e).forEach(function(e){e.addEventListener("click",function(e){var t=e;t.preventDefault();for(var n,o=[],i=0,r=t.target.closest(".kg-card").previousElementSibling;r&&(r.classList.contains("kg-image-card")||r.classList.contains("kg-gallery-card"));){var a=[];r.querySelectorAll("img").forEach(function(e){a.push({src:e.getAttribute("src"),msrc:e.getAttribute("src"),w:e.getAttribute("width"),h:e.getAttribute("height"),el:e}),i+=1}),r=r.previousElementSibling,o=a.concat(o)}t.target.classList.contains("kg-image")?o.push({src:t.target.getAttribute("src"),msrc:t.target.getAttribute("src"),w:t.target.getAttribute("width"),h:t.target.getAttribute("height"),el:t.target}):(n=!1,t.target.closest(".kg-gallery-card").querySelectorAll("img").forEach(function(e){o.push({src:e.getAttribute("src"),msrc:e.getAttribute("src"),w:e.getAttribute("width"),h:e.getAttribute("height"),el:e}),n||e===t.target?n=!0:i+=1}));for(var s=t.target.closest(".kg-card").nextElementSibling;s&&(s.classList.contains("kg-image-card")||s.classList.contains("kg-gallery-card"));)s.querySelectorAll("img").forEach(function(e){o.push({src:e.getAttribute("src"),msrc:e.getAttribute("src"),w:e.getAttribute("width"),h:e.getAttribute("height"),el:e})}),s=s.nextElementSibling;e=document.querySelectorAll(".pswp")[0];new PhotoSwipe(e,PhotoSwipeUI_Default,o,{bgOpacity:.9,closeOnScroll:!0,fullscreenEl:!1,history:!1,index:i,shareEl:!1,zoomEl:!1,getThumbBoundsFn:function(e){var e=o[e].el,t=window.pageYOffset||document.documentElement.scrollTop,e=e.getBoundingClientRect();return{x:e.left,y:e.top+t,w:e.width}}}).init()})})}function pagination(e=!0,s,l=!1){let c=document.querySelector(".gh-feed");if(!c)return;let t=!1,n=document.querySelector(".gh-footer"),u=document.querySelector(".gh-loadmore"),o=(!document.querySelector("link[rel=next]")&&u&&u.remove(),async function(){var o=document.querySelector("link[rel=next]");if(o)try{var e=await(await fetch(o.href)).text(),i=(new DOMParser).parseFromString(e,"text/html"),r=i.querySelectorAll(".gh-feed:not(.gh-featured):not(.gh-related) > *");let t=document.createDocumentFragment(),n=[];r.forEach(function(e){e=document.importNode(e,!0);l&&(e.style.visibility="hidden"),t.appendChild(e),n.push(e)}),c.appendChild(t),s&&s(n,d);var a=i.querySelector("link[rel=next]");a&&a.href?o.href=a.href:(o.remove(),u&&u.remove())}catch(e){throw o.remove(),e}}),d=async function(){n.getBoundingClientRect().top<=window.innerHeight&&document.querySelector("link[rel=next]")&&await o()};let i=new IntersectionObserver(async function(e){if(!t){if(t=!0,e[0].isIntersecting)if(l)await o();else for(;n.getBoundingClientRect().top<=window.innerHeight&&document.querySelector("link[rel=next]");)await o();t=!1,document.querySelector("link[rel=next]")||i.disconnect()}});e?i.observe(n):u.addEventListener("click",o)}((e,t)=>{"function"==typeof define&&define.amd?define("ev-emitter/ev-emitter",t):"object"==typeof module&&module.exports?module.exports=t():e.EvEmitter=t()})("undefined"!=typeof window?window:this,function(){function e(){}var t=e.prototype;return t.on=function(e,t){var n;if(e&&t)return-1==(n=(n=this._events=this._events||{})[e]=n[e]||[]).indexOf(t)&&n.push(t),this},t.once=function(e,t){var n;if(e&&t)return this.on(e,t),((n=this._onceEvents=this._onceEvents||{})[e]=n[e]||{})[t]=!0,this},t.off=function(e,t){e=this._events&&this._events[e];if(e&&e.length)return-1!=(t=e.indexOf(t))&&e.splice(t,1),this},t.emitEvent=function(e,t){var n=this._events&&this._events[e];if(n&&n.length){n=n.slice(0),t=t||[];for(var o=this._onceEvents&&this._onceEvents[e],i=0;i<n.length;i++){var r=n[i];o&&o[r]&&(this.off(e,r),delete o[r]),r.apply(this,t)}return this}},t.allOff=function(){delete this._events,delete this._onceEvents},e}),((t,n)=>{"function"==typeof define&&define.amd?define(["ev-emitter/ev-emitter"],function(e){return n(t,e)}):"object"==typeof module&&module.exports?module.exports=n(t,require("ev-emitter")):t.imagesLoaded=n(t,t.EvEmitter)})("undefined"!=typeof window?window:this,function(t,e){function r(e,t){for(var n in t)e[n]=t[n];return e}function a(e,t,n){var o,i;return this instanceof a?(o="string"==typeof(o=e)?document.querySelectorAll(e):o)?(this.elements=(i=o,Array.isArray(i)?i:"object"==typeof i&&"number"==typeof i.length?c.call(i):[i]),this.options=r({},this.options),"function"==typeof t?n=t:r(this.options,t),n&&this.on("always",n),this.getImages(),s&&(this.jqDeferred=new s.Deferred),void setTimeout(this.check.bind(this))):void l.error("Bad element for imagesLoaded "+(o||e)):new a(e,t,n)}function n(e){this.img=e}function o(e,t){this.url=e,this.element=t,this.img=new Image}var s=t.jQuery,l=t.console,c=Array.prototype.slice,u=((a.prototype=Object.create(e.prototype)).options={},a.prototype.getImages=function(){this.images=[],this.elements.forEach(this.addElementImages,this)},a.prototype.addElementImages=function(e){"IMG"==e.nodeName&&this.addImage(e),!0===this.options.background&&this.addElementBackgroundImages(e);var t=e.nodeType;if(t&&u[t]){for(var n=e.querySelectorAll("img"),o=0;o<n.length;o++){var i=n[o];this.addImage(i)}if("string"==typeof this.options.background)for(var r=e.querySelectorAll(this.options.background),o=0;o<r.length;o++){var a=r[o];this.addElementBackgroundImages(a)}}},{1:!0,9:!0,11:!0});return a.prototype.addElementBackgroundImages=function(e){var t=getComputedStyle(e);if(t)for(var n=/url\((['"])?(.*?)\1\)/gi,o=n.exec(t.backgroundImage);null!==o;){var i=o&&o[2];i&&this.addBackground(i,e),o=n.exec(t.backgroundImage)}},a.prototype.addImage=function(e){e=new n(e);this.images.push(e)},a.prototype.addBackground=function(e,t){e=new o(e,t);this.images.push(e)},a.prototype.check=function(){function t(e,t,n){setTimeout(function(){o.progress(e,t,n)})}var o=this;return this.progressedCount=0,this.hasAnyBroken=!1,this.images.length?void this.images.forEach(function(e){e.once("progress",t),e.check()}):void this.complete()},a.prototype.progress=function(e,t,n){this.progressedCount++,this.hasAnyBroken=this.hasAnyBroken||!e.isLoaded,this.emitEvent("progress",[this,e,t]),this.jqDeferred&&this.jqDeferred.notify&&this.jqDeferred.notify(this,e),this.progressedCount==this.images.length&&this.complete(),this.options.debug&&l&&l.log("progress: "+n,e,t)},a.prototype.complete=function(){var e=this.hasAnyBroken?"fail":"done";this.isComplete=!0,this.emitEvent(e,[this]),this.emitEvent("always",[this]),this.jqDeferred&&(e=this.hasAnyBroken?"reject":"resolve",this.jqDeferred[e](this))},(n.prototype=Object.create(e.prototype)).check=function(){return this.getIsImageComplete()?void this.confirm(0!==this.img.naturalWidth,"naturalWidth"):(this.proxyImage=new Image,this.proxyImage.addEventListener("load",this),this.proxyImage.addEventListener("error",this),this.img.addEventListener("load",this),this.img.addEventListener("error",this),void(this.proxyImage.src=this.img.src))},n.prototype.getIsImageComplete=function(){return this.img.complete&&this.img.naturalWidth},n.prototype.confirm=function(e,t){this.isLoaded=e,this.emitEvent("progress",[this,this.img,t])},n.prototype.handleEvent=function(e){var t="on"+e.type;this[t]&&this[t](e)},n.prototype.onload=function(){this.confirm(!0,"onload"),this.unbindEvents()},n.prototype.onerror=function(){this.confirm(!1,"onerror"),this.unbindEvents()},n.prototype.unbindEvents=function(){this.proxyImage.removeEventListener("load",this),this.proxyImage.removeEventListener("error",this),this.img.removeEventListener("load",this),this.img.removeEventListener("error",this)},(o.prototype=Object.create(n.prototype)).check=function(){this.img.addEventListener("load",this),this.img.addEventListener("error",this),this.img.src=this.url,this.getIsImageComplete()&&(this.confirm(0!==this.img.naturalWidth,"naturalWidth"),this.unbindEvents())},o.prototype.unbindEvents=function(){this.img.removeEventListener("load",this),this.img.removeEventListener("error",this)},o.prototype.confirm=function(e,t){this.isLoaded=e,this.emitEvent("progress",[this,this.element,t])},(a.makeJQueryPlugin=function(e){(e=e||t.jQuery)&&((s=e).fn.imagesLoaded=function(e,t){return new a(this,e,t).jqDeferred.promise(s(this))})})(),a}),((e,t)=>{"function"==typeof define&&define.amd?define(t):"object"==typeof exports?module.exports=t():e.PhotoSwipeUI_Default=t()})(this,function(){return function(o,s){function e(e){if(T)return!0;e=e||window.event,C.timeToIdle&&C.mouseUsed&&!y&&a();for(var t,n,o=(e.target||e.srcElement).getAttribute("class")||"",i=0;i<R.length;i++)(t=R[i]).onTap&&-1<o.indexOf("pswp__"+t.name)&&(t.onTap(),n=!0);n&&(e.stopPropagation&&e.stopPropagation(),T=!0,e=s.features.isOldAndroid?600:30,setTimeout(function(){T=!1},e))}function n(){var e=1===C.getNumItemsFn();e!==I&&(M(d,"ui--one-slide",e),I=e)}function t(){M(g,"share-modal--hidden",_)}function i(){for(var e,t,n,o,i="",r=0;r<C.shareButtons.length;r++)e=C.shareButtons[r],t=C.getImageURLForShare(e),n=C.getPageURLForShare(e),o=C.getTextForShare(e),i+='<a href="'+e.url.replace("{{url}}",encodeURIComponent(n)).replace("{{image_url}}",encodeURIComponent(t)).replace("{{raw_image_url}}",t).replace("{{text}}",encodeURIComponent(o))+'" target="_blank" class="pswp__share--'+e.id+'"'+(e.download?"download":"")+">"+e.label+"</a>",C.parseShareButtonOut&&(i=C.parseShareButtonOut(e,i));g.children[0].innerHTML=i,g.children[0].onclick=q}function r(e){for(var t=0;t<C.closeElClasses.length;t++)if(s.hasClass(e,"pswp__"+C.closeElClasses[t]))return!0}function a(){clearTimeout(k),F=0,y&&A.setIdle(!1)}function l(e){(e=(e=e||window.event).relatedTarget||e.toElement)&&"HTML"!==e.nodeName||(clearTimeout(k),k=setTimeout(function(){A.setIdle(!0)},C.timeToIdleOutside))}function c(e){b!==e&&(M(x,"preloader--active",!e),b=e)}function P(e){var t,n=e.vGap;!o.likelyTouchDevice||C.mouseUsed||screen.width>C.fitControlsWidth?(t=C.barsSize,C.captionEl&&"auto"===t.bottom?(p||((p=s.createEl("pswp__caption pswp__caption--fake")).appendChild(s.createEl("pswp__caption__center")),d.insertBefore(p,m),s.addClass(d,"pswp__ui--fit")),C.addCaptionHTMLFn(e,p,!0)?(e=p.clientHeight,n.bottom=parseInt(e,10)||44):n.bottom=t.top):n.bottom="auto"===t.bottom?0:t.bottom,n.top=t.top):n.top=n.bottom=0}function Z(){function e(e){if(e)for(var t=e.length,n=0;n<t;n++){i=e[n],r=i.className;for(var o=0;o<R.length;o++)a=R[o],-1<r.indexOf("pswp__"+a.name)&&(C[a.option]?(s.removeClass(i,"pswp__element--disabled"),a.onInit&&a.onInit(i)):s.addClass(i,"pswp__element--disabled"))}}e(d.children);var i,r,a,t=s.getChildByClass(d,"pswp__top-bar");t&&e(t.children)}var u,d,m,p,f,h,g,v,y,w,x,b,E,I,C,T,S,k,A=this,D=!1,L=!0,_=!0,z={barsSize:{top:44,bottom:"auto"},closeElClasses:["item","caption","zoom-wrap","ui","top-bar"],timeToIdle:4e3,timeToIdleOutside:1e3,loadingIndicatorDelay:1e3,addCaptionHTMLFn:function(e,t){return e.title?(t.children[0].innerHTML=e.title,!0):(t.children[0].innerHTML="",!1)},closeEl:!0,captionEl:!0,fullscreenEl:!0,zoomEl:!0,shareEl:!0,counterEl:!0,arrowEl:!0,preloaderEl:!0,tapToClose:!1,tapToToggleControls:!0,clickToCloseNonZoomable:!0,shareButtons:[{id:"facebook",label:"Share on Facebook",url:"https://www.facebook.com/sharer/sharer.php?u={{url}}"},{id:"twitter",label:"Tweet",url:"https://twitter.com/intent/tweet?text={{text}}&url={{url}}"},{id:"pinterest",label:"Pin it",url:"http://www.pinterest.com/pin/create/button/?url={{url}}&media={{image_url}}&description={{text}}"},{id:"download",label:"Download image",url:"{{raw_image_url}}",download:!0}],getImageURLForShare:function(){return o.currItem.src||""},getPageURLForShare:function(){return window.location.href},getTextForShare:function(){return o.currItem.title||""},indexIndicatorSep:" / ",fitControlsWidth:1200},M=function(e,t,n){s[(n?"add":"remove")+"Class"](e,"pswp__"+t)},O=function(){return(_=!_)?(s.removeClass(g,"pswp__share-modal--fade-in"),setTimeout(function(){_&&t()},300)):(t(),setTimeout(function(){_||s.addClass(g,"pswp__share-modal--fade-in")},30)),_||i(),!1},q=function(e){var t=(e=e||window.event).target||e.srcElement;return o.shout("shareLinkClick",e,t),!(!t.href||!t.hasAttribute("download")&&(window.open(t.href,"pswp_share","scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=550,height=420,top=100,left="+(window.screen?Math.round(screen.width/2-275):100)),_||O(),1))},F=0,R=[{name:"caption",option:"captionEl",onInit:function(e){m=e}},{name:"share-modal",option:"shareEl",onInit:function(e){g=e},onTap:function(){O()}},{name:"button--share",option:"shareEl",onInit:function(e){h=e},onTap:function(){O()}},{name:"button--zoom",option:"zoomEl",onTap:o.toggleDesktopZoom},{name:"counter",option:"counterEl",onInit:function(e){f=e}},{name:"button--close",option:"closeEl",onTap:o.close},{name:"button--arrow--left",option:"arrowEl",onTap:o.prev},{name:"button--arrow--right",option:"arrowEl",onTap:o.next},{name:"button--fs",option:"fullscreenEl",onTap:function(){u.isFullscreen()?u.exit():u.enter()}},{name:"preloader",option:"preloaderEl",onInit:function(e){x=e}}];A.init=function(){var t;s.extend(o.options,z,!0),C=o.options,d=s.getChildByClass(o.scrollWrap,"pswp__ui"),(w=o.listen)("onVerticalDrag",function(e){L&&e<.95?A.hideControls():!L&&.95<=e&&A.showControls()}),w("onPinchClose",function(e){L&&e<.9?(A.hideControls(),t=!0):t&&!L&&.9<e&&A.showControls()}),w("zoomGestureEnded",function(){(t=!1)&&!L&&A.showControls()}),w("beforeChange",A.update),w("doubleTap",function(e){var t=o.currItem.initialZoomLevel;o.getZoomLevel()!==t?o.zoomTo(t,e,333):o.zoomTo(C.getDoubleTapZoom(!1,o.currItem),e,333)}),w("preventDragEvent",function(e,t,n){var o=e.target||e.srcElement;o&&o.getAttribute("class")&&-1<e.type.indexOf("mouse")&&(0<o.getAttribute("class").indexOf("__caption")||/(SMALL|STRONG|EM)/i.test(o.tagName))&&(n.prevent=!1)}),w("bindEvents",function(){s.bind(d,"pswpTap click",e),s.bind(o.scrollWrap,"pswpTap",A.onGlobalTap),o.likelyTouchDevice||s.bind(o.scrollWrap,"mouseover",A.onMouseOver)}),w("unbindEvents",function(){_||O(),S&&clearInterval(S),s.unbind(document,"mouseout",l),s.unbind(document,"mousemove",a),s.unbind(d,"pswpTap click",e),s.unbind(o.scrollWrap,"pswpTap",A.onGlobalTap),s.unbind(o.scrollWrap,"mouseover",A.onMouseOver),u&&(s.unbind(document,u.eventK,A.updateFullscreen),u.isFullscreen()&&(C.hideAnimationDuration=0,u.exit()),u=null)}),w("destroy",function(){C.captionEl&&(p&&d.removeChild(p),s.removeClass(m,"pswp__caption--empty")),g&&(g.children[0].onclick=null),s.removeClass(d,"pswp__ui--over-close"),s.addClass(d,"pswp__ui--hidden"),A.setIdle(!1)}),C.showAnimationDuration||s.removeClass(d,"pswp__ui--hidden"),w("initialZoomIn",function(){C.showAnimationDuration&&s.removeClass(d,"pswp__ui--hidden")}),w("initialZoomOut",function(){s.addClass(d,"pswp__ui--hidden")}),w("parseVerticalMargin",P),Z(),C.shareEl&&h&&g&&(_=!0),n(),C.timeToIdle&&w("mouseUsed",function(){s.bind(document,"mousemove",a),s.bind(document,"mouseout",l),S=setInterval(function(){2===++F&&A.setIdle(!0)},C.timeToIdle/2)}),C.fullscreenEl&&!s.features.isOldAndroid&&((u=u||A.getFullscreenAPI())?(s.bind(document,u.eventK,A.updateFullscreen),A.updateFullscreen(),s.addClass(o.template,"pswp--supports-fs")):s.removeClass(o.template,"pswp--supports-fs")),C.preloaderEl&&(c(!0),w("beforeChange",function(){clearTimeout(E),E=setTimeout(function(){o.currItem&&o.currItem.loading?o.allowProgressiveImg()&&(!o.currItem.img||o.currItem.img.naturalWidth)||c(!1):c(!0)},C.loadingIndicatorDelay)}),w("imageLoadComplete",function(e,t){o.currItem===t&&c(!0)}))},A.setIdle=function(e){M(d,"ui--idle",y=e)},A.update=function(){D=!(!L||!o.currItem||(A.updateIndexIndicator(),C.captionEl&&(C.addCaptionHTMLFn(o.currItem,m),M(m,"caption--empty",!o.currItem.title)),0)),_||O(),n()},A.updateFullscreen=function(e){e&&setTimeout(function(){o.setScrollOffset(0,s.getScrollY())},50),s[(u.isFullscreen()?"add":"remove")+"Class"](o.template,"pswp--fs")},A.updateIndexIndicator=function(){C.counterEl&&(f.innerHTML=o.getCurrentIndex()+1+C.indexIndicatorSep+C.getNumItemsFn())},A.onGlobalTap=function(e){var t=(e=e||window.event).target||e.srcElement;if(!T)if(e.detail&&"mouse"===e.detail.pointerType)r(t)?o.close():s.hasClass(t,"pswp__img")&&(1===o.getZoomLevel()&&o.getZoomLevel()<=o.currItem.fitRatio?C.clickToCloseNonZoomable&&o.close():o.toggleDesktopZoom(e.detail.releasePoint));else if(C.tapToToggleControls&&(L?A.hideControls():A.showControls()),C.tapToClose&&(s.hasClass(t,"pswp__img")||r(t)))return void o.close()},A.onMouseOver=function(e){e=(e=e||window.event).target||e.srcElement;M(d,"ui--over-close",r(e))},A.hideControls=function(){s.addClass(d,"pswp__ui--hidden"),L=!1},A.showControls=function(){L=!0,D||A.update(),s.removeClass(d,"pswp__ui--hidden")},A.supportsFullscreen=function(){var e=document;return!!(e.exitFullscreen||e.mozCancelFullScreen||e.webkitExitFullscreen||e.msExitFullscreen)},A.getFullscreenAPI=function(){var e,t=document.documentElement,n="fullscreenchange";return t.requestFullscreen?e={enterK:"requestFullscreen",exitK:"exitFullscreen",elementK:"fullscreenElement",eventK:n}:t.mozRequestFullScreen?e={enterK:"mozRequestFullScreen",exitK:"mozCancelFullScreen",elementK:"mozFullScreenElement",eventK:"moz"+n}:t.webkitRequestFullscreen?e={enterK:"webkitRequestFullscreen",exitK:"webkitExitFullscreen",elementK:"webkitFullscreenElement",eventK:"webkit"+n}:t.msRequestFullscreen&&(e={enterK:"msRequestFullscreen",exitK:"msExitFullscreen",elementK:"msFullscreenElement",eventK:"MSFullscreenChange"}),e&&(e.enter=function(){return v=C.closeOnScroll,C.closeOnScroll=!1,"webkitRequestFullscreen"!==this.enterK?o.template[this.enterK]():void o.template[this.enterK](Element.ALLOW_KEYBOARD_INPUT)},e.exit=function(){return C.closeOnScroll=v,document[this.exitK]()},e.isFullscreen=function(){return document[this.elementK]}),e}}}),((e,t)=>{"function"==typeof define&&define.amd?define(t):"object"==typeof exports?module.exports=t():e.PhotoSwipe=t()})(this,function(){return function(m,Z,t,z){var p={features:null,bind:function(e,t,n,o){var i=(o?"remove":"add")+"EventListener";t=t.split(" ");for(var r=0;r<t.length;r++)t[r]&&e[i](t[r],n,!1)},isArray:function(e){return e instanceof Array},createEl:function(e,t){t=document.createElement(t||"div");return e&&(t.className=e),t},getScrollY:function(){var e=window.pageYOffset;return void 0!==e?e:document.documentElement.scrollTop},unbind:function(e,t,n){p.bind(e,t,n,!0)},removeClass:function(e,t){t=new RegExp("(\\s|^)"+t+"(\\s|$)");e.className=e.className.replace(t," ").replace(/^\s\s*/,"").replace(/\s\s*$/,"")},addClass:function(e,t){p.hasClass(e,t)||(e.className+=(e.className?" ":"")+t)},hasClass:function(e,t){return e.className&&new RegExp("(^|\\s)"+t+"(\\s|$)").test(e.className)},getChildByClass:function(e,t){for(var n=e.firstChild;n;){if(p.hasClass(n,t))return n;n=n.nextSibling}},arraySearch:function(e,t,n){for(var o=e.length;o--;)if(e[o][n]===t)return o;return-1},extend:function(e,t,n){for(var o in t)if(t.hasOwnProperty(o)){if(n&&e.hasOwnProperty(o))continue;e[o]=t[o]}},easing:{sine:{out:function(e){return Math.sin(e*(Math.PI/2))},inOut:function(e){return-(Math.cos(Math.PI*e)-1)/2}},cubic:{out:function(e){return--e*e*e+1}}},detectFeatures:function(){if(p.features)return p.features;var e,t,n=p.createEl().style,o="",i={};i.oldIE=document.all&&!document.addEventListener,i.touch="ontouchstart"in window,window.requestAnimationFrame&&(i.raf=window.requestAnimationFrame,i.caf=window.cancelAnimationFrame),i.pointerEvent=!!window.PointerEvent||navigator.msPointerEnabled,i.pointerEvent||(e=navigator.userAgent,/iP(hone|od)/.test(navigator.platform)&&(t=navigator.appVersion.match(/OS (\d+)_(\d+)_?(\d+)?/))&&0<t.length&&1<=(t=parseInt(t[1],10))&&t<8&&(i.isOldIOSPhone=!0),t=(t=e.match(/Android\s([0-9\.]*)/))?t[1]:0,1<=(t=parseFloat(t))&&(t<4.4&&(i.isOldAndroid=!0),i.androidVersion=t),i.isMobileOpera=/opera mini|opera mobi/i.test(e));for(var r,a,s,l=["transform","perspective","animationName"],c=["","webkit","Moz","ms","O"],u=0;u<4;u++){for(var o=c[u],d=0;d<3;d++)r=l[d],a=o+(o?r.charAt(0).toUpperCase()+r.slice(1):r),!i[r]&&a in n&&(i[r]=a);o&&!i.raf&&(o=o.toLowerCase(),i.raf=window[o+"RequestAnimationFrame"],i.raf)&&(i.caf=window[o+"CancelAnimationFrame"]||window[o+"CancelRequestAnimationFrame"])}return i.raf||(s=0,i.raf=function(e){var t=(new Date).getTime(),n=Math.max(0,16-(t-s)),o=window.setTimeout(function(){e(t+n)},n);return s=t+n,o},i.caf=function(e){clearTimeout(e)}),i.svg=!!document.createElementNS&&!!document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect,p.features=i}},f=(p.detectFeatures(),p.features.oldIE&&(p.bind=function(e,t,n,o){t=t.split(" ");for(var i,r=(o?"detach":"attach")+"Event",a=function(){n.handleEvent.call(n)},s=0;s<t.length;s++)if(i=t[s])if("object"==typeof n&&n.handleEvent){if(o){if(!n["oldIE"+i])return!1}else n["oldIE"+i]=a;e[r]("on"+i,n["oldIE"+i])}else e[r]("on"+i,n)}),this),q=25,h={allowPanToNext:!0,spacing:.12,bgOpacity:1,mouseUsed:!1,loop:!0,pinchToClose:!0,closeOnScroll:!0,closeOnVerticalDrag:!0,verticalDragRange:.75,hideAnimationDuration:333,showAnimationDuration:333,showHideOpacity:!1,focus:!0,escKey:!0,arrowKeys:!0,mainScrollEndFriction:.35,panEndFriction:.35,isClickableElement:function(e){return"A"===e.tagName},getDoubleTapZoom:function(e,t){return e||t.initialZoomLevel<.7?1:1.33},maxSpreadZoom:1.33,modal:!0,scaleMode:"fit"};p.extend(h,z);function e(){return{x:0,y:0}}function N(e,t){p.extend(f,t.publicMethods),Ke.push(e)}function B(e){var t=O();return t-1<e?e-t:e<0?t+e:e}function r(e,t){return Ge[e]||(Ge[e]=[]),Ge[e].push(t)}function U(e,t,n,o){o===f.currItem.initialZoomLevel?n[e]=f.currItem.initialPosition[e]:(n[e]=Je(e,o),n[e]>t.min[e]?n[e]=t.min[e]:n[e]<t.max[e]&&(n[e]=t.max[e]))}function W(e){var t="";h.escKey&&27===e.keyCode?t="close":h.arrowKeys&&(37===e.keyCode?t="prev":39===e.keyCode&&(t="next")),!t||e.ctrlKey||e.altKey||e.shiftKey||e.metaKey||(e.preventDefault?e.preventDefault():e.returnValue=!1,f[t]())}function H(e){e&&(De||Ae||y||Te)&&(e.preventDefault(),e.stopPropagation())}function K(){f.setScrollOffset(0,p.getScrollY())}function j(e){var t;"mousedown"===e.type&&0<e.button||(Jt?e.preventDefault():Se&&"mousedown"===e.type||(_t(e,!0)&&e.preventDefault(),I("pointerDown"),pe&&((t=p.arraySearch(ht,e.pointerId,"id"))<0&&(t=ht.length),ht[t]={x:e.pageX,y:e.pageY,id:e.pointerId}),e=(t=qt(e)).length,c=null,ct(),l&&1!==e||(l=Re=!0,p.bind(window,ee,f),Ce=ze=Pe=Te=_e=De=ke=Ae=!1,Fe=null,I("firstTouchStart",t),k(Be,w),Ne.x=Ne.y=0,k(_,t[0]),k(ft,_),gt.x=b.x*Ue,vt=[{x:_.x,y:_.y}],Ee=be=C(),ot(v,!0),St(),kt()),!u&&1<e&&!y&&!_e&&(ne=v,u=ke=!(Ae=!1),Ne.y=Ne.x=0,k(Be,w),k(D,t[0]),k(pt,t[1]),Ot(D,pt,It),Et.x=Math.abs(It.x)-w.x,Et.y=Math.abs(It.y)-w.y,Me=Tt(D,pt))))}function Y(e){var t;e.preventDefault(),pe&&-1<(t=p.arraySearch(ht,e.pointerId,"id"))&&((t=ht[t]).x=e.pageX,t.y=e.pageY),l&&(t=qt(e),Fe||De||u?c=t:M.x!==b.x*Ue?Fe="h":(e=Math.abs(t[0].x-_.x)-Math.abs(t[0].y-_.y),Math.abs(e)>=mt&&(Fe=0<e?"h":"v",c=t)))}function G(e){if(s.isOldAndroid){if(Se&&"mouseup"===e.type)return;-1<e.type.indexOf("touch")&&(clearTimeout(Se),Se=setTimeout(function(){Se=0},600))}var t;I("pointerUp"),_t(e,!1)&&e.preventDefault(),pe&&-1<(r=p.arraySearch(ht,e.pointerId,"id"))&&(t=ht.splice(r,1)[0],navigator.msPointerEnabled&&(t.type={4:"mouse",2:"touch",3:"pen"}[e.pointerType],t.type)||(t.type=e.pointerType||"mouse"));var n=(r=qt(e)).length;if(2===(n="mouseup"===e.type?0:n))return!(c=null);1===n&&k(ft,r[0]),0!==n||Fe||y||(t||("mouseup"===e.type?t={x:e.pageX,y:e.pageY,type:"mouse"}:e.changedTouches&&e.changedTouches[0]&&(t={x:e.changedTouches[0].pageX,y:e.changedTouches[0].pageY,type:"touch"})),I("touchRelease",e,t));var o,i,r=-1;if(0===n&&(l=!1,p.unbind(window,ee,f),St(),u?r=0:-1!==bt&&(r=C()-bt)),bt=1===n?C():-1,e=-1!==r&&r<150?"zoom":"swipe",u&&n<2&&(u=!1,1===n&&(e="zoomPointerUp"),I("zoomGestureEnded")),c=null,De||Ae||y||Te)if(ct(),(Ie=Ie||Ut()).calculateSwipeSpeed("x"),Te)Rt()<h.verticalDragRange?f.close():(o=w.y,i=Ze,ut("verticalDrag",0,1,300,p.easing.cubic.out,function(e){w.y=(f.currItem.initialPosition.y-o)*e+o,T((1-i)*e+i),S()}),I("onVerticalDrag",1));else{if((_e||y)&&0===n){if(Ht(e,Ie))return;e="zoomPointerUp"}if(!y)return"swipe"!==e?void jt():void(!_e&&v>f.currItem.fitRatio&&Wt(Ie))}}var V,X,$,g,Q,J,ee,te,o,v,ne,oe,ie,re,ae,a,se,le,ce,ue,de,me,pe,i,fe,he,ge,ve,ye,we,s,xe,be,Ee,Ie,Ce,Te,Se,l,ke,Ae,De,Le,_e,c,u,Me,d,Oe,y,Fe,Re,Pe,Ze,ze,qe,Ne=e(),Be=e(),w=e(),x={},Ue=0,We={},b=e(),E=0,He=!0,Ke=[],je={},Ye=!1,Ge={},I=function(e){var t=Ge[e];if(t){var n=Array.prototype.slice.call(arguments);n.shift();for(var o=0;o<t.length;o++)t[o].apply(f,n)}},C=function(){return(new Date).getTime()},T=function(e){Ze=e,f.bg.style.opacity=e*h.bgOpacity},Ve=function(e,t,n,o,i){(!Ye||i&&i!==f.currItem)&&(o/=(i||f.currItem).fitRatio),e[me]=oe+t+"px, "+n+"px"+ie+" scale("+o+")"},S=function(e){Oe&&(e&&(v>f.currItem.fitRatio?Ye||(cn(f.currItem,!1,!0),Ye=!0):Ye&&(cn(f.currItem),Ye=!1)),Ve(Oe,w.x,w.y,v))},Xe=function(e){e.container&&Ve(e.container.style,e.initialPosition.x,e.initialPosition.y,e.initialZoomLevel,e)},$e=function(e,t){t[me]=oe+e+"px, 0px"+ie},Qe=function(e,t){var n;!h.loop&&t&&(t=g+(b.x*Ue-e)/b.x,n=Math.round(e-M.x),t<0&&0<n||t>=O()-1&&n<0)&&(e=M.x+n*h.mainScrollEndFriction),M.x=e,$e(e,Q)},Je=function(e,t){var n=Et[e]-We[e];return Be[e]+Ne[e]+n-t/ne*n},k=function(e,t){e.x=t.x,e.y=t.y,t.id&&(e.id=t.id)},et=function(e){e.x=Math.round(e.x),e.y=Math.round(e.y)},tt=null,nt=function(){tt&&(p.unbind(document,"mousemove",nt),p.addClass(m,"pswp--has_mouse"),h.mouseUsed=!0,I("mouseUsed")),tt=setTimeout(function(){tt=null},100)},ot=function(e,t){e=sn(f.currItem,x,e);return t&&(d=e),e},it=function(e){return(e=e||f.currItem).initialZoomLevel},rt=function(e){return 0<(e=e||f.currItem).w?h.maxSpreadZoom:1},A={},at=0,st=function(e){A[e]&&(A[e].raf&&he(A[e].raf),at--,delete A[e])},lt=function(e){A[e]&&st(e),A[e]||(at++,A[e]={})},ct=function(){for(var e in A)A.hasOwnProperty(e)&&st(e)},ut=function(e,t,n,o,i,r,a){function s(){A[e]&&(l=C()-c,o<=l?(st(e),r(n),a&&a()):(r((n-t)*i(l/o)+t),A[e].raf=fe(s)))}var l,c=C();lt(e);s()},z={shout:I,listen:r,viewportSize:x,options:h,isMainScrollAnimating:function(){return y},getZoomLevel:function(){return v},getCurrentIndex:function(){return g},isDragging:function(){return l},isZooming:function(){return u},setScrollOffset:function(e,t){We.x=e,we=We.y=t,I("updateScrollOffset",We)},applyZoomPan:function(e,t,n,o){w.x=t,w.y=n,v=e,S(o)},init:function(){if(!V&&!X){f.framework=p,f.template=m,f.bg=p.getChildByClass(m,"pswp__bg"),ge=m.className,V=!0,s=p.detectFeatures(),fe=s.raf,he=s.caf,me=s.transform,ye=s.oldIE,f.scrollWrap=p.getChildByClass(m,"pswp__scroll-wrap"),f.container=p.getChildByClass(f.scrollWrap,"pswp__container"),Q=f.container.style,f.itemHolders=a=[{el:f.container.children[0],wrap:0,index:-1},{el:f.container.children[1],wrap:0,index:-1},{el:f.container.children[2],wrap:0,index:-1}],a[0].el.style.display=a[2].el.style.display="none",me?(t=s.perspective&&!i,oe="translate"+(t?"3d(":"("),ie=s.perspective?", 0px)":")"):(me="left",p.addClass(m,"pswp--ie"),$e=function(e,t){t.left=e+"px"},Xe=function(e){var t=1<e.fitRatio?1:e.fitRatio,n=e.container.style,o=t*e.h;n.width=t*e.w+"px",n.height=o+"px",n.left=e.initialPosition.x+"px",n.top=e.initialPosition.y+"px"},S=function(){var e,t,n,o;Oe&&(e=Oe,o=(n=1<(t=f.currItem).fitRatio?1:t.fitRatio)*t.h,e.width=n*t.w+"px",e.height=o+"px",e.left=w.x+"px",e.top=w.y+"px")}),o={resize:f.updateSize,orientationchange:function(){clearTimeout(xe),xe=setTimeout(function(){x.x!==f.scrollWrap.clientWidth&&f.updateSize()},500)},scroll:K,keydown:W,click:H};var e,t=s.isOldIOSPhone||s.isOldAndroid||s.isMobileOpera;for(s.animationName&&s.transform&&!t||(h.showAnimationDuration=h.hideAnimationDuration=0),e=0;e<Ke.length;e++)f["init"+Ke[e]]();Z&&(f.ui=new Z(f,p)).init(),I("firstUpdate"),g=g||h.index||0,(isNaN(g)||g<0||g>=O())&&(g=0),f.currItem=en(g),(s.isOldIOSPhone||s.isOldAndroid)&&(He=!1),m.setAttribute("aria-hidden","false"),h.modal&&(He?m.style.position="fixed":(m.style.position="absolute",m.style.top=p.getScrollY()+"px")),void 0===we&&(I("initialLayout"),we=ve=p.getScrollY());var n="pswp--open ";for(h.mainClass&&(n+=h.mainClass+" "),h.showHideOpacity&&(n+="pswp--animate_opacity "),n=(n=(n+=i?"pswp--touch":"pswp--notouch")+(s.animationName?" pswp--css_animation":""))+(s.svg?" pswp--svg":""),p.addClass(m,n),f.updateSize(),J=-1,E=null,e=0;e<3;e++)$e((e+J)*b.x,a[e].el.style);ye||p.bind(f.scrollWrap,te,f),r("initialZoomInEnd",function(){f.setContent(a[0],g-1),f.setContent(a[2],g+1),a[0].el.style.display=a[2].el.style.display="block",h.focus&&m.focus(),p.bind(document,"keydown",f),s.transform&&p.bind(f.scrollWrap,"click",f),h.mouseUsed||p.bind(document,"mousemove",nt),p.bind(window,"resize scroll orientationchange",f),I("bindEvents")}),f.setContent(a[1],g),f.updateCurrItem(),I("afterInit"),He||(re=setInterval(function(){at||l||u||v!==f.currItem.initialZoomLevel||f.updateSize()},1e3)),p.addClass(m,"pswp--visible")}var t},close:function(){V&&(X=!(V=!1),I("close"),p.unbind(window,"resize scroll orientationchange",f),p.unbind(window,"scroll",o.scroll),p.unbind(document,"keydown",f),p.unbind(document,"mousemove",nt),s.transform&&p.unbind(f.scrollWrap,"click",f),l&&p.unbind(window,ee,f),clearTimeout(xe),I("unbindEvents"),tn(f.currItem,null,!0,f.destroy))},destroy:function(){I("destroy"),Xt&&clearTimeout(Xt),m.setAttribute("aria-hidden","true"),m.className=ge,re&&clearInterval(re),p.unbind(f.scrollWrap,te,f),p.unbind(window,"scroll",f),St(),ct(),Ge=null},panTo:function(e,t,n){n||(e>d.min.x?e=d.min.x:e<d.max.x&&(e=d.max.x),t>d.min.y?t=d.min.y:t<d.max.y&&(t=d.max.y)),w.x=e,w.y=t,S()},handleEvent:function(e){e=e||window.event,o[e.type]&&o[e.type](e)},goTo:function(e){var t=(e=B(e))-g;E=t,g=e,f.currItem=en(g),Ue-=t,Qe(b.x*Ue),ct(),y=!1,f.updateCurrItem()},next:function(){f.goTo(g+1)},prev:function(){f.goTo(g-1)},updateCurrZoomItem:function(e){var t;e&&I("beforeChange",0),Oe=a[1].el.children.length&&(t=a[1].el.children[0],p.hasClass(t,"pswp__zoom-wrap"))?t.style:null,d=f.currItem.bounds,ne=v=f.currItem.initialZoomLevel,w.x=d.center.x,w.y=d.center.y,e&&I("afterChange")},invalidateCurrItems:function(){ae=!0;for(var e=0;e<3;e++)a[e].item&&(a[e].item.needsUpdate=!0)},updateCurrItem:function(e){if(0!==E){var t,n=Math.abs(E);if(!(e&&n<2)){f.currItem=en(g),Ye=!1,I("beforeChange",E),3<=n&&(J+=E+(0<E?-3:3),n=3);for(var o=0;o<n;o++)0<E?(t=a.shift(),a[2]=t,$e((++J+2)*b.x,t.el.style),f.setContent(t,g-n+o+1+1)):(t=a.pop(),a.unshift(t),$e(--J*b.x,t.el.style),f.setContent(t,g+n-o-1-1));Oe&&1===Math.abs(E)&&(e=en(se)).initialZoomLevel!==v&&(sn(e,x),cn(e),Xe(e)),E=0,f.updateCurrZoomItem(),se=g,I("afterChange")}}},updateSize:function(e){if(!He&&h.modal){var t=p.getScrollY();if(we!==t&&(m.style.top=t+"px",we=t),!e&&je.x===window.innerWidth&&je.y===window.innerHeight)return;je.x=window.innerWidth,je.y=window.innerHeight,m.style.height=je.y+"px"}if(x.x=f.scrollWrap.clientWidth,x.y=f.scrollWrap.clientHeight,K(),b.x=x.x+Math.round(x.x*h.spacing),b.y=x.y,Qe(b.x*Ue),I("beforeResize"),void 0!==J){for(var n,o,i,r=0;r<3;r++)n=a[r],$e((r+J)*b.x,n.el.style),i=g+r-1,h.loop&&2<O()&&(i=B(i)),(o=en(i))&&(ae||o.needsUpdate||!o.bounds)?(f.cleanSlide(o),f.setContent(n,i),1===r&&(f.currItem=o,f.updateCurrZoomItem(!0)),o.needsUpdate=!1):-1===n.index&&0<=i&&f.setContent(n,i),o&&o.container&&(sn(o,x),cn(o),Xe(o));ae=!1}ne=v=f.currItem.initialZoomLevel,(d=f.currItem.bounds)&&(w.x=d.center.x,w.y=d.center.y,S(!0)),I("resize")},zoomTo:function(t,e,n,o,i){e&&(ne=v,Et.x=Math.abs(e.x)-w.x,Et.y=Math.abs(e.y)-w.y,k(Be,w));function r(e){1===e?(v=t,w.x=a.x,w.y=a.y):(v=(t-s)*e+s,w.x=(a.x-l.x)*e+l.x,w.y=(a.y-l.y)*e+l.y),i&&i(e),S(1===e)}var e=ot(t,!1),a={},s=(U("x",e,a,t),U("y",e,a,t),v),l={x:w.x,y:w.y};et(a);n?ut("customZoomTo",0,1,n,o||p.easing.sine.inOut,r):r(1)}},dt=30,mt=10,D={},pt={},L={},_={},ft={},ht=[],gt={},vt=[],yt={},wt=0,xt=e(),bt=0,M=e(),Et=e(),It=e(),Ct=function(e,t){return e.x===t.x&&e.y===t.y},Tt=function(e,t){return yt.x=Math.abs(e.x-t.x),yt.y=Math.abs(e.y-t.y),Math.sqrt(yt.x*yt.x+yt.y*yt.y)},St=function(){Le&&(he(Le),Le=null)},kt=function(){l&&(Le=fe(kt),Bt())},At=function(){return!("fit"===h.scaleMode&&v===f.currItem.initialZoomLevel)},Dt=function(e,t){return!(!e||e===document)&&!(e.getAttribute("class")&&-1<e.getAttribute("class").indexOf("pswp__scroll-wrap"))&&(t(e)?e:Dt(e.parentNode,t))},Lt={},_t=function(e,t){return Lt.prevent=!Dt(e.target,h.isClickableElement),I("preventDragEvent",e,t,Lt),Lt.prevent},Mt=function(e,t){return t.x=e.pageX,t.y=e.pageY,t.id=e.identifier,t},Ot=function(e,t,n){n.x=.5*(e.x+t.x),n.y=.5*(e.y+t.y)},Ft=function(e,t,n){var o;50<e-Ee&&((o=2<vt.length?vt.shift():{}).x=t,o.y=n,vt.push(o),Ee=e)},Rt=function(){var e=w.y-f.currItem.initialPosition.y;return 1-Math.abs(e/(x.y/2))},Pt={},Zt={},zt=[],qt=function(e){for(;0<zt.length;)zt.pop();return pe?(qe=0,ht.forEach(function(e){0===qe?zt[0]=e:1===qe&&(zt[1]=e),qe++})):-1<e.type.indexOf("touch")?e.touches&&0<e.touches.length&&(zt[0]=Mt(e.touches[0],Pt),1<e.touches.length)&&(zt[1]=Mt(e.touches[1],Zt)):(Pt.x=e.pageX,Pt.y=e.pageY,Pt.id="",zt[0]=Pt),zt},Nt=function(e,t){var n,o,i,r=w[e]+t[e],a=M.x+t.x,s=M.x-gt.x,l=r>d.min[e]||r<d.max[e]?h.panEndFriction:1,r=w[e]+t[e]*l;return!h.allowPanToNext&&v!==f.currItem.initialZoomLevel||(Oe?"h"!==Fe||"x"!==e||Ae||(0<t[e]?(r>d.min[e]&&(l=h.panEndFriction,d.min[e],n=d.min[e]-Be[e]),(n<=0||s<0)&&1<O()?(i=a,s<0&&a>gt.x&&(i=gt.x)):d.min.x!==d.max.x&&(o=r)):(r<d.max[e]&&(l=h.panEndFriction,d.max[e],n=Be[e]-d.max[e]),(n<=0||0<s)&&1<O()?(i=a,0<s&&a<gt.x&&(i=gt.x)):d.min.x!==d.max.x&&(o=r))):i=a,"x"!==e)?void(y||_e||v>f.currItem.fitRatio&&(w[e]+=t[e]*l)):(void 0!==i&&(Qe(i,!0),_e=i!==gt.x),d.min.x!==d.max.x&&(void 0!==o?w.x=o:_e||(w.x+=t.x*l)),void 0!==i)},Bt=function(){var e,t,n,o,i,r;c&&0!==(e=c.length)&&(k(D,c[0]),L.x=D.x-_.x,L.y=D.y-_.y,u&&1<e?(_.x=D.x,_.y=D.y,!L.x&&!L.y&&Ct(c[1],pt)||(k(pt,c[1]),Ae||(Ae=!0,I("zoomGestureStarted")),e=Tt(D,pt),(t=Kt(e))>f.currItem.initialZoomLevel+f.currItem.initialZoomLevel/15&&(ze=!0),n=1,o=it(),i=rt(),t<o?h.pinchToClose&&!ze&&ne<=f.currItem.initialZoomLevel?(T(r=1-(o-t)/(o/1.2)),I("onPinchClose",r),Pe=!0):t=o-(n=1<(n=(o-t)/o)?1:n)*(o/3):i<t&&(t=i+(n=1<(n=(t-i)/(6*o))?1:n)*o),n<0&&(n=0),Ot(D,pt,xt),Ne.x+=xt.x-It.x,Ne.y+=xt.y-It.y,k(It,xt),w.x=Je("x",t),w.y=Je("y",t),Ce=v<t,v=t,S())):Fe&&(Re&&(Re=!1,Math.abs(L.x)>=mt&&(L.x-=c[0].x-ft.x),Math.abs(L.y)>=mt)&&(L.y-=c[0].y-ft.y),_.x=D.x,_.y=D.y,0===L.x&&0===L.y||("v"===Fe&&h.closeOnVerticalDrag&&!At()?(Ne.y+=L.y,w.y+=L.y,r=Rt(),Te=!0,I("onVerticalDrag",r),T(r),S()):(Ft(C(),D.x,D.y),De=!0,d=f.currItem.bounds,Nt("x",L)||(Nt("y",L),et(w),S())))))},Ut=function(){var t,n,o={lastFlickOffset:{},lastFlickDist:{},lastFlickSpeed:{},slowDownRatio:{},slowDownRatioReverse:{},speedDecelerationRatio:{},speedDecelerationRatioAbs:{},distanceOffset:{},backAnimDestination:{},backAnimStarted:{},calculateSwipeSpeed:function(e){n=(1<vt.length?(t=C()-Ee+50,vt[vt.length-2]):(t=C()-be,ft))[e],o.lastFlickOffset[e]=_[e]-n,o.lastFlickDist[e]=Math.abs(o.lastFlickOffset[e]),20<o.lastFlickDist[e]?o.lastFlickSpeed[e]=o.lastFlickOffset[e]/t:o.lastFlickSpeed[e]=0,Math.abs(o.lastFlickSpeed[e])<.1&&(o.lastFlickSpeed[e]=0),o.slowDownRatio[e]=.95,o.slowDownRatioReverse[e]=1-o.slowDownRatio[e],o.speedDecelerationRatio[e]=1},calculateOverBoundsAnimOffset:function(t,e){o.backAnimStarted[t]||(w[t]>d.min[t]?o.backAnimDestination[t]=d.min[t]:w[t]<d.max[t]&&(o.backAnimDestination[t]=d.max[t]),void 0!==o.backAnimDestination[t]&&(o.slowDownRatio[t]=.7,o.slowDownRatioReverse[t]=1-o.slowDownRatio[t],o.speedDecelerationRatioAbs[t]<.05)&&(o.lastFlickSpeed[t]=0,o.backAnimStarted[t]=!0,ut("bounceZoomPan"+t,w[t],o.backAnimDestination[t],e||300,p.easing.sine.out,function(e){w[t]=e,S()})))},calculateAnimOffset:function(e){o.backAnimStarted[e]||(o.speedDecelerationRatio[e]=o.speedDecelerationRatio[e]*(o.slowDownRatio[e]+o.slowDownRatioReverse[e]-o.slowDownRatioReverse[e]*o.timeDiff/10),o.speedDecelerationRatioAbs[e]=Math.abs(o.lastFlickSpeed[e]*o.speedDecelerationRatio[e]),o.distanceOffset[e]=o.lastFlickSpeed[e]*o.speedDecelerationRatio[e]*o.timeDiff,w[e]+=o.distanceOffset[e])},panAnimLoop:function(){A.zoomPan&&(A.zoomPan.raf=fe(o.panAnimLoop),o.now=C(),o.timeDiff=o.now-o.lastNow,o.lastNow=o.now,o.calculateAnimOffset("x"),o.calculateAnimOffset("y"),S(),o.calculateOverBoundsAnimOffset("x"),o.calculateOverBoundsAnimOffset("y"),o.speedDecelerationRatioAbs.x<.05)&&o.speedDecelerationRatioAbs.y<.05&&(w.x=Math.round(w.x),w.y=Math.round(w.y),S(),st("zoomPan"))}};return o},Wt=function(e){return e.calculateSwipeSpeed("y"),d=f.currItem.bounds,e.backAnimDestination={},e.backAnimStarted={},Math.abs(e.lastFlickSpeed.x)<=.05&&Math.abs(e.lastFlickSpeed.y)<=.05?(e.speedDecelerationRatioAbs.x=e.speedDecelerationRatioAbs.y=0,e.calculateOverBoundsAnimOffset("x"),e.calculateOverBoundsAnimOffset("y"),!0):(lt("zoomPan"),e.lastNow=C(),void e.panAnimLoop())},Ht=function(e,t){var n,o,i;y||(wt=g),"swipe"===e&&(e=_.x-ft.x,r=t.lastFlickDist.x<10,dt<e&&(r||20<t.lastFlickOffset.x)?o=-1:e<-dt&&(r||t.lastFlickOffset.x<-20)&&(o=1)),o&&((g+=o)<0?(g=h.loop?O()-1:0,i=!0):g>=O()&&(g=h.loop?0:O()-1,i=!0),i&&!h.loop||(E+=o,Ue-=o,n=!0));var e=b.x*Ue,r=Math.abs(e-M.x),a=n||e>M.x==0<t.lastFlickSpeed.x?(a=0<Math.abs(t.lastFlickSpeed.x)?r/Math.abs(t.lastFlickSpeed.x):333,a=Math.min(a,400),Math.max(a,250)):333;return wt===g&&(n=!1),y=!0,I("mainScrollAnimStart"),ut("mainScroll",M.x,e,a,p.easing.cubic.out,Qe,function(){ct(),y=!1,wt=-1,!n&&wt===g||f.updateCurrItem(),I("mainScrollAnimComplete")}),n&&f.updateCurrItem(!0),n},Kt=function(e){return 1/Me*e*ne},jt=function(){var e=v,t=it(),n=rt();v<t?e=t:n<v&&(e=n);var o,i=Ze;return Pe&&!Ce&&!ze&&v<t?f.close():(Pe&&(o=function(e){T((1-i)*e+i)}),f.zoomTo(e,0,200,p.easing.cubic.out,o)),!0};N("Gestures",{publicMethods:{initGestures:function(){function e(e,t,n,o,i){le=e+t,ce=e+n,ue=e+o,de=i?e+i:""}(pe=s.pointerEvent)&&s.touch&&(s.touch=!1),pe?navigator.msPointerEnabled?e("MSPointer","Down","Move","Up","Cancel"):e("pointer","down","move","up","cancel"):s.touch?(e("touch","start","move","end","cancel"),i=!0):e("mouse","down","move","up"),ee=ce+" "+ue+" "+de,te=le,pe&&!i&&(i=1<navigator.maxTouchPoints||1<navigator.msMaxTouchPoints),f.likelyTouchDevice=i,o[le]=j,o[ce]=Y,o[ue]=G,de&&(o[de]=o[ue]),s.touch&&(te+=" mousedown",ee+=" mousemove mouseup",o.mousedown=o[le],o.mousemove=o[ce],o.mouseup=o[ue]),i||(h.allowPanToNext=!1)}}});function Yt(e){function t(){e.loading=!1,e.loaded=!0,e.loadComplete?e.loadComplete(e):e.img=null,n.onload=n.onerror=null,n=null}e.loading=!0,e.loaded=!1;var n=e.img=p.createEl("pswp__img","img");n.onload=t,n.onerror=function(){e.loadError=!0,t()},n.src=e.src}function Gt(e,t){return e.src&&e.loadError&&e.container&&(t&&(e.container.innerHTML=""),e.container.innerHTML=h.errorMsg.replace("%url%",e.src),1)}function Vt(){if(nn.length){for(var e,t=0;t<nn.length;t++)(e=nn[t]).holder.index===e.index&&ln(e.index,e.item,e.baseDiv,e.img,!1,e.clearPlaceholder);nn=[]}}var Xt,$t,Qt,Jt,en,O,tn=function(r,e,a,t){function s(){st("initialZoom"),a?(f.template.removeAttribute("style"),f.bg.removeAttribute("style")):(T(1),e&&(e.style.display="block"),p.addClass(m,"pswp--animated-in"),I("initialZoom"+(a?"OutEnd":"InEnd"))),t&&t(),Jt=!1}Xt&&clearTimeout(Xt),Qt=Jt=!0,r.initialLayout?(l=r.initialLayout,r.initialLayout=null):l=h.getThumbBoundsFn&&h.getThumbBoundsFn(g);var l,c,u,d=a?h.hideAnimationDuration:h.showAnimationDuration;d&&l&&void 0!==l.x?(c=$,u=!f.currItem.src||f.currItem.loadError||h.showHideOpacity,r.miniImg&&(r.miniImg.style.webkitBackfaceVisibility="hidden"),a||(v=l.w/r.w,w.x=l.x,w.y=l.y-ve,f[u?"template":"bg"].style.opacity=.001,S()),lt("initialZoom"),a&&!c&&p.removeClass(m,"pswp--animated-in"),u&&(a?p[(c?"remove":"add")+"Class"](m,"pswp--animate_opacity"):setTimeout(function(){p.addClass(m,"pswp--animate_opacity")},30)),Xt=setTimeout(function(){var t,n,o,i,e;I("initialZoom"+(a?"Out":"In")),a?(t=l.w/r.w,n={x:w.x,y:w.y},o=v,i=Ze,e=function(e){1===e?(v=t,w.x=l.x,w.y=l.y-we):(v=(t-o)*e+o,w.x=(l.x-n.x)*e+n.x,w.y=(l.y-we-n.y)*e+n.y),S(),u?m.style.opacity=1-e:T(i-e*i)},c?ut("initialZoom",0,1,d,p.easing.cubic.out,e,s):(e(1),Xt=setTimeout(s,d+20))):(v=r.initialZoomLevel,k(w,r.initialPosition),S(),T(1),u?m.style.opacity=1:T(1),Xt=setTimeout(s,d+20))},a?25:90)):(I("initialZoom"+(a?"Out":"In")),v=r.initialZoomLevel,k(w,r.initialPosition),S(),m.style.opacity=a?0:1,T(1),d?setTimeout(function(){s()},d):s())},F={},nn=[],on={index:0,errorMsg:'<div class="pswp__error-msg"><a href="%url%" target="_blank">The image</a> could not be loaded.</div>',forceProgressiveLoading:!1,preload:[1,1],getNumItemsFn:function(){return $t.length}},rn=function(){return{center:{x:0,y:0},max:{x:0,y:0},min:{x:0,y:0}}},an=function(e,t,n){var o=e.bounds;o.center.x=Math.round((F.x-t)/2),o.center.y=Math.round((F.y-n)/2)+e.vGap.top,o.max.x=t>F.x?Math.round(F.x-t):o.center.x,o.max.y=n>F.y?Math.round(F.y-n)+e.vGap.top:o.center.y,o.min.x=t>F.x?0:o.center.x,o.min.y=n>F.y?e.vGap.top:o.center.y},sn=function(e,t,n){var o,i;return e.src&&!e.loadError?((o=!n)&&(e.vGap||(e.vGap={top:0,bottom:0}),I("parseVerticalMargin",e)),F.x=t.x,F.y=t.y-e.vGap.top-e.vGap.bottom,o&&(t=F.x/e.w,i=F.y/e.h,e.fitRatio=t<i?t:i,"orig"===(t=h.scaleMode)?n=1:"fit"===t&&(n=e.fitRatio),e.initialZoomLevel=n=1<n?1:n,e.bounds||(e.bounds=rn())),n?(an(e,e.w*n,e.h*n),o&&n===e.initialZoomLevel&&(e.initialPosition=e.bounds.center),e.bounds):void 0):(e.w=e.h=0,e.initialZoomLevel=e.fitRatio=1,e.bounds=rn(),e.initialPosition=e.bounds.center,e.bounds)},ln=function(e,t,n,o,i,r){t.loadError||o&&(t.imageAppended=!0,cn(t,o,t===f.currItem&&Ye),n.appendChild(o),r)&&setTimeout(function(){t&&t.loaded&&t.placeholder&&(t.placeholder.style.display="none",t.placeholder=null)},500)},cn=function(e,t,n){var o;e.src&&(t=t||e.container.lastChild,o=n?e.w:Math.round(e.w*e.fitRatio),n=n?e.h:Math.round(e.h*e.fitRatio),e.placeholder&&!e.loaded&&(e.placeholder.style.width=o+"px",e.placeholder.style.height=n+"px"),t.style.width=o+"px",t.style.height=n+"px")};N("Controller",{publicMethods:{lazyLoadItem:function(e){e=B(e);var t=en(e);t&&(!t.loaded&&!t.loading||ae)&&(I("gettingData",e,t),t.src)&&Yt(t)},initController:function(){p.extend(h,on,!0),f.items=$t=t,en=f.getItemAt,O=h.getNumItemsFn,h.loop,O()<3&&(h.loop=!1),r("beforeChange",function(e){for(var t=h.preload,n=null===e||0<=e,o=Math.min(t[0],O()),i=Math.min(t[1],O()),r=1;r<=(n?i:o);r++)f.lazyLoadItem(g+r);for(r=1;r<=(n?o:i);r++)f.lazyLoadItem(g-r)}),r("initialLayout",function(){f.currItem.initialLayout=h.getThumbBoundsFn&&h.getThumbBoundsFn(g)}),r("mainScrollAnimComplete",Vt),r("initialZoomInEnd",Vt),r("destroy",function(){for(var e,t=0;t<$t.length;t++)(e=$t[t]).container&&(e.container=null),e.placeholder&&(e.placeholder=null),e.img&&(e.img=null),e.preloader&&(e.preloader=null),e.loadError&&(e.loaded=e.loadError=!1);nn=null})},getItemAt:function(e){return 0<=e&&void 0!==$t[e]&&$t[e]},allowProgressiveImg:function(){return h.forceProgressiveLoading||!i||h.mouseUsed||1200<screen.width},setContent:function(t,n){h.loop&&(n=B(n));var e=f.getItemAt(t.index);e&&(e.container=null);var o,i,r,e=f.getItemAt(n);e?(I("gettingData",n,e),t.index=n,i=(t.item=e).container=p.createEl("pswp__zoom-wrap"),!e.src&&e.html&&(e.html.tagName?i.appendChild(e.html):i.innerHTML=e.html),Gt(e),sn(e,x),!e.src||e.loadError||e.loaded?e.src&&!e.loadError&&((o=p.createEl("pswp__img","img")).style.opacity=1,o.src=e.src,cn(e,o),ln(n,e,i,o,!0)):(e.loadComplete=function(e){if(V){if(t&&t.index===n){if(Gt(e,!0))return e.loadComplete=e.img=null,sn(e,x),Xe(e),void(t.index===g&&f.updateCurrZoomItem());e.imageAppended?!Jt&&e.placeholder&&(e.placeholder.style.display="none",e.placeholder=null):s.transform&&(y||Jt)?nn.push({item:e,baseDiv:i,img:e.img,index:n,holder:t,clearPlaceholder:!0}):ln(n,e,i,e.img,y||Jt,!0)}e.loadComplete=null,e.img=null,I("imageLoadComplete",n,e)}},p.features.transform&&(r="pswp__img pswp__img--placeholder",r+=e.msrc?"":" pswp__img--placeholder--blank",r=p.createEl(r,e.msrc?"img":""),e.msrc&&(r.src=e.msrc),cn(e,r),i.appendChild(r),e.placeholder=r),e.loading||Yt(e),f.allowProgressiveImg()&&(!Qt&&s.transform?nn.push({item:e,baseDiv:i,img:e.img,index:n,holder:t}):ln(n,e,i,e.img,!0,!0))),Qt||n!==g?Xe(e):(Oe=i.style,tn(e,o||e.img)),t.el.innerHTML="",t.el.appendChild(i)):t.el.innerHTML=""},cleanSlide:function(e){e.img&&(e.img.onload=e.img.onerror=null),e.loaded=e.loading=e.img=e.imageAppended=!1}}});function un(e,t,n){var o=document.createEvent("CustomEvent"),t={origEvent:e,target:e.target,releasePoint:t,pointerType:n||"touch"};o.initCustomEvent("pswpTap",!0,!0,t),e.target.dispatchEvent(o)}var dn,R,mn={};N("Tap",{publicMethods:{initTap:function(){r("firstTouchStart",f.onTapStart),r("touchRelease",f.onTapRelease),r("destroy",function(){mn={},dn=null})},onTapStart:function(e){1<e.length&&(clearTimeout(dn),dn=null)},onTapRelease:function(e,t){var n,o,i;!t||De||ke||at||(n=t,dn&&(clearTimeout(dn),dn=null,o=n,i=mn,Math.abs(o.x-i.x)<q)&&Math.abs(o.y-i.y)<q?I("doubleTap",n):"mouse"===t.type?un(e,t,"mouse"):"BUTTON"===e.target.tagName.toUpperCase()||p.hasClass(e.target,"pswp__single-tap")?un(e,t):(k(mn,n),dn=setTimeout(function(){un(e,t),dn=null},300)))}}}),N("DesktopZoom",{publicMethods:{initDesktopZoom:function(){ye||(i?r("mouseUsed",function(){f.setupDesktopZoom()}):f.setupDesktopZoom(!0))},setupDesktopZoom:function(e){R={};var t="wheel mousewheel DOMMouseScroll";r("bindEvents",function(){p.bind(m,t,f.handleMouseWheel)}),r("unbindEvents",function(){R&&p.unbind(m,t,f.handleMouseWheel)}),f.mouseZoomedIn=!1;function n(){f.mouseZoomedIn&&(p.removeClass(m,"pswp--zoomed-in"),f.mouseZoomedIn=!1),v<1?p.addClass(m,"pswp--zoom-allowed"):p.removeClass(m,"pswp--zoom-allowed"),i()}var o,i=function(){o&&(p.removeClass(m,"pswp--dragging"),o=!1)};r("resize",n),r("afterChange",n),r("pointerDown",function(){f.mouseZoomedIn&&(o=!0,p.addClass(m,"pswp--dragging"))}),r("pointerUp",i),e||n()},handleMouseWheel:function(e){if(v<=f.currItem.fitRatio)return h.modal&&(!h.closeOnScroll||at||l?e.preventDefault():me&&2<Math.abs(e.deltaY)&&($=!0,f.close())),!0;if(e.stopPropagation(),R.x=0,"deltaX"in e)1===e.deltaMode?(R.x=18*e.deltaX,R.y=18*e.deltaY):(R.x=e.deltaX,R.y=e.deltaY);else if("wheelDelta"in e)e.wheelDeltaX&&(R.x=-.16*e.wheelDeltaX),R.y=e.wheelDeltaY?-.16*e.wheelDeltaY:-.16*e.wheelDelta;else{if(!("detail"in e))return;R.y=e.detail}ot(v,!0);var t=w.x-R.x,n=w.y-R.y;(h.modal||t<=d.min.x&&t>=d.max.x&&n<=d.min.y&&n>=d.max.y)&&e.preventDefault(),f.panTo(t,n)},toggleDesktopZoom:function(e){e=e||{x:x.x/2+We.x,y:x.y/2+We.y};var t=h.getDoubleTapZoom(!0,f.currItem),n=v===t;f.mouseZoomedIn=!n,f.zoomTo(n?f.currItem.initialZoomLevel:t,e,333),p[(n?"remove":"add")+"Class"](m,"pswp--zoomed-in")}}});function pn(){hn&&clearTimeout(hn),vn&&clearTimeout(vn)}function fn(){var e=Sn(),t={};if(!(e.length<5)){var n,o=e.split("&");for(r=0;r<o.length;r++)!o[r]||(n=o[r].split("=")).length<2||(t[n[0]]=n[1]);if(h.galleryPIDs){for(var i=t.pid,r=t.pid=0;r<$t.length;r++)if($t[r].pid===i){t.pid=r;break}}else t.pid=parseInt(t.pid,10)-1;t.pid<0&&(t.pid=0)}return t}var hn,gn,vn,yn,wn,xn,n,bn,En,In,P,Cn,Tn={history:!0,galleryUID:1},Sn=function(){return P.hash.substring(1)},kn=function(){var e,t;vn&&clearTimeout(vn),at||l?vn=setTimeout(kn,500):(yn?clearTimeout(gn):yn=!0,t=g+1,(e=en(g)).hasOwnProperty("pid")&&(t=e.pid),e=n+"&gid="+h.galleryUID+"&pid="+t,bn||-1===P.hash.indexOf(e)&&(In=!0),t=P.href.split("#")[0]+"#"+e,Cn?"#"+e!==window.location.hash&&history[bn?"replaceState":"pushState"]("",document.title,t):bn?P.replace(t):P.hash=e,bn=!0,gn=setTimeout(function(){yn=!1},60))};N("History",{publicMethods:{initHistory:function(){var e,t;p.extend(h,Tn,!0),h.history&&(P=window.location,bn=En=In=!1,n=Sn(),Cn="pushState"in history,-1<n.indexOf("gid=")&&(n=(n=n.split("&gid=")[0]).split("?gid=")[0]),r("afterChange",f.updateURL),r("unbindEvents",function(){p.unbind(window,"hashchange",f.onHashChange)}),e=function(){xn=!0,En||(In?history.back():n?P.hash=n:Cn?history.pushState("",document.title,P.pathname+P.search):P.hash=""),pn()},r("unbindEvents",function(){$&&e()}),r("destroy",function(){xn||e()}),r("firstUpdate",function(){g=fn().pid}),-1<(t=n.indexOf("pid="))&&"&"===(n=n.substring(0,t)).slice(-1)&&(n=n.slice(0,-1)),setTimeout(function(){V&&p.bind(window,"hashchange",f.onHashChange)},40))},onHashChange:function(){return Sn()===n?(En=!0,void f.close()):void(yn||(wn=!0,f.goTo(fn().pid),wn=!1))},updateURL:function(){pn(),wn||(bn?hn=setTimeout(kn,800):kn())}}}),p.extend(f,z)}}),((e,t)=>{"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).reframe=t()})(this,function(){function t(){for(var e=0,t=0,n=arguments.length;t<n;t++)e+=arguments[t].length;for(var o=Array(e),i=0,t=0;t<n;t++)for(var r=arguments[t],a=0,s=r.length;a<s;a++,i++)o[i]=r[a];return o}return function(e,i){return void 0===i&&(i="js-reframe"),("string"==typeof e?t(document.querySelectorAll(e)):"length"in e?t(e):[e]).forEach(function(e){var t,n,o;-1!==e.className.split(" ").indexOf(i)||-1<e.style.width.indexOf("%")||(t=e.getAttribute("height")||e.offsetHeight,n=e.getAttribute("width")||e.offsetWidth,t=("string"==typeof t?parseInt(t):t)/("string"==typeof n?parseInt(n):n)*100,(n=document.createElement("div")).className=i,(o=n.style).position="relative",o.width="100%",o.paddingTop=t+"%",(o=e.style).position="absolute",o.width="100%",o.height="100%",o.left="0",o.top="0",null!=(t=e.parentNode)&&t.insertBefore(n,e),null!=(o=e.parentNode)&&o.removeChild(e),n.appendChild(e))})}}),(()=>{let e=document.querySelector(".gh-navigation");var t=e.querySelector(".gh-burger");t&&t.addEventListener("click",function(){e.classList.contains("is-open")?(e.classList.remove("is-open"),document.documentElement.style.overflowY=null):(e.classList.add("is-open"),document.documentElement.style.overflowY="hidden")})})(),lightbox(".kg-image-card > .kg-image[width][height], .kg-gallery-image > img"),reframe(document.querySelectorAll(['.gh-content iframe[src*="youtube.com"]','.gh-content iframe[src*="youtube-nocookie.com"]','.gh-content iframe[src*="player.vimeo.com"]','.gh-content iframe[src*="kickstarter.com"][src*="video.html"]',".gh-content object",".gh-content embed"].join(","))),dropdown(),document.body.classList.contains("home-template")||document.body.classList.contains("post-template")||pagination(),document.querySelectorAll(".gh-content > table:not(.gist table)").forEach(function(e){var t=document.createElement("div");t.className="gh-table",e.parentNode.insertBefore(t,e),t.appendChild(e)});//# sourceMappingURL=source.js.map
+/******/ (function() { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./assets/js/dropdown.js":
+/*!*******************************!*\
+  !*** ./assets/js/dropdown.js ***!
+  \*******************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ dropdown; }
+/* harmony export */ });
+/* harmony import */ var imagesloaded__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! imagesloaded */ "./node_modules/.pnpm/imagesloaded@4.1.4/node_modules/imagesloaded/imagesloaded.js");
+/* harmony import */ var imagesloaded__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(imagesloaded__WEBPACK_IMPORTED_MODULE_0__);
+
+function dropdown() {
+  const mediaQuery = window.matchMedia('(max-width: 767px)');
+  const head = document.querySelector('.gh-navigation');
+  const menu = head.querySelector('.gh-navigation-menu');
+  const nav = menu?.querySelector('.nav');
+  if (!nav) return;
+  const logo = document.querySelector('.gh-navigation-logo');
+  const navHTML = nav.innerHTML;
+  if (mediaQuery.matches) {
+    const items = nav.querySelectorAll('li');
+    items.forEach(function (item, index) {
+      item.style.transitionDelay = `${0.03 * (index + 1)}s`;
+    });
+  }
+  const makeDropdown = function () {
+    if (mediaQuery.matches) return;
+    const submenuItems = [];
+    while (nav.offsetWidth + 64 > menu.offsetWidth) {
+      if (nav.lastElementChild) {
+        submenuItems.unshift(nav.lastElementChild);
+        nav.lastElementChild.remove();
+      } else {
+        break;
+      }
+    }
+    if (!submenuItems.length) {
+      head.classList.add('is-dropdown-loaded');
+      return;
+    }
+    const toggle = document.createElement('button');
+    toggle.setAttribute('class', 'gh-more-toggle gh-icon-button');
+    toggle.setAttribute('aria-label', 'More');
+    toggle.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor"><path d="M21.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM13.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0zM5.333 16c0-1.473 1.194-2.667 2.667-2.667v0c1.473 0 2.667 1.194 2.667 2.667v0c0 1.473-1.194 2.667-2.667 2.667v0c-1.473 0-2.667-1.194-2.667-2.667v0z"></path></svg>';
+    const wrapper = document.createElement('div');
+    wrapper.setAttribute('class', 'gh-dropdown');
+    if (submenuItems.length >= 10) {
+      head.classList.add('is-dropdown-mega');
+      wrapper.style.gridTemplateRows = `repeat(${Math.ceil(submenuItems.length / 2)}, 1fr)`;
+    } else {
+      head.classList.remove('is-dropdown-mega');
+    }
+    submenuItems.forEach(function (child) {
+      wrapper.appendChild(child);
+    });
+    toggle.appendChild(wrapper);
+    nav.appendChild(toggle);
+    const toggleRect = toggle.getBoundingClientRect();
+    const documentCenter = window.innerWidth / 2;
+    if (toggleRect.left < documentCenter) {
+      wrapper.classList.add('is-left');
+    }
+    head.classList.add('is-dropdown-loaded');
+    window.addEventListener('click', function (e) {
+      if (head.classList.contains('is-dropdown-open')) {
+        head.classList.remove('is-dropdown-open');
+      } else if (toggle.contains(e.target)) {
+        head.classList.add('is-dropdown-open');
+      }
+    });
+  };
+  imagesloaded__WEBPACK_IMPORTED_MODULE_0___default()(logo, function () {
+    makeDropdown();
+  });
+  window.addEventListener('load', function () {
+    if (!logo) {
+      makeDropdown();
+    }
+  });
+  window.addEventListener('resize', function () {
+    setTimeout(() => {
+      nav.innerHTML = navHTML;
+      makeDropdown();
+    }, 1);
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/js/lightbox.js":
+/*!*******************************!*\
+  !*** ./assets/js/lightbox.js ***!
+  \*******************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ lightbox; }
+/* harmony export */ });
+/* harmony import */ var photoswipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! photoswipe */ "./node_modules/.pnpm/photoswipe@4.1.3/node_modules/photoswipe/dist/photoswipe.js");
+/* harmony import */ var photoswipe__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(photoswipe__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var photoswipe_dist_photoswipe_ui_default__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! photoswipe/dist/photoswipe-ui-default */ "./node_modules/.pnpm/photoswipe@4.1.3/node_modules/photoswipe/dist/photoswipe-ui-default.js");
+/* harmony import */ var photoswipe_dist_photoswipe_ui_default__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(photoswipe_dist_photoswipe_ui_default__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function lightbox(trigger) {
+  var onThumbnailsClick = function (e) {
+    e.preventDefault();
+    var items = [];
+    var index = 0;
+    var prevSibling = e.target.closest('.kg-card').previousElementSibling;
+    while (prevSibling && (prevSibling.classList.contains('kg-image-card') || prevSibling.classList.contains('kg-gallery-card'))) {
+      var prevItems = [];
+      prevSibling.querySelectorAll('img').forEach(function (item) {
+        prevItems.push({
+          src: item.getAttribute('src'),
+          msrc: item.getAttribute('src'),
+          w: item.getAttribute('width'),
+          h: item.getAttribute('height'),
+          el: item
+        });
+        index += 1;
+      });
+      prevSibling = prevSibling.previousElementSibling;
+      items = prevItems.concat(items);
+    }
+    if (e.target.classList.contains('kg-image')) {
+      items.push({
+        src: e.target.getAttribute('src'),
+        msrc: e.target.getAttribute('src'),
+        w: e.target.getAttribute('width'),
+        h: e.target.getAttribute('height'),
+        el: e.target
+      });
+    } else {
+      var reachedCurrentItem = false;
+      e.target.closest('.kg-gallery-card').querySelectorAll('img').forEach(function (item) {
+        items.push({
+          src: item.getAttribute('src'),
+          msrc: item.getAttribute('src'),
+          w: item.getAttribute('width'),
+          h: item.getAttribute('height'),
+          el: item
+        });
+        if (!reachedCurrentItem && item !== e.target) {
+          index += 1;
+        } else {
+          reachedCurrentItem = true;
+        }
+      });
+    }
+    var nextSibling = e.target.closest('.kg-card').nextElementSibling;
+    while (nextSibling && (nextSibling.classList.contains('kg-image-card') || nextSibling.classList.contains('kg-gallery-card'))) {
+      nextSibling.querySelectorAll('img').forEach(function (item) {
+        items.push({
+          src: item.getAttribute('src'),
+          msrc: item.getAttribute('src'),
+          w: item.getAttribute('width'),
+          h: item.getAttribute('height'),
+          el: item
+        });
+      });
+      nextSibling = nextSibling.nextElementSibling;
+    }
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    var options = {
+      bgOpacity: 0.9,
+      closeOnScroll: true,
+      fullscreenEl: false,
+      history: false,
+      index: index,
+      shareEl: false,
+      zoomEl: false,
+      getThumbBoundsFn: function (index) {
+        var thumbnail = items[index].el,
+          pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+          rect = thumbnail.getBoundingClientRect();
+        return {
+          x: rect.left,
+          y: rect.top + pageYScroll,
+          w: rect.width
+        };
+      }
+    };
+    var gallery = new (photoswipe__WEBPACK_IMPORTED_MODULE_0___default())(pswpElement, (photoswipe_dist_photoswipe_ui_default__WEBPACK_IMPORTED_MODULE_1___default()), items, options);
+    gallery.init();
+    return false;
+  };
+  var triggers = document.querySelectorAll(trigger);
+  triggers.forEach(function (trig) {
+    trig.addEventListener('click', function (e) {
+      onThumbnailsClick(e);
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./assets/js/pagination.js":
+/*!*********************************!*\
+  !*** ./assets/js/pagination.js ***!
+  \*********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ pagination; }
+/* harmony export */ });
+function pagination(isInfinite = true, done, isMasonry = false) {
+  const feedElement = document.querySelector('.gh-feed');
+  if (!feedElement) return;
+  let loading = false;
+  const target = document.querySelector('.gh-footer');
+  const buttonElement = document.querySelector('.gh-loadmore');
+  if (!document.querySelector('link[rel=next]') && buttonElement) {
+    buttonElement.remove();
+  }
+  const loadNextPage = async function () {
+    const nextElement = document.querySelector('link[rel=next]');
+    if (!nextElement) return;
+    try {
+      const res = await fetch(nextElement.href);
+      const html = await res.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const postElements = doc.querySelectorAll('.gh-feed:not(.gh-featured):not(.gh-related) > *');
+      const fragment = document.createDocumentFragment();
+      const elems = [];
+      postElements.forEach(function (post) {
+        var clonedItem = document.importNode(post, true);
+        if (isMasonry) {
+          clonedItem.style.visibility = 'hidden';
+        }
+        fragment.appendChild(clonedItem);
+        elems.push(clonedItem);
+      });
+      feedElement.appendChild(fragment);
+      if (done) {
+        done(elems, loadNextWithCheck);
+      }
+      const resNextElement = doc.querySelector('link[rel=next]');
+      if (resNextElement && resNextElement.href) {
+        nextElement.href = resNextElement.href;
+      } else {
+        nextElement.remove();
+        if (buttonElement) {
+          buttonElement.remove();
+        }
+      }
+    } catch (e) {
+      nextElement.remove();
+      throw e;
+    }
+  };
+  const loadNextWithCheck = async function () {
+    if (target.getBoundingClientRect().top <= window.innerHeight && document.querySelector('link[rel=next]')) {
+      await loadNextPage();
+    }
+  };
+  const callback = async function (entries) {
+    if (loading) return;
+    loading = true;
+    if (entries[0].isIntersecting) {
+      // keep loading next page until target is out of the viewport or we've loaded the last page
+      if (!isMasonry) {
+        while (target.getBoundingClientRect().top <= window.innerHeight && document.querySelector('link[rel=next]')) {
+          await loadNextPage();
+        }
+      } else {
+        await loadNextPage();
+      }
+    }
+    loading = false;
+    if (!document.querySelector('link[rel=next]')) {
+      observer.disconnect();
+    }
+  };
+  const observer = new IntersectionObserver(callback);
+  if (isInfinite) {
+    observer.observe(target);
+  } else {
+    buttonElement.addEventListener('click', loadNextPage);
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/.pnpm/ev-emitter@1.1.1/node_modules/ev-emitter/ev-emitter.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/.pnpm/ev-emitter@1.1.1/node_modules/ev-emitter/ev-emitter.js ***!
+  \***********************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * EvEmitter v1.1.0
+ * Lil' event emitter
+ * MIT License
+ */
+
+/* jshint unused: true, undef: true, strict: true */
+
+( function( global, factory ) {
+  // universal module definition
+  /* jshint strict: false */ /* globals define, module, window */
+  if ( true ) {
+    // AMD - RequireJS
+    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+		__WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else // removed by dead control flow
+{}
+
+}( typeof window != 'undefined' ? window : this, function() {
+
+"use strict";
+
+function EvEmitter() {}
+
+var proto = EvEmitter.prototype;
+
+proto.on = function( eventName, listener ) {
+  if ( !eventName || !listener ) {
+    return;
+  }
+  // set events hash
+  var events = this._events = this._events || {};
+  // set listeners array
+  var listeners = events[ eventName ] = events[ eventName ] || [];
+  // only add once
+  if ( listeners.indexOf( listener ) == -1 ) {
+    listeners.push( listener );
+  }
+
+  return this;
+};
+
+proto.once = function( eventName, listener ) {
+  if ( !eventName || !listener ) {
+    return;
+  }
+  // add event
+  this.on( eventName, listener );
+  // set once flag
+  // set onceEvents hash
+  var onceEvents = this._onceEvents = this._onceEvents || {};
+  // set onceListeners object
+  var onceListeners = onceEvents[ eventName ] = onceEvents[ eventName ] || {};
+  // set flag
+  onceListeners[ listener ] = true;
+
+  return this;
+};
+
+proto.off = function( eventName, listener ) {
+  var listeners = this._events && this._events[ eventName ];
+  if ( !listeners || !listeners.length ) {
+    return;
+  }
+  var index = listeners.indexOf( listener );
+  if ( index != -1 ) {
+    listeners.splice( index, 1 );
+  }
+
+  return this;
+};
+
+proto.emitEvent = function( eventName, args ) {
+  var listeners = this._events && this._events[ eventName ];
+  if ( !listeners || !listeners.length ) {
+    return;
+  }
+  // copy over to avoid interference if .off() in listener
+  listeners = listeners.slice(0);
+  args = args || [];
+  // once stuff
+  var onceListeners = this._onceEvents && this._onceEvents[ eventName ];
+
+  for ( var i=0; i < listeners.length; i++ ) {
+    var listener = listeners[i]
+    var isOnce = onceListeners && onceListeners[ listener ];
+    if ( isOnce ) {
+      // remove listener
+      // remove before trigger to prevent recursion
+      this.off( eventName, listener );
+      // unset once flag
+      delete onceListeners[ listener ];
+    }
+    // trigger listener
+    listener.apply( this, args );
+  }
+
+  return this;
+};
+
+proto.allOff = function() {
+  delete this._events;
+  delete this._onceEvents;
+};
+
+return EvEmitter;
+
+}));
+
+
+/***/ }),
+
+/***/ "./node_modules/.pnpm/imagesloaded@4.1.4/node_modules/imagesloaded/imagesloaded.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/.pnpm/imagesloaded@4.1.4/node_modules/imagesloaded/imagesloaded.js ***!
+  \*****************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * imagesLoaded v4.1.4
+ * JavaScript is all like "You images are done yet or what?"
+ * MIT License
+ */
+
+( function( window, factory ) { 'use strict';
+  // universal module definition
+
+  /*global define: false, module: false, require: false */
+
+  if ( true ) {
+    // AMD
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
+      __webpack_require__(/*! ev-emitter/ev-emitter */ "./node_modules/.pnpm/ev-emitter@1.1.1/node_modules/ev-emitter/ev-emitter.js")
+    ], __WEBPACK_AMD_DEFINE_RESULT__ = (function( EvEmitter ) {
+      return factory( window, EvEmitter );
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else // removed by dead control flow
+{}
+
+})( typeof window !== 'undefined' ? window : this,
+
+// --------------------------  factory -------------------------- //
+
+function factory( window, EvEmitter ) {
+
+'use strict';
+
+var $ = window.jQuery;
+var console = window.console;
+
+// -------------------------- helpers -------------------------- //
+
+// extend objects
+function extend( a, b ) {
+  for ( var prop in b ) {
+    a[ prop ] = b[ prop ];
+  }
+  return a;
+}
+
+var arraySlice = Array.prototype.slice;
+
+// turn element or nodeList into an array
+function makeArray( obj ) {
+  if ( Array.isArray( obj ) ) {
+    // use object if already an array
+    return obj;
+  }
+
+  var isArrayLike = typeof obj == 'object' && typeof obj.length == 'number';
+  if ( isArrayLike ) {
+    // convert nodeList to array
+    return arraySlice.call( obj );
+  }
+
+  // array of single index
+  return [ obj ];
+}
+
+// -------------------------- imagesLoaded -------------------------- //
+
+/**
+ * @param {Array, Element, NodeList, String} elem
+ * @param {Object or Function} options - if function, use as callback
+ * @param {Function} onAlways - callback function
+ */
+function ImagesLoaded( elem, options, onAlways ) {
+  // coerce ImagesLoaded() without new, to be new ImagesLoaded()
+  if ( !( this instanceof ImagesLoaded ) ) {
+    return new ImagesLoaded( elem, options, onAlways );
+  }
+  // use elem as selector string
+  var queryElem = elem;
+  if ( typeof elem == 'string' ) {
+    queryElem = document.querySelectorAll( elem );
+  }
+  // bail if bad element
+  if ( !queryElem ) {
+    console.error( 'Bad element for imagesLoaded ' + ( queryElem || elem ) );
+    return;
+  }
+
+  this.elements = makeArray( queryElem );
+  this.options = extend( {}, this.options );
+  // shift arguments if no options set
+  if ( typeof options == 'function' ) {
+    onAlways = options;
+  } else {
+    extend( this.options, options );
+  }
+
+  if ( onAlways ) {
+    this.on( 'always', onAlways );
+  }
+
+  this.getImages();
+
+  if ( $ ) {
+    // add jQuery Deferred object
+    this.jqDeferred = new $.Deferred();
+  }
+
+  // HACK check async to allow time to bind listeners
+  setTimeout( this.check.bind( this ) );
+}
+
+ImagesLoaded.prototype = Object.create( EvEmitter.prototype );
+
+ImagesLoaded.prototype.options = {};
+
+ImagesLoaded.prototype.getImages = function() {
+  this.images = [];
+
+  // filter & find items if we have an item selector
+  this.elements.forEach( this.addElementImages, this );
+};
+
+/**
+ * @param {Node} element
+ */
+ImagesLoaded.prototype.addElementImages = function( elem ) {
+  // filter siblings
+  if ( elem.nodeName == 'IMG' ) {
+    this.addImage( elem );
+  }
+  // get background image on element
+  if ( this.options.background === true ) {
+    this.addElementBackgroundImages( elem );
+  }
+
+  // find children
+  // no non-element nodes, #143
+  var nodeType = elem.nodeType;
+  if ( !nodeType || !elementNodeTypes[ nodeType ] ) {
+    return;
+  }
+  var childImgs = elem.querySelectorAll('img');
+  // concat childElems to filterFound array
+  for ( var i=0; i < childImgs.length; i++ ) {
+    var img = childImgs[i];
+    this.addImage( img );
+  }
+
+  // get child background images
+  if ( typeof this.options.background == 'string' ) {
+    var children = elem.querySelectorAll( this.options.background );
+    for ( i=0; i < children.length; i++ ) {
+      var child = children[i];
+      this.addElementBackgroundImages( child );
+    }
+  }
+};
+
+var elementNodeTypes = {
+  1: true,
+  9: true,
+  11: true
+};
+
+ImagesLoaded.prototype.addElementBackgroundImages = function( elem ) {
+  var style = getComputedStyle( elem );
+  if ( !style ) {
+    // Firefox returns null if in a hidden iframe https://bugzil.la/548397
+    return;
+  }
+  // get url inside url("...")
+  var reURL = /url\((['"])?(.*?)\1\)/gi;
+  var matches = reURL.exec( style.backgroundImage );
+  while ( matches !== null ) {
+    var url = matches && matches[2];
+    if ( url ) {
+      this.addBackground( url, elem );
+    }
+    matches = reURL.exec( style.backgroundImage );
+  }
+};
+
+/**
+ * @param {Image} img
+ */
+ImagesLoaded.prototype.addImage = function( img ) {
+  var loadingImage = new LoadingImage( img );
+  this.images.push( loadingImage );
+};
+
+ImagesLoaded.prototype.addBackground = function( url, elem ) {
+  var background = new Background( url, elem );
+  this.images.push( background );
+};
+
+ImagesLoaded.prototype.check = function() {
+  var _this = this;
+  this.progressedCount = 0;
+  this.hasAnyBroken = false;
+  // complete if no images
+  if ( !this.images.length ) {
+    this.complete();
+    return;
+  }
+
+  function onProgress( image, elem, message ) {
+    // HACK - Chrome triggers event before object properties have changed. #83
+    setTimeout( function() {
+      _this.progress( image, elem, message );
+    });
+  }
+
+  this.images.forEach( function( loadingImage ) {
+    loadingImage.once( 'progress', onProgress );
+    loadingImage.check();
+  });
+};
+
+ImagesLoaded.prototype.progress = function( image, elem, message ) {
+  this.progressedCount++;
+  this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
+  // progress event
+  this.emitEvent( 'progress', [ this, image, elem ] );
+  if ( this.jqDeferred && this.jqDeferred.notify ) {
+    this.jqDeferred.notify( this, image );
+  }
+  // check if completed
+  if ( this.progressedCount == this.images.length ) {
+    this.complete();
+  }
+
+  if ( this.options.debug && console ) {
+    console.log( 'progress: ' + message, image, elem );
+  }
+};
+
+ImagesLoaded.prototype.complete = function() {
+  var eventName = this.hasAnyBroken ? 'fail' : 'done';
+  this.isComplete = true;
+  this.emitEvent( eventName, [ this ] );
+  this.emitEvent( 'always', [ this ] );
+  if ( this.jqDeferred ) {
+    var jqMethod = this.hasAnyBroken ? 'reject' : 'resolve';
+    this.jqDeferred[ jqMethod ]( this );
+  }
+};
+
+// --------------------------  -------------------------- //
+
+function LoadingImage( img ) {
+  this.img = img;
+}
+
+LoadingImage.prototype = Object.create( EvEmitter.prototype );
+
+LoadingImage.prototype.check = function() {
+  // If complete is true and browser supports natural sizes,
+  // try to check for image status manually.
+  var isComplete = this.getIsImageComplete();
+  if ( isComplete ) {
+    // report based on naturalWidth
+    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+    return;
+  }
+
+  // If none of the checks above matched, simulate loading on detached element.
+  this.proxyImage = new Image();
+  this.proxyImage.addEventListener( 'load', this );
+  this.proxyImage.addEventListener( 'error', this );
+  // bind to image as well for Firefox. #191
+  this.img.addEventListener( 'load', this );
+  this.img.addEventListener( 'error', this );
+  this.proxyImage.src = this.img.src;
+};
+
+LoadingImage.prototype.getIsImageComplete = function() {
+  // check for non-zero, non-undefined naturalWidth
+  // fixes Safari+InfiniteScroll+Masonry bug infinite-scroll#671
+  return this.img.complete && this.img.naturalWidth;
+};
+
+LoadingImage.prototype.confirm = function( isLoaded, message ) {
+  this.isLoaded = isLoaded;
+  this.emitEvent( 'progress', [ this, this.img, message ] );
+};
+
+// ----- events ----- //
+
+// trigger specified handler for event type
+LoadingImage.prototype.handleEvent = function( event ) {
+  var method = 'on' + event.type;
+  if ( this[ method ] ) {
+    this[ method ]( event );
+  }
+};
+
+LoadingImage.prototype.onload = function() {
+  this.confirm( true, 'onload' );
+  this.unbindEvents();
+};
+
+LoadingImage.prototype.onerror = function() {
+  this.confirm( false, 'onerror' );
+  this.unbindEvents();
+};
+
+LoadingImage.prototype.unbindEvents = function() {
+  this.proxyImage.removeEventListener( 'load', this );
+  this.proxyImage.removeEventListener( 'error', this );
+  this.img.removeEventListener( 'load', this );
+  this.img.removeEventListener( 'error', this );
+};
+
+// -------------------------- Background -------------------------- //
+
+function Background( url, element ) {
+  this.url = url;
+  this.element = element;
+  this.img = new Image();
+}
+
+// inherit LoadingImage prototype
+Background.prototype = Object.create( LoadingImage.prototype );
+
+Background.prototype.check = function() {
+  this.img.addEventListener( 'load', this );
+  this.img.addEventListener( 'error', this );
+  this.img.src = this.url;
+  // check if image is already complete
+  var isComplete = this.getIsImageComplete();
+  if ( isComplete ) {
+    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+    this.unbindEvents();
+  }
+};
+
+Background.prototype.unbindEvents = function() {
+  this.img.removeEventListener( 'load', this );
+  this.img.removeEventListener( 'error', this );
+};
+
+Background.prototype.confirm = function( isLoaded, message ) {
+  this.isLoaded = isLoaded;
+  this.emitEvent( 'progress', [ this, this.element, message ] );
+};
+
+// -------------------------- jQuery -------------------------- //
+
+ImagesLoaded.makeJQueryPlugin = function( jQuery ) {
+  jQuery = jQuery || window.jQuery;
+  if ( !jQuery ) {
+    return;
+  }
+  // set local variable
+  $ = jQuery;
+  // $().imagesLoaded()
+  $.fn.imagesLoaded = function( options, callback ) {
+    var instance = new ImagesLoaded( this, options, callback );
+    return instance.jqDeferred.promise( $(this) );
+  };
+};
+// try making plugin
+ImagesLoaded.makeJQueryPlugin();
+
+// --------------------------  -------------------------- //
+
+return ImagesLoaded;
+
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/.pnpm/photoswipe@4.1.3/node_modules/photoswipe/dist/photoswipe-ui-default.js":
+/*!***************************************************************************************************!*\
+  !*** ./node_modules/.pnpm/photoswipe@4.1.3/node_modules/photoswipe/dist/photoswipe-ui-default.js ***!
+  \***************************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe Default UI - 4.1.3 - 2019-01-08
+* http://photoswipe.com
+* Copyright (c) 2019 Dmitry Semenov; */
+/**
+*
+* UI on top of main sliding area (caption, arrows, close button, etc.).
+* Built just using public methods/properties of PhotoSwipe.
+* 
+*/
+(function (root, factory) { 
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+		__WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else // removed by dead control flow
+{}
+})(this, function () {
+
+	'use strict';
+
+
+
+var PhotoSwipeUI_Default =
+ function(pswp, framework) {
+
+	var ui = this;
+	var _overlayUIUpdated = false,
+		_controlsVisible = true,
+		_fullscrenAPI,
+		_controls,
+		_captionContainer,
+		_fakeCaptionContainer,
+		_indexIndicator,
+		_shareButton,
+		_shareModal,
+		_shareModalHidden = true,
+		_initalCloseOnScrollValue,
+		_isIdle,
+		_listen,
+
+		_loadingIndicator,
+		_loadingIndicatorHidden,
+		_loadingIndicatorTimeout,
+
+		_galleryHasOneSlide,
+
+		_options,
+		_defaultUIOptions = {
+			barsSize: {top:44, bottom:'auto'},
+			closeElClasses: ['item', 'caption', 'zoom-wrap', 'ui', 'top-bar'], 
+			timeToIdle: 4000, 
+			timeToIdleOutside: 1000,
+			loadingIndicatorDelay: 1000, // 2s
+			
+			addCaptionHTMLFn: function(item, captionEl /*, isFake */) {
+				if(!item.title) {
+					captionEl.children[0].innerHTML = '';
+					return false;
+				}
+				captionEl.children[0].innerHTML = item.title;
+				return true;
+			},
+
+			closeEl:true,
+			captionEl: true,
+			fullscreenEl: true,
+			zoomEl: true,
+			shareEl: true,
+			counterEl: true,
+			arrowEl: true,
+			preloaderEl: true,
+
+			tapToClose: false,
+			tapToToggleControls: true,
+
+			clickToCloseNonZoomable: true,
+
+			shareButtons: [
+				{id:'facebook', label:'Share on Facebook', url:'https://www.facebook.com/sharer/sharer.php?u={{url}}'},
+				{id:'twitter', label:'Tweet', url:'https://twitter.com/intent/tweet?text={{text}}&url={{url}}'},
+				{id:'pinterest', label:'Pin it', url:'http://www.pinterest.com/pin/create/button/'+
+													'?url={{url}}&media={{image_url}}&description={{text}}'},
+				{id:'download', label:'Download image', url:'{{raw_image_url}}', download:true}
+			],
+			getImageURLForShare: function( /* shareButtonData */ ) {
+				return pswp.currItem.src || '';
+			},
+			getPageURLForShare: function( /* shareButtonData */ ) {
+				return window.location.href;
+			},
+			getTextForShare: function( /* shareButtonData */ ) {
+				return pswp.currItem.title || '';
+			},
+				
+			indexIndicatorSep: ' / ',
+			fitControlsWidth: 1200
+
+		},
+		_blockControlsTap,
+		_blockControlsTapTimeout;
+
+
+
+	var _onControlsTap = function(e) {
+			if(_blockControlsTap) {
+				return true;
+			}
+
+
+			e = e || window.event;
+
+			if(_options.timeToIdle && _options.mouseUsed && !_isIdle) {
+				// reset idle timer
+				_onIdleMouseMove();
+			}
+
+
+			var target = e.target || e.srcElement,
+				uiElement,
+				clickedClass = target.getAttribute('class') || '',
+				found;
+
+			for(var i = 0; i < _uiElements.length; i++) {
+				uiElement = _uiElements[i];
+				if(uiElement.onTap && clickedClass.indexOf('pswp__' + uiElement.name ) > -1 ) {
+					uiElement.onTap();
+					found = true;
+
+				}
+			}
+
+			if(found) {
+				if(e.stopPropagation) {
+					e.stopPropagation();
+				}
+				_blockControlsTap = true;
+
+				// Some versions of Android don't prevent ghost click event 
+				// when preventDefault() was called on touchstart and/or touchend.
+				// 
+				// This happens on v4.3, 4.2, 4.1, 
+				// older versions strangely work correctly, 
+				// but just in case we add delay on all of them)	
+				var tapDelay = framework.features.isOldAndroid ? 600 : 30;
+				_blockControlsTapTimeout = setTimeout(function() {
+					_blockControlsTap = false;
+				}, tapDelay);
+			}
+
+		},
+		_fitControlsInViewport = function() {
+			return !pswp.likelyTouchDevice || _options.mouseUsed || screen.width > _options.fitControlsWidth;
+		},
+		_togglePswpClass = function(el, cName, add) {
+			framework[ (add ? 'add' : 'remove') + 'Class' ](el, 'pswp__' + cName);
+		},
+
+		// add class when there is just one item in the gallery
+		// (by default it hides left/right arrows and 1ofX counter)
+		_countNumItems = function() {
+			var hasOneSlide = (_options.getNumItemsFn() === 1);
+
+			if(hasOneSlide !== _galleryHasOneSlide) {
+				_togglePswpClass(_controls, 'ui--one-slide', hasOneSlide);
+				_galleryHasOneSlide = hasOneSlide;
+			}
+		},
+		_toggleShareModalClass = function() {
+			_togglePswpClass(_shareModal, 'share-modal--hidden', _shareModalHidden);
+		},
+		_toggleShareModal = function() {
+
+			_shareModalHidden = !_shareModalHidden;
+			
+			
+			if(!_shareModalHidden) {
+				_toggleShareModalClass();
+				setTimeout(function() {
+					if(!_shareModalHidden) {
+						framework.addClass(_shareModal, 'pswp__share-modal--fade-in');
+					}
+				}, 30);
+			} else {
+				framework.removeClass(_shareModal, 'pswp__share-modal--fade-in');
+				setTimeout(function() {
+					if(_shareModalHidden) {
+						_toggleShareModalClass();
+					}
+				}, 300);
+			}
+			
+			if(!_shareModalHidden) {
+				_updateShareURLs();
+			}
+			return false;
+		},
+
+		_openWindowPopup = function(e) {
+			e = e || window.event;
+			var target = e.target || e.srcElement;
+
+			pswp.shout('shareLinkClick', e, target);
+
+			if(!target.href) {
+				return false;
+			}
+
+			if( target.hasAttribute('download') ) {
+				return true;
+			}
+
+			window.open(target.href, 'pswp_share', 'scrollbars=yes,resizable=yes,toolbar=no,'+
+										'location=yes,width=550,height=420,top=100,left=' + 
+										(window.screen ? Math.round(screen.width / 2 - 275) : 100)  );
+
+			if(!_shareModalHidden) {
+				_toggleShareModal();
+			}
+			
+			return false;
+		},
+		_updateShareURLs = function() {
+			var shareButtonOut = '',
+				shareButtonData,
+				shareURL,
+				image_url,
+				page_url,
+				share_text;
+
+			for(var i = 0; i < _options.shareButtons.length; i++) {
+				shareButtonData = _options.shareButtons[i];
+
+				image_url = _options.getImageURLForShare(shareButtonData);
+				page_url = _options.getPageURLForShare(shareButtonData);
+				share_text = _options.getTextForShare(shareButtonData);
+
+				shareURL = shareButtonData.url.replace('{{url}}', encodeURIComponent(page_url) )
+									.replace('{{image_url}}', encodeURIComponent(image_url) )
+									.replace('{{raw_image_url}}', image_url )
+									.replace('{{text}}', encodeURIComponent(share_text) );
+
+				shareButtonOut += '<a href="' + shareURL + '" target="_blank" '+
+									'class="pswp__share--' + shareButtonData.id + '"' +
+									(shareButtonData.download ? 'download' : '') + '>' + 
+									shareButtonData.label + '</a>';
+
+				if(_options.parseShareButtonOut) {
+					shareButtonOut = _options.parseShareButtonOut(shareButtonData, shareButtonOut);
+				}
+			}
+			_shareModal.children[0].innerHTML = shareButtonOut;
+			_shareModal.children[0].onclick = _openWindowPopup;
+
+		},
+		_hasCloseClass = function(target) {
+			for(var  i = 0; i < _options.closeElClasses.length; i++) {
+				if( framework.hasClass(target, 'pswp__' + _options.closeElClasses[i]) ) {
+					return true;
+				}
+			}
+		},
+		_idleInterval,
+		_idleTimer,
+		_idleIncrement = 0,
+		_onIdleMouseMove = function() {
+			clearTimeout(_idleTimer);
+			_idleIncrement = 0;
+			if(_isIdle) {
+				ui.setIdle(false);
+			}
+		},
+		_onMouseLeaveWindow = function(e) {
+			e = e ? e : window.event;
+			var from = e.relatedTarget || e.toElement;
+			if (!from || from.nodeName === 'HTML') {
+				clearTimeout(_idleTimer);
+				_idleTimer = setTimeout(function() {
+					ui.setIdle(true);
+				}, _options.timeToIdleOutside);
+			}
+		},
+		_setupFullscreenAPI = function() {
+			if(_options.fullscreenEl && !framework.features.isOldAndroid) {
+				if(!_fullscrenAPI) {
+					_fullscrenAPI = ui.getFullscreenAPI();
+				}
+				if(_fullscrenAPI) {
+					framework.bind(document, _fullscrenAPI.eventK, ui.updateFullscreen);
+					ui.updateFullscreen();
+					framework.addClass(pswp.template, 'pswp--supports-fs');
+				} else {
+					framework.removeClass(pswp.template, 'pswp--supports-fs');
+				}
+			}
+		},
+		_setupLoadingIndicator = function() {
+			// Setup loading indicator
+			if(_options.preloaderEl) {
+			
+				_toggleLoadingIndicator(true);
+
+				_listen('beforeChange', function() {
+
+					clearTimeout(_loadingIndicatorTimeout);
+
+					// display loading indicator with delay
+					_loadingIndicatorTimeout = setTimeout(function() {
+
+						if(pswp.currItem && pswp.currItem.loading) {
+
+							if( !pswp.allowProgressiveImg() || (pswp.currItem.img && !pswp.currItem.img.naturalWidth)  ) {
+								// show preloader if progressive loading is not enabled, 
+								// or image width is not defined yet (because of slow connection)
+								_toggleLoadingIndicator(false); 
+								// items-controller.js function allowProgressiveImg
+							}
+							
+						} else {
+							_toggleLoadingIndicator(true); // hide preloader
+						}
+
+					}, _options.loadingIndicatorDelay);
+					
+				});
+				_listen('imageLoadComplete', function(index, item) {
+					if(pswp.currItem === item) {
+						_toggleLoadingIndicator(true);
+					}
+				});
+
+			}
+		},
+		_toggleLoadingIndicator = function(hide) {
+			if( _loadingIndicatorHidden !== hide ) {
+				_togglePswpClass(_loadingIndicator, 'preloader--active', !hide);
+				_loadingIndicatorHidden = hide;
+			}
+		},
+		_applyNavBarGaps = function(item) {
+			var gap = item.vGap;
+
+			if( _fitControlsInViewport() ) {
+				
+				var bars = _options.barsSize; 
+				if(_options.captionEl && bars.bottom === 'auto') {
+					if(!_fakeCaptionContainer) {
+						_fakeCaptionContainer = framework.createEl('pswp__caption pswp__caption--fake');
+						_fakeCaptionContainer.appendChild( framework.createEl('pswp__caption__center') );
+						_controls.insertBefore(_fakeCaptionContainer, _captionContainer);
+						framework.addClass(_controls, 'pswp__ui--fit');
+					}
+					if( _options.addCaptionHTMLFn(item, _fakeCaptionContainer, true) ) {
+
+						var captionSize = _fakeCaptionContainer.clientHeight;
+						gap.bottom = parseInt(captionSize,10) || 44;
+					} else {
+						gap.bottom = bars.top; // if no caption, set size of bottom gap to size of top
+					}
+				} else {
+					gap.bottom = bars.bottom === 'auto' ? 0 : bars.bottom;
+				}
+				
+				// height of top bar is static, no need to calculate it
+				gap.top = bars.top;
+			} else {
+				gap.top = gap.bottom = 0;
+			}
+		},
+		_setupIdle = function() {
+			// Hide controls when mouse is used
+			if(_options.timeToIdle) {
+				_listen('mouseUsed', function() {
+					
+					framework.bind(document, 'mousemove', _onIdleMouseMove);
+					framework.bind(document, 'mouseout', _onMouseLeaveWindow);
+
+					_idleInterval = setInterval(function() {
+						_idleIncrement++;
+						if(_idleIncrement === 2) {
+							ui.setIdle(true);
+						}
+					}, _options.timeToIdle / 2);
+				});
+			}
+		},
+		_setupHidingControlsDuringGestures = function() {
+
+			// Hide controls on vertical drag
+			_listen('onVerticalDrag', function(now) {
+				if(_controlsVisible && now < 0.95) {
+					ui.hideControls();
+				} else if(!_controlsVisible && now >= 0.95) {
+					ui.showControls();
+				}
+			});
+
+			// Hide controls when pinching to close
+			var pinchControlsHidden;
+			_listen('onPinchClose' , function(now) {
+				if(_controlsVisible && now < 0.9) {
+					ui.hideControls();
+					pinchControlsHidden = true;
+				} else if(pinchControlsHidden && !_controlsVisible && now > 0.9) {
+					ui.showControls();
+				}
+			});
+
+			_listen('zoomGestureEnded', function() {
+				pinchControlsHidden = false;
+				if(pinchControlsHidden && !_controlsVisible) {
+					ui.showControls();
+				}
+			});
+
+		};
+
+
+
+	var _uiElements = [
+		{ 
+			name: 'caption', 
+			option: 'captionEl',
+			onInit: function(el) {  
+				_captionContainer = el; 
+			} 
+		},
+		{ 
+			name: 'share-modal', 
+			option: 'shareEl',
+			onInit: function(el) {  
+				_shareModal = el;
+			},
+			onTap: function() {
+				_toggleShareModal();
+			} 
+		},
+		{ 
+			name: 'button--share', 
+			option: 'shareEl',
+			onInit: function(el) { 
+				_shareButton = el;
+			},
+			onTap: function() {
+				_toggleShareModal();
+			} 
+		},
+		{ 
+			name: 'button--zoom', 
+			option: 'zoomEl',
+			onTap: pswp.toggleDesktopZoom
+		},
+		{ 
+			name: 'counter', 
+			option: 'counterEl',
+			onInit: function(el) {  
+				_indexIndicator = el;
+			} 
+		},
+		{ 
+			name: 'button--close', 
+			option: 'closeEl',
+			onTap: pswp.close
+		},
+		{ 
+			name: 'button--arrow--left', 
+			option: 'arrowEl',
+			onTap: pswp.prev
+		},
+		{ 
+			name: 'button--arrow--right', 
+			option: 'arrowEl',
+			onTap: pswp.next
+		},
+		{ 
+			name: 'button--fs', 
+			option: 'fullscreenEl',
+			onTap: function() {  
+				if(_fullscrenAPI.isFullscreen()) {
+					_fullscrenAPI.exit();
+				} else {
+					_fullscrenAPI.enter();
+				}
+			} 
+		},
+		{ 
+			name: 'preloader', 
+			option: 'preloaderEl',
+			onInit: function(el) {  
+				_loadingIndicator = el;
+			} 
+		}
+
+	];
+
+	var _setupUIElements = function() {
+		var item,
+			classAttr,
+			uiElement;
+
+		var loopThroughChildElements = function(sChildren) {
+			if(!sChildren) {
+				return;
+			}
+
+			var l = sChildren.length;
+			for(var i = 0; i < l; i++) {
+				item = sChildren[i];
+				classAttr = item.className;
+
+				for(var a = 0; a < _uiElements.length; a++) {
+					uiElement = _uiElements[a];
+
+					if(classAttr.indexOf('pswp__' + uiElement.name) > -1  ) {
+
+						if( _options[uiElement.option] ) { // if element is not disabled from options
+							
+							framework.removeClass(item, 'pswp__element--disabled');
+							if(uiElement.onInit) {
+								uiElement.onInit(item);
+							}
+							
+							//item.style.display = 'block';
+						} else {
+							framework.addClass(item, 'pswp__element--disabled');
+							//item.style.display = 'none';
+						}
+					}
+				}
+			}
+		};
+		loopThroughChildElements(_controls.children);
+
+		var topBar =  framework.getChildByClass(_controls, 'pswp__top-bar');
+		if(topBar) {
+			loopThroughChildElements( topBar.children );
+		}
+	};
+
+
+	
+
+	ui.init = function() {
+
+		// extend options
+		framework.extend(pswp.options, _defaultUIOptions, true);
+
+		// create local link for fast access
+		_options = pswp.options;
+
+		// find pswp__ui element
+		_controls = framework.getChildByClass(pswp.scrollWrap, 'pswp__ui');
+
+		// create local link
+		_listen = pswp.listen;
+
+
+		_setupHidingControlsDuringGestures();
+
+		// update controls when slides change
+		_listen('beforeChange', ui.update);
+
+		// toggle zoom on double-tap
+		_listen('doubleTap', function(point) {
+			var initialZoomLevel = pswp.currItem.initialZoomLevel;
+			if(pswp.getZoomLevel() !== initialZoomLevel) {
+				pswp.zoomTo(initialZoomLevel, point, 333);
+			} else {
+				pswp.zoomTo(_options.getDoubleTapZoom(false, pswp.currItem), point, 333);
+			}
+		});
+
+		// Allow text selection in caption
+		_listen('preventDragEvent', function(e, isDown, preventObj) {
+			var t = e.target || e.srcElement;
+			if(
+				t && 
+				t.getAttribute('class') && e.type.indexOf('mouse') > -1 && 
+				( t.getAttribute('class').indexOf('__caption') > 0 || (/(SMALL|STRONG|EM)/i).test(t.tagName) ) 
+			) {
+				preventObj.prevent = false;
+			}
+		});
+
+		// bind events for UI
+		_listen('bindEvents', function() {
+			framework.bind(_controls, 'pswpTap click', _onControlsTap);
+			framework.bind(pswp.scrollWrap, 'pswpTap', ui.onGlobalTap);
+
+			if(!pswp.likelyTouchDevice) {
+				framework.bind(pswp.scrollWrap, 'mouseover', ui.onMouseOver);
+			}
+		});
+
+		// unbind events for UI
+		_listen('unbindEvents', function() {
+			if(!_shareModalHidden) {
+				_toggleShareModal();
+			}
+
+			if(_idleInterval) {
+				clearInterval(_idleInterval);
+			}
+			framework.unbind(document, 'mouseout', _onMouseLeaveWindow);
+			framework.unbind(document, 'mousemove', _onIdleMouseMove);
+			framework.unbind(_controls, 'pswpTap click', _onControlsTap);
+			framework.unbind(pswp.scrollWrap, 'pswpTap', ui.onGlobalTap);
+			framework.unbind(pswp.scrollWrap, 'mouseover', ui.onMouseOver);
+
+			if(_fullscrenAPI) {
+				framework.unbind(document, _fullscrenAPI.eventK, ui.updateFullscreen);
+				if(_fullscrenAPI.isFullscreen()) {
+					_options.hideAnimationDuration = 0;
+					_fullscrenAPI.exit();
+				}
+				_fullscrenAPI = null;
+			}
+		});
+
+
+		// clean up things when gallery is destroyed
+		_listen('destroy', function() {
+			if(_options.captionEl) {
+				if(_fakeCaptionContainer) {
+					_controls.removeChild(_fakeCaptionContainer);
+				}
+				framework.removeClass(_captionContainer, 'pswp__caption--empty');
+			}
+
+			if(_shareModal) {
+				_shareModal.children[0].onclick = null;
+			}
+			framework.removeClass(_controls, 'pswp__ui--over-close');
+			framework.addClass( _controls, 'pswp__ui--hidden');
+			ui.setIdle(false);
+		});
+		
+
+		if(!_options.showAnimationDuration) {
+			framework.removeClass( _controls, 'pswp__ui--hidden');
+		}
+		_listen('initialZoomIn', function() {
+			if(_options.showAnimationDuration) {
+				framework.removeClass( _controls, 'pswp__ui--hidden');
+			}
+		});
+		_listen('initialZoomOut', function() {
+			framework.addClass( _controls, 'pswp__ui--hidden');
+		});
+
+		_listen('parseVerticalMargin', _applyNavBarGaps);
+		
+		_setupUIElements();
+
+		if(_options.shareEl && _shareButton && _shareModal) {
+			_shareModalHidden = true;
+		}
+
+		_countNumItems();
+
+		_setupIdle();
+
+		_setupFullscreenAPI();
+
+		_setupLoadingIndicator();
+	};
+
+	ui.setIdle = function(isIdle) {
+		_isIdle = isIdle;
+		_togglePswpClass(_controls, 'ui--idle', isIdle);
+	};
+
+	ui.update = function() {
+		// Don't update UI if it's hidden
+		if(_controlsVisible && pswp.currItem) {
+			
+			ui.updateIndexIndicator();
+
+			if(_options.captionEl) {
+				_options.addCaptionHTMLFn(pswp.currItem, _captionContainer);
+
+				_togglePswpClass(_captionContainer, 'caption--empty', !pswp.currItem.title);
+			}
+
+			_overlayUIUpdated = true;
+
+		} else {
+			_overlayUIUpdated = false;
+		}
+
+		if(!_shareModalHidden) {
+			_toggleShareModal();
+		}
+
+		_countNumItems();
+	};
+
+	ui.updateFullscreen = function(e) {
+
+		if(e) {
+			// some browsers change window scroll position during the fullscreen
+			// so PhotoSwipe updates it just in case
+			setTimeout(function() {
+				pswp.setScrollOffset( 0, framework.getScrollY() );
+			}, 50);
+		}
+		
+		// toogle pswp--fs class on root element
+		framework[ (_fullscrenAPI.isFullscreen() ? 'add' : 'remove') + 'Class' ](pswp.template, 'pswp--fs');
+	};
+
+	ui.updateIndexIndicator = function() {
+		if(_options.counterEl) {
+			_indexIndicator.innerHTML = (pswp.getCurrentIndex()+1) + 
+										_options.indexIndicatorSep + 
+										_options.getNumItemsFn();
+		}
+	};
+	
+	ui.onGlobalTap = function(e) {
+		e = e || window.event;
+		var target = e.target || e.srcElement;
+
+		if(_blockControlsTap) {
+			return;
+		}
+
+		if(e.detail && e.detail.pointerType === 'mouse') {
+
+			// close gallery if clicked outside of the image
+			if(_hasCloseClass(target)) {
+				pswp.close();
+				return;
+			}
+
+			if(framework.hasClass(target, 'pswp__img')) {
+				if(pswp.getZoomLevel() === 1 && pswp.getZoomLevel() <= pswp.currItem.fitRatio) {
+					if(_options.clickToCloseNonZoomable) {
+						pswp.close();
+					}
+				} else {
+					pswp.toggleDesktopZoom(e.detail.releasePoint);
+				}
+			}
+			
+		} else {
+
+			// tap anywhere (except buttons) to toggle visibility of controls
+			if(_options.tapToToggleControls) {
+				if(_controlsVisible) {
+					ui.hideControls();
+				} else {
+					ui.showControls();
+				}
+			}
+
+			// tap to close gallery
+			if(_options.tapToClose && (framework.hasClass(target, 'pswp__img') || _hasCloseClass(target)) ) {
+				pswp.close();
+				return;
+			}
+			
+		}
+	};
+	ui.onMouseOver = function(e) {
+		e = e || window.event;
+		var target = e.target || e.srcElement;
+
+		// add class when mouse is over an element that should close the gallery
+		_togglePswpClass(_controls, 'ui--over-close', _hasCloseClass(target));
+	};
+
+	ui.hideControls = function() {
+		framework.addClass(_controls,'pswp__ui--hidden');
+		_controlsVisible = false;
+	};
+
+	ui.showControls = function() {
+		_controlsVisible = true;
+		if(!_overlayUIUpdated) {
+			ui.update();
+		}
+		framework.removeClass(_controls,'pswp__ui--hidden');
+	};
+
+	ui.supportsFullscreen = function() {
+		var d = document;
+		return !!(d.exitFullscreen || d.mozCancelFullScreen || d.webkitExitFullscreen || d.msExitFullscreen);
+	};
+
+	ui.getFullscreenAPI = function() {
+		var dE = document.documentElement,
+			api,
+			tF = 'fullscreenchange';
+
+		if (dE.requestFullscreen) {
+			api = {
+				enterK: 'requestFullscreen',
+				exitK: 'exitFullscreen',
+				elementK: 'fullscreenElement',
+				eventK: tF
+			};
+
+		} else if(dE.mozRequestFullScreen ) {
+			api = {
+				enterK: 'mozRequestFullScreen',
+				exitK: 'mozCancelFullScreen',
+				elementK: 'mozFullScreenElement',
+				eventK: 'moz' + tF
+			};
+
+			
+
+		} else if(dE.webkitRequestFullscreen) {
+			api = {
+				enterK: 'webkitRequestFullscreen',
+				exitK: 'webkitExitFullscreen',
+				elementK: 'webkitFullscreenElement',
+				eventK: 'webkit' + tF
+			};
+
+		} else if(dE.msRequestFullscreen) {
+			api = {
+				enterK: 'msRequestFullscreen',
+				exitK: 'msExitFullscreen',
+				elementK: 'msFullscreenElement',
+				eventK: 'MSFullscreenChange'
+			};
+		}
+
+		if(api) {
+			api.enter = function() { 
+				// disable close-on-scroll in fullscreen
+				_initalCloseOnScrollValue = _options.closeOnScroll; 
+				_options.closeOnScroll = false; 
+
+				if(this.enterK === 'webkitRequestFullscreen') {
+					pswp.template[this.enterK]( Element.ALLOW_KEYBOARD_INPUT );
+				} else {
+					return pswp.template[this.enterK](); 
+				}
+			};
+			api.exit = function() { 
+				_options.closeOnScroll = _initalCloseOnScrollValue;
+
+				return document[this.exitK](); 
+
+			};
+			api.isFullscreen = function() { return document[this.elementK]; };
+		}
+
+		return api;
+	};
+
+
+
+};
+return PhotoSwipeUI_Default;
+
+
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/.pnpm/photoswipe@4.1.3/node_modules/photoswipe/dist/photoswipe.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/.pnpm/photoswipe@4.1.3/node_modules/photoswipe/dist/photoswipe.js ***!
+  \****************************************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! PhotoSwipe - v4.1.3 - 2019-01-08
+* http://photoswipe.com
+* Copyright (c) 2019 Dmitry Semenov; */
+(function (root, factory) { 
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+		__WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else // removed by dead control flow
+{}
+})(this, function () {
+
+	'use strict';
+	var PhotoSwipe = function(template, UiClass, items, options){
+
+/*>>framework-bridge*/
+/**
+ *
+ * Set of generic functions used by gallery.
+ * 
+ * You're free to modify anything here as long as functionality is kept.
+ * 
+ */
+var framework = {
+	features: null,
+	bind: function(target, type, listener, unbind) {
+		var methodName = (unbind ? 'remove' : 'add') + 'EventListener';
+		type = type.split(' ');
+		for(var i = 0; i < type.length; i++) {
+			if(type[i]) {
+				target[methodName]( type[i], listener, false);
+			}
+		}
+	},
+	isArray: function(obj) {
+		return (obj instanceof Array);
+	},
+	createEl: function(classes, tag) {
+		var el = document.createElement(tag || 'div');
+		if(classes) {
+			el.className = classes;
+		}
+		return el;
+	},
+	getScrollY: function() {
+		var yOffset = window.pageYOffset;
+		return yOffset !== undefined ? yOffset : document.documentElement.scrollTop;
+	},
+	unbind: function(target, type, listener) {
+		framework.bind(target,type,listener,true);
+	},
+	removeClass: function(el, className) {
+		var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+		el.className = el.className.replace(reg, ' ').replace(/^\s\s*/, '').replace(/\s\s*$/, ''); 
+	},
+	addClass: function(el, className) {
+		if( !framework.hasClass(el,className) ) {
+			el.className += (el.className ? ' ' : '') + className;
+		}
+	},
+	hasClass: function(el, className) {
+		return el.className && new RegExp('(^|\\s)' + className + '(\\s|$)').test(el.className);
+	},
+	getChildByClass: function(parentEl, childClassName) {
+		var node = parentEl.firstChild;
+		while(node) {
+			if( framework.hasClass(node, childClassName) ) {
+				return node;
+			}
+			node = node.nextSibling;
+		}
+	},
+	arraySearch: function(array, value, key) {
+		var i = array.length;
+		while(i--) {
+			if(array[i][key] === value) {
+				return i;
+			} 
+		}
+		return -1;
+	},
+	extend: function(o1, o2, preventOverwrite) {
+		for (var prop in o2) {
+			if (o2.hasOwnProperty(prop)) {
+				if(preventOverwrite && o1.hasOwnProperty(prop)) {
+					continue;
+				}
+				o1[prop] = o2[prop];
+			}
+		}
+	},
+	easing: {
+		sine: {
+			out: function(k) {
+				return Math.sin(k * (Math.PI / 2));
+			},
+			inOut: function(k) {
+				return - (Math.cos(Math.PI * k) - 1) / 2;
+			}
+		},
+		cubic: {
+			out: function(k) {
+				return --k * k * k + 1;
+			}
+		}
+		/*
+			elastic: {
+				out: function ( k ) {
+
+					var s, a = 0.1, p = 0.4;
+					if ( k === 0 ) return 0;
+					if ( k === 1 ) return 1;
+					if ( !a || a < 1 ) { a = 1; s = p / 4; }
+					else s = p * Math.asin( 1 / a ) / ( 2 * Math.PI );
+					return ( a * Math.pow( 2, - 10 * k) * Math.sin( ( k - s ) * ( 2 * Math.PI ) / p ) + 1 );
+
+				},
+			},
+			back: {
+				out: function ( k ) {
+					var s = 1.70158;
+					return --k * k * ( ( s + 1 ) * k + s ) + 1;
+				}
+			}
+		*/
+	},
+
+	/**
+	 * 
+	 * @return {object}
+	 * 
+	 * {
+	 *  raf : request animation frame function
+	 *  caf : cancel animation frame function
+	 *  transfrom : transform property key (with vendor), or null if not supported
+	 *  oldIE : IE8 or below
+	 * }
+	 * 
+	 */
+	detectFeatures: function() {
+		if(framework.features) {
+			return framework.features;
+		}
+		var helperEl = framework.createEl(),
+			helperStyle = helperEl.style,
+			vendor = '',
+			features = {};
+
+		// IE8 and below
+		features.oldIE = document.all && !document.addEventListener;
+
+		features.touch = 'ontouchstart' in window;
+
+		if(window.requestAnimationFrame) {
+			features.raf = window.requestAnimationFrame;
+			features.caf = window.cancelAnimationFrame;
+		}
+
+		features.pointerEvent = !!(window.PointerEvent) || navigator.msPointerEnabled;
+
+		// fix false-positive detection of old Android in new IE
+		// (IE11 ua string contains "Android 4.0")
+		
+		if(!features.pointerEvent) { 
+
+			var ua = navigator.userAgent;
+
+			// Detect if device is iPhone or iPod and if it's older than iOS 8
+			// http://stackoverflow.com/a/14223920
+			// 
+			// This detection is made because of buggy top/bottom toolbars
+			// that don't trigger window.resize event.
+			// For more info refer to _isFixedPosition variable in core.js
+
+			if (/iP(hone|od)/.test(navigator.platform)) {
+				var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+				if(v && v.length > 0) {
+					v = parseInt(v[1], 10);
+					if(v >= 1 && v < 8 ) {
+						features.isOldIOSPhone = true;
+					}
+				}
+			}
+
+			// Detect old Android (before KitKat)
+			// due to bugs related to position:fixed
+			// http://stackoverflow.com/questions/7184573/pick-up-the-android-version-in-the-browser-by-javascript
+			
+			var match = ua.match(/Android\s([0-9\.]*)/);
+			var androidversion =  match ? match[1] : 0;
+			androidversion = parseFloat(androidversion);
+			if(androidversion >= 1 ) {
+				if(androidversion < 4.4) {
+					features.isOldAndroid = true; // for fixed position bug & performance
+				}
+				features.androidVersion = androidversion; // for touchend bug
+			}	
+			features.isMobileOpera = /opera mini|opera mobi/i.test(ua);
+
+			// p.s. yes, yes, UA sniffing is bad, propose your solution for above bugs.
+		}
+		
+		var styleChecks = ['transform', 'perspective', 'animationName'],
+			vendors = ['', 'webkit','Moz','ms','O'],
+			styleCheckItem,
+			styleName;
+
+		for(var i = 0; i < 4; i++) {
+			vendor = vendors[i];
+
+			for(var a = 0; a < 3; a++) {
+				styleCheckItem = styleChecks[a];
+
+				// uppercase first letter of property name, if vendor is present
+				styleName = vendor + (vendor ? 
+										styleCheckItem.charAt(0).toUpperCase() + styleCheckItem.slice(1) : 
+										styleCheckItem);
+			
+				if(!features[styleCheckItem] && styleName in helperStyle ) {
+					features[styleCheckItem] = styleName;
+				}
+			}
+
+			if(vendor && !features.raf) {
+				vendor = vendor.toLowerCase();
+				features.raf = window[vendor+'RequestAnimationFrame'];
+				if(features.raf) {
+					features.caf = window[vendor+'CancelAnimationFrame'] || 
+									window[vendor+'CancelRequestAnimationFrame'];
+				}
+			}
+		}
+			
+		if(!features.raf) {
+			var lastTime = 0;
+			features.raf = function(fn) {
+				var currTime = new Date().getTime();
+				var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+				var id = window.setTimeout(function() { fn(currTime + timeToCall); }, timeToCall);
+				lastTime = currTime + timeToCall;
+				return id;
+			};
+			features.caf = function(id) { clearTimeout(id); };
+		}
+
+		// Detect SVG support
+		features.svg = !!document.createElementNS && 
+						!!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect;
+
+		framework.features = features;
+
+		return features;
+	}
+};
+
+framework.detectFeatures();
+
+// Override addEventListener for old versions of IE
+if(framework.features.oldIE) {
+
+	framework.bind = function(target, type, listener, unbind) {
+		
+		type = type.split(' ');
+
+		var methodName = (unbind ? 'detach' : 'attach') + 'Event',
+			evName,
+			_handleEv = function() {
+				listener.handleEvent.call(listener);
+			};
+
+		for(var i = 0; i < type.length; i++) {
+			evName = type[i];
+			if(evName) {
+
+				if(typeof listener === 'object' && listener.handleEvent) {
+					if(!unbind) {
+						listener['oldIE' + evName] = _handleEv;
+					} else {
+						if(!listener['oldIE' + evName]) {
+							return false;
+						}
+					}
+
+					target[methodName]( 'on' + evName, listener['oldIE' + evName]);
+				} else {
+					target[methodName]( 'on' + evName, listener);
+				}
+
+			}
+		}
+	};
+	
+}
+
+/*>>framework-bridge*/
+
+/*>>core*/
+//function(template, UiClass, items, options)
+
+var self = this;
+
+/**
+ * Static vars, don't change unless you know what you're doing.
+ */
+var DOUBLE_TAP_RADIUS = 25, 
+	NUM_HOLDERS = 3;
+
+/**
+ * Options
+ */
+var _options = {
+	allowPanToNext:true,
+	spacing: 0.12,
+	bgOpacity: 1,
+	mouseUsed: false,
+	loop: true,
+	pinchToClose: true,
+	closeOnScroll: true,
+	closeOnVerticalDrag: true,
+	verticalDragRange: 0.75,
+	hideAnimationDuration: 333,
+	showAnimationDuration: 333,
+	showHideOpacity: false,
+	focus: true,
+	escKey: true,
+	arrowKeys: true,
+	mainScrollEndFriction: 0.35,
+	panEndFriction: 0.35,
+	isClickableElement: function(el) {
+        return el.tagName === 'A';
+    },
+    getDoubleTapZoom: function(isMouseClick, item) {
+    	if(isMouseClick) {
+    		return 1;
+    	} else {
+    		return item.initialZoomLevel < 0.7 ? 1 : 1.33;
+    	}
+    },
+    maxSpreadZoom: 1.33,
+	modal: true,
+
+	// not fully implemented yet
+	scaleMode: 'fit' // TODO
+};
+framework.extend(_options, options);
+
+
+/**
+ * Private helper variables & functions
+ */
+
+var _getEmptyPoint = function() { 
+		return {x:0,y:0}; 
+	};
+
+var _isOpen,
+	_isDestroying,
+	_closedByScroll,
+	_currentItemIndex,
+	_containerStyle,
+	_containerShiftIndex,
+	_currPanDist = _getEmptyPoint(),
+	_startPanOffset = _getEmptyPoint(),
+	_panOffset = _getEmptyPoint(),
+	_upMoveEvents, // drag move, drag end & drag cancel events array
+	_downEvents, // drag start events array
+	_globalEventHandlers,
+	_viewportSize = {},
+	_currZoomLevel,
+	_startZoomLevel,
+	_translatePrefix,
+	_translateSufix,
+	_updateSizeInterval,
+	_itemsNeedUpdate,
+	_currPositionIndex = 0,
+	_offset = {},
+	_slideSize = _getEmptyPoint(), // size of slide area, including spacing
+	_itemHolders,
+	_prevItemIndex,
+	_indexDiff = 0, // difference of indexes since last content update
+	_dragStartEvent,
+	_dragMoveEvent,
+	_dragEndEvent,
+	_dragCancelEvent,
+	_transformKey,
+	_pointerEventEnabled,
+	_isFixedPosition = true,
+	_likelyTouchDevice,
+	_modules = [],
+	_requestAF,
+	_cancelAF,
+	_initalClassName,
+	_initalWindowScrollY,
+	_oldIE,
+	_currentWindowScrollY,
+	_features,
+	_windowVisibleSize = {},
+	_renderMaxResolution = false,
+	_orientationChangeTimeout,
+
+
+	// Registers PhotoSWipe module (History, Controller ...)
+	_registerModule = function(name, module) {
+		framework.extend(self, module.publicMethods);
+		_modules.push(name);
+	},
+
+	_getLoopedId = function(index) {
+		var numSlides = _getNumItems();
+		if(index > numSlides - 1) {
+			return index - numSlides;
+		} else  if(index < 0) {
+			return numSlides + index;
+		}
+		return index;
+	},
+	
+	// Micro bind/trigger
+	_listeners = {},
+	_listen = function(name, fn) {
+		if(!_listeners[name]) {
+			_listeners[name] = [];
+		}
+		return _listeners[name].push(fn);
+	},
+	_shout = function(name) {
+		var listeners = _listeners[name];
+
+		if(listeners) {
+			var args = Array.prototype.slice.call(arguments);
+			args.shift();
+
+			for(var i = 0; i < listeners.length; i++) {
+				listeners[i].apply(self, args);
+			}
+		}
+	},
+
+	_getCurrentTime = function() {
+		return new Date().getTime();
+	},
+	_applyBgOpacity = function(opacity) {
+		_bgOpacity = opacity;
+		self.bg.style.opacity = opacity * _options.bgOpacity;
+	},
+
+	_applyZoomTransform = function(styleObj,x,y,zoom,item) {
+		if(!_renderMaxResolution || (item && item !== self.currItem) ) {
+			zoom = zoom / (item ? item.fitRatio : self.currItem.fitRatio);	
+		}
+			
+		styleObj[_transformKey] = _translatePrefix + x + 'px, ' + y + 'px' + _translateSufix + ' scale(' + zoom + ')';
+	},
+	_applyCurrentZoomPan = function( allowRenderResolution ) {
+		if(_currZoomElementStyle) {
+
+			if(allowRenderResolution) {
+				if(_currZoomLevel > self.currItem.fitRatio) {
+					if(!_renderMaxResolution) {
+						_setImageSize(self.currItem, false, true);
+						_renderMaxResolution = true;
+					}
+				} else {
+					if(_renderMaxResolution) {
+						_setImageSize(self.currItem);
+						_renderMaxResolution = false;
+					}
+				}
+			}
+			
+
+			_applyZoomTransform(_currZoomElementStyle, _panOffset.x, _panOffset.y, _currZoomLevel);
+		}
+	},
+	_applyZoomPanToItem = function(item) {
+		if(item.container) {
+
+			_applyZoomTransform(item.container.style, 
+								item.initialPosition.x, 
+								item.initialPosition.y, 
+								item.initialZoomLevel,
+								item);
+		}
+	},
+	_setTranslateX = function(x, elStyle) {
+		elStyle[_transformKey] = _translatePrefix + x + 'px, 0px' + _translateSufix;
+	},
+	_moveMainScroll = function(x, dragging) {
+
+		if(!_options.loop && dragging) {
+			var newSlideIndexOffset = _currentItemIndex + (_slideSize.x * _currPositionIndex - x) / _slideSize.x,
+				delta = Math.round(x - _mainScrollPos.x);
+
+			if( (newSlideIndexOffset < 0 && delta > 0) || 
+				(newSlideIndexOffset >= _getNumItems() - 1 && delta < 0) ) {
+				x = _mainScrollPos.x + delta * _options.mainScrollEndFriction;
+			} 
+		}
+		
+		_mainScrollPos.x = x;
+		_setTranslateX(x, _containerStyle);
+	},
+	_calculatePanOffset = function(axis, zoomLevel) {
+		var m = _midZoomPoint[axis] - _offset[axis];
+		return _startPanOffset[axis] + _currPanDist[axis] + m - m * ( zoomLevel / _startZoomLevel );
+	},
+	
+	_equalizePoints = function(p1, p2) {
+		p1.x = p2.x;
+		p1.y = p2.y;
+		if(p2.id) {
+			p1.id = p2.id;
+		}
+	},
+	_roundPoint = function(p) {
+		p.x = Math.round(p.x);
+		p.y = Math.round(p.y);
+	},
+
+	_mouseMoveTimeout = null,
+	_onFirstMouseMove = function() {
+		// Wait until mouse move event is fired at least twice during 100ms
+		// We do this, because some mobile browsers trigger it on touchstart
+		if(_mouseMoveTimeout ) { 
+			framework.unbind(document, 'mousemove', _onFirstMouseMove);
+			framework.addClass(template, 'pswp--has_mouse');
+			_options.mouseUsed = true;
+			_shout('mouseUsed');
+		}
+		_mouseMoveTimeout = setTimeout(function() {
+			_mouseMoveTimeout = null;
+		}, 100);
+	},
+
+	_bindEvents = function() {
+		framework.bind(document, 'keydown', self);
+
+		if(_features.transform) {
+			// don't bind click event in browsers that don't support transform (mostly IE8)
+			framework.bind(self.scrollWrap, 'click', self);
+		}
+		
+
+		if(!_options.mouseUsed) {
+			framework.bind(document, 'mousemove', _onFirstMouseMove);
+		}
+
+		framework.bind(window, 'resize scroll orientationchange', self);
+
+		_shout('bindEvents');
+	},
+
+	_unbindEvents = function() {
+		framework.unbind(window, 'resize scroll orientationchange', self);
+		framework.unbind(window, 'scroll', _globalEventHandlers.scroll);
+		framework.unbind(document, 'keydown', self);
+		framework.unbind(document, 'mousemove', _onFirstMouseMove);
+
+		if(_features.transform) {
+			framework.unbind(self.scrollWrap, 'click', self);
+		}
+
+		if(_isDragging) {
+			framework.unbind(window, _upMoveEvents, self);
+		}
+
+		clearTimeout(_orientationChangeTimeout);
+
+		_shout('unbindEvents');
+	},
+	
+	_calculatePanBounds = function(zoomLevel, update) {
+		var bounds = _calculateItemSize( self.currItem, _viewportSize, zoomLevel );
+		if(update) {
+			_currPanBounds = bounds;
+		}
+		return bounds;
+	},
+	
+	_getMinZoomLevel = function(item) {
+		if(!item) {
+			item = self.currItem;
+		}
+		return item.initialZoomLevel;
+	},
+	_getMaxZoomLevel = function(item) {
+		if(!item) {
+			item = self.currItem;
+		}
+		return item.w > 0 ? _options.maxSpreadZoom : 1;
+	},
+
+	// Return true if offset is out of the bounds
+	_modifyDestPanOffset = function(axis, destPanBounds, destPanOffset, destZoomLevel) {
+		if(destZoomLevel === self.currItem.initialZoomLevel) {
+			destPanOffset[axis] = self.currItem.initialPosition[axis];
+			return true;
+		} else {
+			destPanOffset[axis] = _calculatePanOffset(axis, destZoomLevel); 
+
+			if(destPanOffset[axis] > destPanBounds.min[axis]) {
+				destPanOffset[axis] = destPanBounds.min[axis];
+				return true;
+			} else if(destPanOffset[axis] < destPanBounds.max[axis] ) {
+				destPanOffset[axis] = destPanBounds.max[axis];
+				return true;
+			}
+		}
+		return false;
+	},
+
+	_setupTransforms = function() {
+
+		if(_transformKey) {
+			// setup 3d transforms
+			var allow3dTransform = _features.perspective && !_likelyTouchDevice;
+			_translatePrefix = 'translate' + (allow3dTransform ? '3d(' : '(');
+			_translateSufix = _features.perspective ? ', 0px)' : ')';	
+			return;
+		}
+
+		// Override zoom/pan/move functions in case old browser is used (most likely IE)
+		// (so they use left/top/width/height, instead of CSS transform)
+	
+		_transformKey = 'left';
+		framework.addClass(template, 'pswp--ie');
+
+		_setTranslateX = function(x, elStyle) {
+			elStyle.left = x + 'px';
+		};
+		_applyZoomPanToItem = function(item) {
+
+			var zoomRatio = item.fitRatio > 1 ? 1 : item.fitRatio,
+				s = item.container.style,
+				w = zoomRatio * item.w,
+				h = zoomRatio * item.h;
+
+			s.width = w + 'px';
+			s.height = h + 'px';
+			s.left = item.initialPosition.x + 'px';
+			s.top = item.initialPosition.y + 'px';
+
+		};
+		_applyCurrentZoomPan = function() {
+			if(_currZoomElementStyle) {
+
+				var s = _currZoomElementStyle,
+					item = self.currItem,
+					zoomRatio = item.fitRatio > 1 ? 1 : item.fitRatio,
+					w = zoomRatio * item.w,
+					h = zoomRatio * item.h;
+
+				s.width = w + 'px';
+				s.height = h + 'px';
+
+
+				s.left = _panOffset.x + 'px';
+				s.top = _panOffset.y + 'px';
+			}
+			
+		};
+	},
+
+	_onKeyDown = function(e) {
+		var keydownAction = '';
+		if(_options.escKey && e.keyCode === 27) { 
+			keydownAction = 'close';
+		} else if(_options.arrowKeys) {
+			if(e.keyCode === 37) {
+				keydownAction = 'prev';
+			} else if(e.keyCode === 39) { 
+				keydownAction = 'next';
+			}
+		}
+
+		if(keydownAction) {
+			// don't do anything if special key pressed to prevent from overriding default browser actions
+			// e.g. in Chrome on Mac cmd+arrow-left returns to previous page
+			if( !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey ) {
+				if(e.preventDefault) {
+					e.preventDefault();
+				} else {
+					e.returnValue = false;
+				} 
+				self[keydownAction]();
+			}
+		}
+	},
+
+	_onGlobalClick = function(e) {
+		if(!e) {
+			return;
+		}
+
+		// don't allow click event to pass through when triggering after drag or some other gesture
+		if(_moved || _zoomStarted || _mainScrollAnimating || _verticalDragInitiated) {
+			e.preventDefault();
+			e.stopPropagation();
+		}
+	},
+
+	_updatePageScrollOffset = function() {
+		self.setScrollOffset(0, framework.getScrollY());		
+	};
+	
+
+
+	
+
+
+
+// Micro animation engine
+var _animations = {},
+	_numAnimations = 0,
+	_stopAnimation = function(name) {
+		if(_animations[name]) {
+			if(_animations[name].raf) {
+				_cancelAF( _animations[name].raf );
+			}
+			_numAnimations--;
+			delete _animations[name];
+		}
+	},
+	_registerStartAnimation = function(name) {
+		if(_animations[name]) {
+			_stopAnimation(name);
+		}
+		if(!_animations[name]) {
+			_numAnimations++;
+			_animations[name] = {};
+		}
+	},
+	_stopAllAnimations = function() {
+		for (var prop in _animations) {
+
+			if( _animations.hasOwnProperty( prop ) ) {
+				_stopAnimation(prop);
+			} 
+			
+		}
+	},
+	_animateProp = function(name, b, endProp, d, easingFn, onUpdate, onComplete) {
+		var startAnimTime = _getCurrentTime(), t;
+		_registerStartAnimation(name);
+
+		var animloop = function(){
+			if ( _animations[name] ) {
+				
+				t = _getCurrentTime() - startAnimTime; // time diff
+				//b - beginning (start prop)
+				//d - anim duration
+
+				if ( t >= d ) {
+					_stopAnimation(name);
+					onUpdate(endProp);
+					if(onComplete) {
+						onComplete();
+					}
+					return;
+				}
+				onUpdate( (endProp - b) * easingFn(t/d) + b );
+
+				_animations[name].raf = _requestAF(animloop);
+			}
+		};
+		animloop();
+	};
+	
+
+
+var publicMethods = {
+
+	// make a few local variables and functions public
+	shout: _shout,
+	listen: _listen,
+	viewportSize: _viewportSize,
+	options: _options,
+
+	isMainScrollAnimating: function() {
+		return _mainScrollAnimating;
+	},
+	getZoomLevel: function() {
+		return _currZoomLevel;
+	},
+	getCurrentIndex: function() {
+		return _currentItemIndex;
+	},
+	isDragging: function() {
+		return _isDragging;
+	},	
+	isZooming: function() {
+		return _isZooming;
+	},
+	setScrollOffset: function(x,y) {
+		_offset.x = x;
+		_currentWindowScrollY = _offset.y = y;
+		_shout('updateScrollOffset', _offset);
+	},
+	applyZoomPan: function(zoomLevel,panX,panY,allowRenderResolution) {
+		_panOffset.x = panX;
+		_panOffset.y = panY;
+		_currZoomLevel = zoomLevel;
+		_applyCurrentZoomPan( allowRenderResolution );
+	},
+
+	init: function() {
+
+		if(_isOpen || _isDestroying) {
+			return;
+		}
+
+		var i;
+
+		self.framework = framework; // basic functionality
+		self.template = template; // root DOM element of PhotoSwipe
+		self.bg = framework.getChildByClass(template, 'pswp__bg');
+
+		_initalClassName = template.className;
+		_isOpen = true;
+				
+		_features = framework.detectFeatures();
+		_requestAF = _features.raf;
+		_cancelAF = _features.caf;
+		_transformKey = _features.transform;
+		_oldIE = _features.oldIE;
+		
+		self.scrollWrap = framework.getChildByClass(template, 'pswp__scroll-wrap');
+		self.container = framework.getChildByClass(self.scrollWrap, 'pswp__container');
+
+		_containerStyle = self.container.style; // for fast access
+
+		// Objects that hold slides (there are only 3 in DOM)
+		self.itemHolders = _itemHolders = [
+			{el:self.container.children[0] , wrap:0, index: -1},
+			{el:self.container.children[1] , wrap:0, index: -1},
+			{el:self.container.children[2] , wrap:0, index: -1}
+		];
+
+		// hide nearby item holders until initial zoom animation finishes (to avoid extra Paints)
+		_itemHolders[0].el.style.display = _itemHolders[2].el.style.display = 'none';
+
+		_setupTransforms();
+
+		// Setup global events
+		_globalEventHandlers = {
+			resize: self.updateSize,
+
+			// Fixes: iOS 10.3 resize event
+			// does not update scrollWrap.clientWidth instantly after resize
+			// https://github.com/dimsemenov/PhotoSwipe/issues/1315
+			orientationchange: function() {
+				clearTimeout(_orientationChangeTimeout);
+				_orientationChangeTimeout = setTimeout(function() {
+					if(_viewportSize.x !== self.scrollWrap.clientWidth) {
+						self.updateSize();
+					}
+				}, 500);
+			},
+			scroll: _updatePageScrollOffset,
+			keydown: _onKeyDown,
+			click: _onGlobalClick
+		};
+
+		// disable show/hide effects on old browsers that don't support CSS animations or transforms, 
+		// old IOS, Android and Opera mobile. Blackberry seems to work fine, even older models.
+		var oldPhone = _features.isOldIOSPhone || _features.isOldAndroid || _features.isMobileOpera;
+		if(!_features.animationName || !_features.transform || oldPhone) {
+			_options.showAnimationDuration = _options.hideAnimationDuration = 0;
+		}
+
+		// init modules
+		for(i = 0; i < _modules.length; i++) {
+			self['init' + _modules[i]]();
+		}
+		
+		// init
+		if(UiClass) {
+			var ui = self.ui = new UiClass(self, framework);
+			ui.init();
+		}
+
+		_shout('firstUpdate');
+		_currentItemIndex = _currentItemIndex || _options.index || 0;
+		// validate index
+		if( isNaN(_currentItemIndex) || _currentItemIndex < 0 || _currentItemIndex >= _getNumItems() ) {
+			_currentItemIndex = 0;
+		}
+		self.currItem = _getItemAt( _currentItemIndex );
+
+		
+		if(_features.isOldIOSPhone || _features.isOldAndroid) {
+			_isFixedPosition = false;
+		}
+		
+		template.setAttribute('aria-hidden', 'false');
+		if(_options.modal) {
+			if(!_isFixedPosition) {
+				template.style.position = 'absolute';
+				template.style.top = framework.getScrollY() + 'px';
+			} else {
+				template.style.position = 'fixed';
+			}
+		}
+
+		if(_currentWindowScrollY === undefined) {
+			_shout('initialLayout');
+			_currentWindowScrollY = _initalWindowScrollY = framework.getScrollY();
+		}
+		
+		// add classes to root element of PhotoSwipe
+		var rootClasses = 'pswp--open ';
+		if(_options.mainClass) {
+			rootClasses += _options.mainClass + ' ';
+		}
+		if(_options.showHideOpacity) {
+			rootClasses += 'pswp--animate_opacity ';
+		}
+		rootClasses += _likelyTouchDevice ? 'pswp--touch' : 'pswp--notouch';
+		rootClasses += _features.animationName ? ' pswp--css_animation' : '';
+		rootClasses += _features.svg ? ' pswp--svg' : '';
+		framework.addClass(template, rootClasses);
+
+		self.updateSize();
+
+		// initial update
+		_containerShiftIndex = -1;
+		_indexDiff = null;
+		for(i = 0; i < NUM_HOLDERS; i++) {
+			_setTranslateX( (i+_containerShiftIndex) * _slideSize.x, _itemHolders[i].el.style);
+		}
+
+		if(!_oldIE) {
+			framework.bind(self.scrollWrap, _downEvents, self); // no dragging for old IE
+		}	
+
+		_listen('initialZoomInEnd', function() {
+			self.setContent(_itemHolders[0], _currentItemIndex-1);
+			self.setContent(_itemHolders[2], _currentItemIndex+1);
+
+			_itemHolders[0].el.style.display = _itemHolders[2].el.style.display = 'block';
+
+			if(_options.focus) {
+				// focus causes layout, 
+				// which causes lag during the animation, 
+				// that's why we delay it untill the initial zoom transition ends
+				template.focus();
+			}
+			 
+
+			_bindEvents();
+		});
+
+		// set content for center slide (first time)
+		self.setContent(_itemHolders[1], _currentItemIndex);
+		
+		self.updateCurrItem();
+
+		_shout('afterInit');
+
+		if(!_isFixedPosition) {
+
+			// On all versions of iOS lower than 8.0, we check size of viewport every second.
+			// 
+			// This is done to detect when Safari top & bottom bars appear, 
+			// as this action doesn't trigger any events (like resize). 
+			// 
+			// On iOS8 they fixed this.
+			// 
+			// 10 Nov 2014: iOS 7 usage ~40%. iOS 8 usage 56%.
+			
+			_updateSizeInterval = setInterval(function() {
+				if(!_numAnimations && !_isDragging && !_isZooming && (_currZoomLevel === self.currItem.initialZoomLevel)  ) {
+					self.updateSize();
+				}
+			}, 1000);
+		}
+
+		framework.addClass(template, 'pswp--visible');
+	},
+
+	// Close the gallery, then destroy it
+	close: function() {
+		if(!_isOpen) {
+			return;
+		}
+
+		_isOpen = false;
+		_isDestroying = true;
+		_shout('close');
+		_unbindEvents();
+
+		_showOrHide(self.currItem, null, true, self.destroy);
+	},
+
+	// destroys the gallery (unbinds events, cleans up intervals and timeouts to avoid memory leaks)
+	destroy: function() {
+		_shout('destroy');
+
+		if(_showOrHideTimeout) {
+			clearTimeout(_showOrHideTimeout);
+		}
+		
+		template.setAttribute('aria-hidden', 'true');
+		template.className = _initalClassName;
+
+		if(_updateSizeInterval) {
+			clearInterval(_updateSizeInterval);
+		}
+
+		framework.unbind(self.scrollWrap, _downEvents, self);
+
+		// we unbind scroll event at the end, as closing animation may depend on it
+		framework.unbind(window, 'scroll', self);
+
+		_stopDragUpdateLoop();
+
+		_stopAllAnimations();
+
+		_listeners = null;
+	},
+
+	/**
+	 * Pan image to position
+	 * @param {Number} x     
+	 * @param {Number} y     
+	 * @param {Boolean} force Will ignore bounds if set to true.
+	 */
+	panTo: function(x,y,force) {
+		if(!force) {
+			if(x > _currPanBounds.min.x) {
+				x = _currPanBounds.min.x;
+			} else if(x < _currPanBounds.max.x) {
+				x = _currPanBounds.max.x;
+			}
+
+			if(y > _currPanBounds.min.y) {
+				y = _currPanBounds.min.y;
+			} else if(y < _currPanBounds.max.y) {
+				y = _currPanBounds.max.y;
+			}
+		}
+		
+		_panOffset.x = x;
+		_panOffset.y = y;
+		_applyCurrentZoomPan();
+	},
+	
+	handleEvent: function (e) {
+		e = e || window.event;
+		if(_globalEventHandlers[e.type]) {
+			_globalEventHandlers[e.type](e);
+		}
+	},
+
+
+	goTo: function(index) {
+
+		index = _getLoopedId(index);
+
+		var diff = index - _currentItemIndex;
+		_indexDiff = diff;
+
+		_currentItemIndex = index;
+		self.currItem = _getItemAt( _currentItemIndex );
+		_currPositionIndex -= diff;
+		
+		_moveMainScroll(_slideSize.x * _currPositionIndex);
+		
+
+		_stopAllAnimations();
+		_mainScrollAnimating = false;
+
+		self.updateCurrItem();
+	},
+	next: function() {
+		self.goTo( _currentItemIndex + 1);
+	},
+	prev: function() {
+		self.goTo( _currentItemIndex - 1);
+	},
+
+	// update current zoom/pan objects
+	updateCurrZoomItem: function(emulateSetContent) {
+		if(emulateSetContent) {
+			_shout('beforeChange', 0);
+		}
+
+		// itemHolder[1] is middle (current) item
+		if(_itemHolders[1].el.children.length) {
+			var zoomElement = _itemHolders[1].el.children[0];
+			if( framework.hasClass(zoomElement, 'pswp__zoom-wrap') ) {
+				_currZoomElementStyle = zoomElement.style;
+			} else {
+				_currZoomElementStyle = null;
+			}
+		} else {
+			_currZoomElementStyle = null;
+		}
+		
+		_currPanBounds = self.currItem.bounds;	
+		_startZoomLevel = _currZoomLevel = self.currItem.initialZoomLevel;
+
+		_panOffset.x = _currPanBounds.center.x;
+		_panOffset.y = _currPanBounds.center.y;
+
+		if(emulateSetContent) {
+			_shout('afterChange');
+		}
+	},
+
+
+	invalidateCurrItems: function() {
+		_itemsNeedUpdate = true;
+		for(var i = 0; i < NUM_HOLDERS; i++) {
+			if( _itemHolders[i].item ) {
+				_itemHolders[i].item.needsUpdate = true;
+			}
+		}
+	},
+
+	updateCurrItem: function(beforeAnimation) {
+
+		if(_indexDiff === 0) {
+			return;
+		}
+
+		var diffAbs = Math.abs(_indexDiff),
+			tempHolder;
+
+		if(beforeAnimation && diffAbs < 2) {
+			return;
+		}
+
+
+		self.currItem = _getItemAt( _currentItemIndex );
+		_renderMaxResolution = false;
+		
+		_shout('beforeChange', _indexDiff);
+
+		if(diffAbs >= NUM_HOLDERS) {
+			_containerShiftIndex += _indexDiff + (_indexDiff > 0 ? -NUM_HOLDERS : NUM_HOLDERS);
+			diffAbs = NUM_HOLDERS;
+		}
+		for(var i = 0; i < diffAbs; i++) {
+			if(_indexDiff > 0) {
+				tempHolder = _itemHolders.shift();
+				_itemHolders[NUM_HOLDERS-1] = tempHolder; // move first to last
+
+				_containerShiftIndex++;
+				_setTranslateX( (_containerShiftIndex+2) * _slideSize.x, tempHolder.el.style);
+				self.setContent(tempHolder, _currentItemIndex - diffAbs + i + 1 + 1);
+			} else {
+				tempHolder = _itemHolders.pop();
+				_itemHolders.unshift( tempHolder ); // move last to first
+
+				_containerShiftIndex--;
+				_setTranslateX( _containerShiftIndex * _slideSize.x, tempHolder.el.style);
+				self.setContent(tempHolder, _currentItemIndex + diffAbs - i - 1 - 1);
+			}
+			
+		}
+
+		// reset zoom/pan on previous item
+		if(_currZoomElementStyle && Math.abs(_indexDiff) === 1) {
+
+			var prevItem = _getItemAt(_prevItemIndex);
+			if(prevItem.initialZoomLevel !== _currZoomLevel) {
+				_calculateItemSize(prevItem , _viewportSize );
+				_setImageSize(prevItem);
+				_applyZoomPanToItem( prevItem ); 				
+			}
+
+		}
+
+		// reset diff after update
+		_indexDiff = 0;
+
+		self.updateCurrZoomItem();
+
+		_prevItemIndex = _currentItemIndex;
+
+		_shout('afterChange');
+		
+	},
+
+
+
+	updateSize: function(force) {
+		
+		if(!_isFixedPosition && _options.modal) {
+			var windowScrollY = framework.getScrollY();
+			if(_currentWindowScrollY !== windowScrollY) {
+				template.style.top = windowScrollY + 'px';
+				_currentWindowScrollY = windowScrollY;
+			}
+			if(!force && _windowVisibleSize.x === window.innerWidth && _windowVisibleSize.y === window.innerHeight) {
+				return;
+			}
+			_windowVisibleSize.x = window.innerWidth;
+			_windowVisibleSize.y = window.innerHeight;
+
+			//template.style.width = _windowVisibleSize.x + 'px';
+			template.style.height = _windowVisibleSize.y + 'px';
+		}
+
+
+
+		_viewportSize.x = self.scrollWrap.clientWidth;
+		_viewportSize.y = self.scrollWrap.clientHeight;
+
+		_updatePageScrollOffset();
+
+		_slideSize.x = _viewportSize.x + Math.round(_viewportSize.x * _options.spacing);
+		_slideSize.y = _viewportSize.y;
+
+		_moveMainScroll(_slideSize.x * _currPositionIndex);
+
+		_shout('beforeResize'); // even may be used for example to switch image sources
+
+
+		// don't re-calculate size on inital size update
+		if(_containerShiftIndex !== undefined) {
+
+			var holder,
+				item,
+				hIndex;
+
+			for(var i = 0; i < NUM_HOLDERS; i++) {
+				holder = _itemHolders[i];
+				_setTranslateX( (i+_containerShiftIndex) * _slideSize.x, holder.el.style);
+
+				hIndex = _currentItemIndex+i-1;
+
+				if(_options.loop && _getNumItems() > 2) {
+					hIndex = _getLoopedId(hIndex);
+				}
+
+				// update zoom level on items and refresh source (if needsUpdate)
+				item = _getItemAt( hIndex );
+
+				// re-render gallery item if `needsUpdate`,
+				// or doesn't have `bounds` (entirely new slide object)
+				if( item && (_itemsNeedUpdate || item.needsUpdate || !item.bounds) ) {
+
+					self.cleanSlide( item );
+					
+					self.setContent( holder, hIndex );
+
+					// if "center" slide
+					if(i === 1) {
+						self.currItem = item;
+						self.updateCurrZoomItem(true);
+					}
+
+					item.needsUpdate = false;
+
+				} else if(holder.index === -1 && hIndex >= 0) {
+					// add content first time
+					self.setContent( holder, hIndex );
+				}
+				if(item && item.container) {
+					_calculateItemSize(item, _viewportSize);
+					_setImageSize(item);
+					_applyZoomPanToItem( item );
+				}
+				
+			}
+			_itemsNeedUpdate = false;
+		}	
+
+		_startZoomLevel = _currZoomLevel = self.currItem.initialZoomLevel;
+		_currPanBounds = self.currItem.bounds;
+
+		if(_currPanBounds) {
+			_panOffset.x = _currPanBounds.center.x;
+			_panOffset.y = _currPanBounds.center.y;
+			_applyCurrentZoomPan( true );
+		}
+		
+		_shout('resize');
+	},
+	
+	// Zoom current item to
+	zoomTo: function(destZoomLevel, centerPoint, speed, easingFn, updateFn) {
+		/*
+			if(destZoomLevel === 'fit') {
+				destZoomLevel = self.currItem.fitRatio;
+			} else if(destZoomLevel === 'fill') {
+				destZoomLevel = self.currItem.fillRatio;
+			}
+		*/
+
+		if(centerPoint) {
+			_startZoomLevel = _currZoomLevel;
+			_midZoomPoint.x = Math.abs(centerPoint.x) - _panOffset.x ;
+			_midZoomPoint.y = Math.abs(centerPoint.y) - _panOffset.y ;
+			_equalizePoints(_startPanOffset, _panOffset);
+		}
+
+		var destPanBounds = _calculatePanBounds(destZoomLevel, false),
+			destPanOffset = {};
+
+		_modifyDestPanOffset('x', destPanBounds, destPanOffset, destZoomLevel);
+		_modifyDestPanOffset('y', destPanBounds, destPanOffset, destZoomLevel);
+
+		var initialZoomLevel = _currZoomLevel;
+		var initialPanOffset = {
+			x: _panOffset.x,
+			y: _panOffset.y
+		};
+
+		_roundPoint(destPanOffset);
+
+		var onUpdate = function(now) {
+			if(now === 1) {
+				_currZoomLevel = destZoomLevel;
+				_panOffset.x = destPanOffset.x;
+				_panOffset.y = destPanOffset.y;
+			} else {
+				_currZoomLevel = (destZoomLevel - initialZoomLevel) * now + initialZoomLevel;
+				_panOffset.x = (destPanOffset.x - initialPanOffset.x) * now + initialPanOffset.x;
+				_panOffset.y = (destPanOffset.y - initialPanOffset.y) * now + initialPanOffset.y;
+			}
+
+			if(updateFn) {
+				updateFn(now);
+			}
+
+			_applyCurrentZoomPan( now === 1 );
+		};
+
+		if(speed) {
+			_animateProp('customZoomTo', 0, 1, speed, easingFn || framework.easing.sine.inOut, onUpdate);
+		} else {
+			onUpdate(1);
+		}
+	}
+
+
+};
+
+
+/*>>core*/
+
+/*>>gestures*/
+/**
+ * Mouse/touch/pointer event handlers.
+ * 
+ * separated from @core.js for readability
+ */
+
+var MIN_SWIPE_DISTANCE = 30,
+	DIRECTION_CHECK_OFFSET = 10; // amount of pixels to drag to determine direction of swipe
+
+var _gestureStartTime,
+	_gestureCheckSpeedTime,
+
+	// pool of objects that are used during dragging of zooming
+	p = {}, // first point
+	p2 = {}, // second point (for zoom gesture)
+	delta = {},
+	_currPoint = {},
+	_startPoint = {},
+	_currPointers = [],
+	_startMainScrollPos = {},
+	_releaseAnimData,
+	_posPoints = [], // array of points during dragging, used to determine type of gesture
+	_tempPoint = {},
+
+	_isZoomingIn,
+	_verticalDragInitiated,
+	_oldAndroidTouchEndTimeout,
+	_currZoomedItemIndex = 0,
+	_centerPoint = _getEmptyPoint(),
+	_lastReleaseTime = 0,
+	_isDragging, // at least one pointer is down
+	_isMultitouch, // at least two _pointers are down
+	_zoomStarted, // zoom level changed during zoom gesture
+	_moved,
+	_dragAnimFrame,
+	_mainScrollShifted,
+	_currentPoints, // array of current touch points
+	_isZooming,
+	_currPointsDistance,
+	_startPointsDistance,
+	_currPanBounds,
+	_mainScrollPos = _getEmptyPoint(),
+	_currZoomElementStyle,
+	_mainScrollAnimating, // true, if animation after swipe gesture is running
+	_midZoomPoint = _getEmptyPoint(),
+	_currCenterPoint = _getEmptyPoint(),
+	_direction,
+	_isFirstMove,
+	_opacityChanged,
+	_bgOpacity,
+	_wasOverInitialZoom,
+
+	_isEqualPoints = function(p1, p2) {
+		return p1.x === p2.x && p1.y === p2.y;
+	},
+	_isNearbyPoints = function(touch0, touch1) {
+		return Math.abs(touch0.x - touch1.x) < DOUBLE_TAP_RADIUS && Math.abs(touch0.y - touch1.y) < DOUBLE_TAP_RADIUS;
+	},
+	_calculatePointsDistance = function(p1, p2) {
+		_tempPoint.x = Math.abs( p1.x - p2.x );
+		_tempPoint.y = Math.abs( p1.y - p2.y );
+		return Math.sqrt(_tempPoint.x * _tempPoint.x + _tempPoint.y * _tempPoint.y);
+	},
+	_stopDragUpdateLoop = function() {
+		if(_dragAnimFrame) {
+			_cancelAF(_dragAnimFrame);
+			_dragAnimFrame = null;
+		}
+	},
+	_dragUpdateLoop = function() {
+		if(_isDragging) {
+			_dragAnimFrame = _requestAF(_dragUpdateLoop);
+			_renderMovement();
+		}
+	},
+	_canPan = function() {
+		return !(_options.scaleMode === 'fit' && _currZoomLevel ===  self.currItem.initialZoomLevel);
+	},
+	
+	// find the closest parent DOM element
+	_closestElement = function(el, fn) {
+	  	if(!el || el === document) {
+	  		return false;
+	  	}
+
+	  	// don't search elements above pswp__scroll-wrap
+	  	if(el.getAttribute('class') && el.getAttribute('class').indexOf('pswp__scroll-wrap') > -1 ) {
+	  		return false;
+	  	}
+
+	  	if( fn(el) ) {
+	  		return el;
+	  	}
+
+	  	return _closestElement(el.parentNode, fn);
+	},
+
+	_preventObj = {},
+	_preventDefaultEventBehaviour = function(e, isDown) {
+	    _preventObj.prevent = !_closestElement(e.target, _options.isClickableElement);
+
+		_shout('preventDragEvent', e, isDown, _preventObj);
+		return _preventObj.prevent;
+
+	},
+	_convertTouchToPoint = function(touch, p) {
+		p.x = touch.pageX;
+		p.y = touch.pageY;
+		p.id = touch.identifier;
+		return p;
+	},
+	_findCenterOfPoints = function(p1, p2, pCenter) {
+		pCenter.x = (p1.x + p2.x) * 0.5;
+		pCenter.y = (p1.y + p2.y) * 0.5;
+	},
+	_pushPosPoint = function(time, x, y) {
+		if(time - _gestureCheckSpeedTime > 50) {
+			var o = _posPoints.length > 2 ? _posPoints.shift() : {};
+			o.x = x;
+			o.y = y; 
+			_posPoints.push(o);
+			_gestureCheckSpeedTime = time;
+		}
+	},
+
+	_calculateVerticalDragOpacityRatio = function() {
+		var yOffset = _panOffset.y - self.currItem.initialPosition.y; // difference between initial and current position
+		return 1 -  Math.abs( yOffset / (_viewportSize.y / 2)  );
+	},
+
+	
+	// points pool, reused during touch events
+	_ePoint1 = {},
+	_ePoint2 = {},
+	_tempPointsArr = [],
+	_tempCounter,
+	_getTouchPoints = function(e) {
+		// clean up previous points, without recreating array
+		while(_tempPointsArr.length > 0) {
+			_tempPointsArr.pop();
+		}
+
+		if(!_pointerEventEnabled) {
+			if(e.type.indexOf('touch') > -1) {
+
+				if(e.touches && e.touches.length > 0) {
+					_tempPointsArr[0] = _convertTouchToPoint(e.touches[0], _ePoint1);
+					if(e.touches.length > 1) {
+						_tempPointsArr[1] = _convertTouchToPoint(e.touches[1], _ePoint2);
+					}
+				}
+				
+			} else {
+				_ePoint1.x = e.pageX;
+				_ePoint1.y = e.pageY;
+				_ePoint1.id = '';
+				_tempPointsArr[0] = _ePoint1;//_ePoint1;
+			}
+		} else {
+			_tempCounter = 0;
+			// we can use forEach, as pointer events are supported only in modern browsers
+			_currPointers.forEach(function(p) {
+				if(_tempCounter === 0) {
+					_tempPointsArr[0] = p;
+				} else if(_tempCounter === 1) {
+					_tempPointsArr[1] = p;
+				}
+				_tempCounter++;
+
+			});
+		}
+		return _tempPointsArr;
+	},
+
+	_panOrMoveMainScroll = function(axis, delta) {
+
+		var panFriction,
+			overDiff = 0,
+			newOffset = _panOffset[axis] + delta[axis],
+			startOverDiff,
+			dir = delta[axis] > 0,
+			newMainScrollPosition = _mainScrollPos.x + delta.x,
+			mainScrollDiff = _mainScrollPos.x - _startMainScrollPos.x,
+			newPanPos,
+			newMainScrollPos;
+
+		// calculate fdistance over the bounds and friction
+		if(newOffset > _currPanBounds.min[axis] || newOffset < _currPanBounds.max[axis]) {
+			panFriction = _options.panEndFriction;
+			// Linear increasing of friction, so at 1/4 of viewport it's at max value. 
+			// Looks not as nice as was expected. Left for history.
+			// panFriction = (1 - (_panOffset[axis] + delta[axis] + panBounds.min[axis]) / (_viewportSize[axis] / 4) );
+		} else {
+			panFriction = 1;
+		}
+		
+		newOffset = _panOffset[axis] + delta[axis] * panFriction;
+
+		// move main scroll or start panning
+		if(_options.allowPanToNext || _currZoomLevel === self.currItem.initialZoomLevel) {
+
+
+			if(!_currZoomElementStyle) {
+				
+				newMainScrollPos = newMainScrollPosition;
+
+			} else if(_direction === 'h' && axis === 'x' && !_zoomStarted ) {
+				
+				if(dir) {
+					if(newOffset > _currPanBounds.min[axis]) {
+						panFriction = _options.panEndFriction;
+						overDiff = _currPanBounds.min[axis] - newOffset;
+						startOverDiff = _currPanBounds.min[axis] - _startPanOffset[axis];
+					}
+					
+					// drag right
+					if( (startOverDiff <= 0 || mainScrollDiff < 0) && _getNumItems() > 1 ) {
+						newMainScrollPos = newMainScrollPosition;
+						if(mainScrollDiff < 0 && newMainScrollPosition > _startMainScrollPos.x) {
+							newMainScrollPos = _startMainScrollPos.x;
+						}
+					} else {
+						if(_currPanBounds.min.x !== _currPanBounds.max.x) {
+							newPanPos = newOffset;
+						}
+						
+					}
+
+				} else {
+
+					if(newOffset < _currPanBounds.max[axis] ) {
+						panFriction =_options.panEndFriction;
+						overDiff = newOffset - _currPanBounds.max[axis];
+						startOverDiff = _startPanOffset[axis] - _currPanBounds.max[axis];
+					}
+
+					if( (startOverDiff <= 0 || mainScrollDiff > 0) && _getNumItems() > 1 ) {
+						newMainScrollPos = newMainScrollPosition;
+
+						if(mainScrollDiff > 0 && newMainScrollPosition < _startMainScrollPos.x) {
+							newMainScrollPos = _startMainScrollPos.x;
+						}
+
+					} else {
+						if(_currPanBounds.min.x !== _currPanBounds.max.x) {
+							newPanPos = newOffset;
+						}
+					}
+
+				}
+
+
+				//
+			}
+
+			if(axis === 'x') {
+
+				if(newMainScrollPos !== undefined) {
+					_moveMainScroll(newMainScrollPos, true);
+					if(newMainScrollPos === _startMainScrollPos.x) {
+						_mainScrollShifted = false;
+					} else {
+						_mainScrollShifted = true;
+					}
+				}
+
+				if(_currPanBounds.min.x !== _currPanBounds.max.x) {
+					if(newPanPos !== undefined) {
+						_panOffset.x = newPanPos;
+					} else if(!_mainScrollShifted) {
+						_panOffset.x += delta.x * panFriction;
+					}
+				}
+
+				return newMainScrollPos !== undefined;
+			}
+
+		}
+
+		if(!_mainScrollAnimating) {
+			
+			if(!_mainScrollShifted) {
+				if(_currZoomLevel > self.currItem.fitRatio) {
+					_panOffset[axis] += delta[axis] * panFriction;
+				
+				}
+			}
+
+			
+		}
+		
+	},
+
+	// Pointerdown/touchstart/mousedown handler
+	_onDragStart = function(e) {
+
+		// Allow dragging only via left mouse button.
+		// As this handler is not added in IE8 - we ignore e.which
+		// 
+		// http://www.quirksmode.org/js/events_properties.html
+		// https://developer.mozilla.org/en-US/docs/Web/API/event.button
+		if(e.type === 'mousedown' && e.button > 0  ) {
+			return;
+		}
+
+		if(_initialZoomRunning) {
+			e.preventDefault();
+			return;
+		}
+
+		if(_oldAndroidTouchEndTimeout && e.type === 'mousedown') {
+			return;
+		}
+
+		if(_preventDefaultEventBehaviour(e, true)) {
+			e.preventDefault();
+		}
+
+
+
+		_shout('pointerDown');
+
+		if(_pointerEventEnabled) {
+			var pointerIndex = framework.arraySearch(_currPointers, e.pointerId, 'id');
+			if(pointerIndex < 0) {
+				pointerIndex = _currPointers.length;
+			}
+			_currPointers[pointerIndex] = {x:e.pageX, y:e.pageY, id: e.pointerId};
+		}
+		
+
+
+		var startPointsList = _getTouchPoints(e),
+			numPoints = startPointsList.length;
+
+		_currentPoints = null;
+
+		_stopAllAnimations();
+
+		// init drag
+		if(!_isDragging || numPoints === 1) {
+
+			
+
+			_isDragging = _isFirstMove = true;
+			framework.bind(window, _upMoveEvents, self);
+
+			_isZoomingIn = 
+				_wasOverInitialZoom = 
+				_opacityChanged = 
+				_verticalDragInitiated = 
+				_mainScrollShifted = 
+				_moved = 
+				_isMultitouch = 
+				_zoomStarted = false;
+
+			_direction = null;
+
+			_shout('firstTouchStart', startPointsList);
+
+			_equalizePoints(_startPanOffset, _panOffset);
+
+			_currPanDist.x = _currPanDist.y = 0;
+			_equalizePoints(_currPoint, startPointsList[0]);
+			_equalizePoints(_startPoint, _currPoint);
+
+			//_equalizePoints(_startMainScrollPos, _mainScrollPos);
+			_startMainScrollPos.x = _slideSize.x * _currPositionIndex;
+
+			_posPoints = [{
+				x: _currPoint.x,
+				y: _currPoint.y
+			}];
+
+			_gestureCheckSpeedTime = _gestureStartTime = _getCurrentTime();
+
+			//_mainScrollAnimationEnd(true);
+			_calculatePanBounds( _currZoomLevel, true );
+			
+			// Start rendering
+			_stopDragUpdateLoop();
+			_dragUpdateLoop();
+			
+		}
+
+		// init zoom
+		if(!_isZooming && numPoints > 1 && !_mainScrollAnimating && !_mainScrollShifted) {
+			_startZoomLevel = _currZoomLevel;
+			_zoomStarted = false; // true if zoom changed at least once
+
+			_isZooming = _isMultitouch = true;
+			_currPanDist.y = _currPanDist.x = 0;
+
+			_equalizePoints(_startPanOffset, _panOffset);
+
+			_equalizePoints(p, startPointsList[0]);
+			_equalizePoints(p2, startPointsList[1]);
+
+			_findCenterOfPoints(p, p2, _currCenterPoint);
+
+			_midZoomPoint.x = Math.abs(_currCenterPoint.x) - _panOffset.x;
+			_midZoomPoint.y = Math.abs(_currCenterPoint.y) - _panOffset.y;
+			_currPointsDistance = _startPointsDistance = _calculatePointsDistance(p, p2);
+		}
+
+
+	},
+
+	// Pointermove/touchmove/mousemove handler
+	_onDragMove = function(e) {
+
+		e.preventDefault();
+
+		if(_pointerEventEnabled) {
+			var pointerIndex = framework.arraySearch(_currPointers, e.pointerId, 'id');
+			if(pointerIndex > -1) {
+				var p = _currPointers[pointerIndex];
+				p.x = e.pageX;
+				p.y = e.pageY; 
+			}
+		}
+
+		if(_isDragging) {
+			var touchesList = _getTouchPoints(e);
+			if(!_direction && !_moved && !_isZooming) {
+
+				if(_mainScrollPos.x !== _slideSize.x * _currPositionIndex) {
+					// if main scroll position is shifted – direction is always horizontal
+					_direction = 'h';
+				} else {
+					var diff = Math.abs(touchesList[0].x - _currPoint.x) - Math.abs(touchesList[0].y - _currPoint.y);
+					// check the direction of movement
+					if(Math.abs(diff) >= DIRECTION_CHECK_OFFSET) {
+						_direction = diff > 0 ? 'h' : 'v';
+						_currentPoints = touchesList;
+					}
+				}
+				
+			} else {
+				_currentPoints = touchesList;
+			}
+		}	
+	},
+	// 
+	_renderMovement =  function() {
+
+		if(!_currentPoints) {
+			return;
+		}
+
+		var numPoints = _currentPoints.length;
+
+		if(numPoints === 0) {
+			return;
+		}
+
+		_equalizePoints(p, _currentPoints[0]);
+
+		delta.x = p.x - _currPoint.x;
+		delta.y = p.y - _currPoint.y;
+
+		if(_isZooming && numPoints > 1) {
+			// Handle behaviour for more than 1 point
+
+			_currPoint.x = p.x;
+			_currPoint.y = p.y;
+		
+			// check if one of two points changed
+			if( !delta.x && !delta.y && _isEqualPoints(_currentPoints[1], p2) ) {
+				return;
+			}
+
+			_equalizePoints(p2, _currentPoints[1]);
+
+
+			if(!_zoomStarted) {
+				_zoomStarted = true;
+				_shout('zoomGestureStarted');
+			}
+			
+			// Distance between two points
+			var pointsDistance = _calculatePointsDistance(p,p2);
+
+			var zoomLevel = _calculateZoomLevel(pointsDistance);
+
+			// slightly over the of initial zoom level
+			if(zoomLevel > self.currItem.initialZoomLevel + self.currItem.initialZoomLevel / 15) {
+				_wasOverInitialZoom = true;
+			}
+
+			// Apply the friction if zoom level is out of the bounds
+			var zoomFriction = 1,
+				minZoomLevel = _getMinZoomLevel(),
+				maxZoomLevel = _getMaxZoomLevel();
+
+			if ( zoomLevel < minZoomLevel ) {
+				
+				if(_options.pinchToClose && !_wasOverInitialZoom && _startZoomLevel <= self.currItem.initialZoomLevel) {
+					// fade out background if zooming out
+					var minusDiff = minZoomLevel - zoomLevel;
+					var percent = 1 - minusDiff / (minZoomLevel / 1.2);
+
+					_applyBgOpacity(percent);
+					_shout('onPinchClose', percent);
+					_opacityChanged = true;
+				} else {
+					zoomFriction = (minZoomLevel - zoomLevel) / minZoomLevel;
+					if(zoomFriction > 1) {
+						zoomFriction = 1;
+					}
+					zoomLevel = minZoomLevel - zoomFriction * (minZoomLevel / 3);
+				}
+				
+			} else if ( zoomLevel > maxZoomLevel ) {
+				// 1.5 - extra zoom level above the max. E.g. if max is x6, real max 6 + 1.5 = 7.5
+				zoomFriction = (zoomLevel - maxZoomLevel) / ( minZoomLevel * 6 );
+				if(zoomFriction > 1) {
+					zoomFriction = 1;
+				}
+				zoomLevel = maxZoomLevel + zoomFriction * minZoomLevel;
+			}
+
+			if(zoomFriction < 0) {
+				zoomFriction = 0;
+			}
+
+			// distance between touch points after friction is applied
+			_currPointsDistance = pointsDistance;
+
+			// _centerPoint - The point in the middle of two pointers
+			_findCenterOfPoints(p, p2, _centerPoint);
+		
+			// paning with two pointers pressed
+			_currPanDist.x += _centerPoint.x - _currCenterPoint.x;
+			_currPanDist.y += _centerPoint.y - _currCenterPoint.y;
+			_equalizePoints(_currCenterPoint, _centerPoint);
+
+			_panOffset.x = _calculatePanOffset('x', zoomLevel);
+			_panOffset.y = _calculatePanOffset('y', zoomLevel);
+
+			_isZoomingIn = zoomLevel > _currZoomLevel;
+			_currZoomLevel = zoomLevel;
+			_applyCurrentZoomPan();
+
+		} else {
+
+			// handle behaviour for one point (dragging or panning)
+
+			if(!_direction) {
+				return;
+			}
+
+			if(_isFirstMove) {
+				_isFirstMove = false;
+
+				// subtract drag distance that was used during the detection direction  
+
+				if( Math.abs(delta.x) >= DIRECTION_CHECK_OFFSET) {
+					delta.x -= _currentPoints[0].x - _startPoint.x;
+				}
+				
+				if( Math.abs(delta.y) >= DIRECTION_CHECK_OFFSET) {
+					delta.y -= _currentPoints[0].y - _startPoint.y;
+				}
+			}
+
+			_currPoint.x = p.x;
+			_currPoint.y = p.y;
+
+			// do nothing if pointers position hasn't changed
+			if(delta.x === 0 && delta.y === 0) {
+				return;
+			}
+
+			if(_direction === 'v' && _options.closeOnVerticalDrag) {
+				if(!_canPan()) {
+					_currPanDist.y += delta.y;
+					_panOffset.y += delta.y;
+
+					var opacityRatio = _calculateVerticalDragOpacityRatio();
+
+					_verticalDragInitiated = true;
+					_shout('onVerticalDrag', opacityRatio);
+
+					_applyBgOpacity(opacityRatio);
+					_applyCurrentZoomPan();
+					return ;
+				}
+			}
+
+			_pushPosPoint(_getCurrentTime(), p.x, p.y);
+
+			_moved = true;
+			_currPanBounds = self.currItem.bounds;
+			
+			var mainScrollChanged = _panOrMoveMainScroll('x', delta);
+			if(!mainScrollChanged) {
+				_panOrMoveMainScroll('y', delta);
+
+				_roundPoint(_panOffset);
+				_applyCurrentZoomPan();
+			}
+
+		}
+
+	},
+	
+	// Pointerup/pointercancel/touchend/touchcancel/mouseup event handler
+	_onDragRelease = function(e) {
+
+		if(_features.isOldAndroid ) {
+
+			if(_oldAndroidTouchEndTimeout && e.type === 'mouseup') {
+				return;
+			}
+
+			// on Android (v4.1, 4.2, 4.3 & possibly older) 
+			// ghost mousedown/up event isn't preventable via e.preventDefault,
+			// which causes fake mousedown event
+			// so we block mousedown/up for 600ms
+			if( e.type.indexOf('touch') > -1 ) {
+				clearTimeout(_oldAndroidTouchEndTimeout);
+				_oldAndroidTouchEndTimeout = setTimeout(function() {
+					_oldAndroidTouchEndTimeout = 0;
+				}, 600);
+			}
+			
+		}
+
+		_shout('pointerUp');
+
+		if(_preventDefaultEventBehaviour(e, false)) {
+			e.preventDefault();
+		}
+
+		var releasePoint;
+
+		if(_pointerEventEnabled) {
+			var pointerIndex = framework.arraySearch(_currPointers, e.pointerId, 'id');
+			
+			if(pointerIndex > -1) {
+				releasePoint = _currPointers.splice(pointerIndex, 1)[0];
+
+				if(navigator.msPointerEnabled) {
+					var MSPOINTER_TYPES = {
+						4: 'mouse', // event.MSPOINTER_TYPE_MOUSE
+						2: 'touch', // event.MSPOINTER_TYPE_TOUCH 
+						3: 'pen' // event.MSPOINTER_TYPE_PEN
+					};
+					releasePoint.type = MSPOINTER_TYPES[e.pointerType];
+
+					if(!releasePoint.type) {
+						releasePoint.type = e.pointerType || 'mouse';
+					}
+				} else {
+					releasePoint.type = e.pointerType || 'mouse';
+				}
+
+			}
+		}
+
+		var touchList = _getTouchPoints(e),
+			gestureType,
+			numPoints = touchList.length;
+
+		if(e.type === 'mouseup') {
+			numPoints = 0;
+		}
+
+		// Do nothing if there were 3 touch points or more
+		if(numPoints === 2) {
+			_currentPoints = null;
+			return true;
+		}
+
+		// if second pointer released
+		if(numPoints === 1) {
+			_equalizePoints(_startPoint, touchList[0]);
+		}				
+
+
+		// pointer hasn't moved, send "tap release" point
+		if(numPoints === 0 && !_direction && !_mainScrollAnimating) {
+			if(!releasePoint) {
+				if(e.type === 'mouseup') {
+					releasePoint = {x: e.pageX, y: e.pageY, type:'mouse'};
+				} else if(e.changedTouches && e.changedTouches[0]) {
+					releasePoint = {x: e.changedTouches[0].pageX, y: e.changedTouches[0].pageY, type:'touch'};
+				}		
+			}
+
+			_shout('touchRelease', e, releasePoint);
+		}
+
+		// Difference in time between releasing of two last touch points (zoom gesture)
+		var releaseTimeDiff = -1;
+
+		// Gesture completed, no pointers left
+		if(numPoints === 0) {
+			_isDragging = false;
+			framework.unbind(window, _upMoveEvents, self);
+
+			_stopDragUpdateLoop();
+
+			if(_isZooming) {
+				// Two points released at the same time
+				releaseTimeDiff = 0;
+			} else if(_lastReleaseTime !== -1) {
+				releaseTimeDiff = _getCurrentTime() - _lastReleaseTime;
+			}
+		}
+		_lastReleaseTime = numPoints === 1 ? _getCurrentTime() : -1;
+		
+		if(releaseTimeDiff !== -1 && releaseTimeDiff < 150) {
+			gestureType = 'zoom';
+		} else {
+			gestureType = 'swipe';
+		}
+
+		if(_isZooming && numPoints < 2) {
+			_isZooming = false;
+
+			// Only second point released
+			if(numPoints === 1) {
+				gestureType = 'zoomPointerUp';
+			}
+			_shout('zoomGestureEnded');
+		}
+
+		_currentPoints = null;
+		if(!_moved && !_zoomStarted && !_mainScrollAnimating && !_verticalDragInitiated) {
+			// nothing to animate
+			return;
+		}
+	
+		_stopAllAnimations();
+
+		
+		if(!_releaseAnimData) {
+			_releaseAnimData = _initDragReleaseAnimationData();
+		}
+		
+		_releaseAnimData.calculateSwipeSpeed('x');
+
+
+		if(_verticalDragInitiated) {
+
+			var opacityRatio = _calculateVerticalDragOpacityRatio();
+
+			if(opacityRatio < _options.verticalDragRange) {
+				self.close();
+			} else {
+				var initalPanY = _panOffset.y,
+					initialBgOpacity = _bgOpacity;
+
+				_animateProp('verticalDrag', 0, 1, 300, framework.easing.cubic.out, function(now) {
+					
+					_panOffset.y = (self.currItem.initialPosition.y - initalPanY) * now + initalPanY;
+
+					_applyBgOpacity(  (1 - initialBgOpacity) * now + initialBgOpacity );
+					_applyCurrentZoomPan();
+				});
+
+				_shout('onVerticalDrag', 1);
+			}
+
+			return;
+		}
+
+
+		// main scroll 
+		if(  (_mainScrollShifted || _mainScrollAnimating) && numPoints === 0) {
+			var itemChanged = _finishSwipeMainScrollGesture(gestureType, _releaseAnimData);
+			if(itemChanged) {
+				return;
+			}
+			gestureType = 'zoomPointerUp';
+		}
+
+		// prevent zoom/pan animation when main scroll animation runs
+		if(_mainScrollAnimating) {
+			return;
+		}
+		
+		// Complete simple zoom gesture (reset zoom level if it's out of the bounds)  
+		if(gestureType !== 'swipe') {
+			_completeZoomGesture();
+			return;
+		}
+	
+		// Complete pan gesture if main scroll is not shifted, and it's possible to pan current image
+		if(!_mainScrollShifted && _currZoomLevel > self.currItem.fitRatio) {
+			_completePanGesture(_releaseAnimData);
+		}
+	},
+
+
+	// Returns object with data about gesture
+	// It's created only once and then reused
+	_initDragReleaseAnimationData  = function() {
+		// temp local vars
+		var lastFlickDuration,
+			tempReleasePos;
+
+		// s = this
+		var s = {
+			lastFlickOffset: {},
+			lastFlickDist: {},
+			lastFlickSpeed: {},
+			slowDownRatio:  {},
+			slowDownRatioReverse:  {},
+			speedDecelerationRatio:  {},
+			speedDecelerationRatioAbs:  {},
+			distanceOffset:  {},
+			backAnimDestination: {},
+			backAnimStarted: {},
+			calculateSwipeSpeed: function(axis) {
+				
+
+				if( _posPoints.length > 1) {
+					lastFlickDuration = _getCurrentTime() - _gestureCheckSpeedTime + 50;
+					tempReleasePos = _posPoints[_posPoints.length-2][axis];
+				} else {
+					lastFlickDuration = _getCurrentTime() - _gestureStartTime; // total gesture duration
+					tempReleasePos = _startPoint[axis];
+				}
+				s.lastFlickOffset[axis] = _currPoint[axis] - tempReleasePos;
+				s.lastFlickDist[axis] = Math.abs(s.lastFlickOffset[axis]);
+				if(s.lastFlickDist[axis] > 20) {
+					s.lastFlickSpeed[axis] = s.lastFlickOffset[axis] / lastFlickDuration;
+				} else {
+					s.lastFlickSpeed[axis] = 0;
+				}
+				if( Math.abs(s.lastFlickSpeed[axis]) < 0.1 ) {
+					s.lastFlickSpeed[axis] = 0;
+				}
+				
+				s.slowDownRatio[axis] = 0.95;
+				s.slowDownRatioReverse[axis] = 1 - s.slowDownRatio[axis];
+				s.speedDecelerationRatio[axis] = 1;
+			},
+
+			calculateOverBoundsAnimOffset: function(axis, speed) {
+				if(!s.backAnimStarted[axis]) {
+
+					if(_panOffset[axis] > _currPanBounds.min[axis]) {
+						s.backAnimDestination[axis] = _currPanBounds.min[axis];
+						
+					} else if(_panOffset[axis] < _currPanBounds.max[axis]) {
+						s.backAnimDestination[axis] = _currPanBounds.max[axis];
+					}
+
+					if(s.backAnimDestination[axis] !== undefined) {
+						s.slowDownRatio[axis] = 0.7;
+						s.slowDownRatioReverse[axis] = 1 - s.slowDownRatio[axis];
+						if(s.speedDecelerationRatioAbs[axis] < 0.05) {
+
+							s.lastFlickSpeed[axis] = 0;
+							s.backAnimStarted[axis] = true;
+
+							_animateProp('bounceZoomPan'+axis,_panOffset[axis], 
+								s.backAnimDestination[axis], 
+								speed || 300, 
+								framework.easing.sine.out, 
+								function(pos) {
+									_panOffset[axis] = pos;
+									_applyCurrentZoomPan();
+								}
+							);
+
+						}
+					}
+				}
+			},
+
+			// Reduces the speed by slowDownRatio (per 10ms)
+			calculateAnimOffset: function(axis) {
+				if(!s.backAnimStarted[axis]) {
+					s.speedDecelerationRatio[axis] = s.speedDecelerationRatio[axis] * (s.slowDownRatio[axis] + 
+												s.slowDownRatioReverse[axis] - 
+												s.slowDownRatioReverse[axis] * s.timeDiff / 10);
+
+					s.speedDecelerationRatioAbs[axis] = Math.abs(s.lastFlickSpeed[axis] * s.speedDecelerationRatio[axis]);
+					s.distanceOffset[axis] = s.lastFlickSpeed[axis] * s.speedDecelerationRatio[axis] * s.timeDiff;
+					_panOffset[axis] += s.distanceOffset[axis];
+
+				}
+			},
+
+			panAnimLoop: function() {
+				if ( _animations.zoomPan ) {
+					_animations.zoomPan.raf = _requestAF(s.panAnimLoop);
+
+					s.now = _getCurrentTime();
+					s.timeDiff = s.now - s.lastNow;
+					s.lastNow = s.now;
+					
+					s.calculateAnimOffset('x');
+					s.calculateAnimOffset('y');
+
+					_applyCurrentZoomPan();
+					
+					s.calculateOverBoundsAnimOffset('x');
+					s.calculateOverBoundsAnimOffset('y');
+
+
+					if (s.speedDecelerationRatioAbs.x < 0.05 && s.speedDecelerationRatioAbs.y < 0.05) {
+
+						// round pan position
+						_panOffset.x = Math.round(_panOffset.x);
+						_panOffset.y = Math.round(_panOffset.y);
+						_applyCurrentZoomPan();
+						
+						_stopAnimation('zoomPan');
+						return;
+					}
+				}
+
+			}
+		};
+		return s;
+	},
+
+	_completePanGesture = function(animData) {
+		// calculate swipe speed for Y axis (paanning)
+		animData.calculateSwipeSpeed('y');
+
+		_currPanBounds = self.currItem.bounds;
+		
+		animData.backAnimDestination = {};
+		animData.backAnimStarted = {};
+
+		// Avoid acceleration animation if speed is too low
+		if(Math.abs(animData.lastFlickSpeed.x) <= 0.05 && Math.abs(animData.lastFlickSpeed.y) <= 0.05 ) {
+			animData.speedDecelerationRatioAbs.x = animData.speedDecelerationRatioAbs.y = 0;
+
+			// Run pan drag release animation. E.g. if you drag image and release finger without momentum.
+			animData.calculateOverBoundsAnimOffset('x');
+			animData.calculateOverBoundsAnimOffset('y');
+			return true;
+		}
+
+		// Animation loop that controls the acceleration after pan gesture ends
+		_registerStartAnimation('zoomPan');
+		animData.lastNow = _getCurrentTime();
+		animData.panAnimLoop();
+	},
+
+
+	_finishSwipeMainScrollGesture = function(gestureType, _releaseAnimData) {
+		var itemChanged;
+		if(!_mainScrollAnimating) {
+			_currZoomedItemIndex = _currentItemIndex;
+		}
+
+
+		
+		var itemsDiff;
+
+		if(gestureType === 'swipe') {
+			var totalShiftDist = _currPoint.x - _startPoint.x,
+				isFastLastFlick = _releaseAnimData.lastFlickDist.x < 10;
+
+			// if container is shifted for more than MIN_SWIPE_DISTANCE, 
+			// and last flick gesture was in right direction
+			if(totalShiftDist > MIN_SWIPE_DISTANCE && 
+				(isFastLastFlick || _releaseAnimData.lastFlickOffset.x > 20) ) {
+				// go to prev item
+				itemsDiff = -1;
+			} else if(totalShiftDist < -MIN_SWIPE_DISTANCE && 
+				(isFastLastFlick || _releaseAnimData.lastFlickOffset.x < -20) ) {
+				// go to next item
+				itemsDiff = 1;
+			}
+		}
+
+		var nextCircle;
+
+		if(itemsDiff) {
+			
+			_currentItemIndex += itemsDiff;
+
+			if(_currentItemIndex < 0) {
+				_currentItemIndex = _options.loop ? _getNumItems()-1 : 0;
+				nextCircle = true;
+			} else if(_currentItemIndex >= _getNumItems()) {
+				_currentItemIndex = _options.loop ? 0 : _getNumItems()-1;
+				nextCircle = true;
+			}
+
+			if(!nextCircle || _options.loop) {
+				_indexDiff += itemsDiff;
+				_currPositionIndex -= itemsDiff;
+				itemChanged = true;
+			}
+			
+
+			
+		}
+
+		var animateToX = _slideSize.x * _currPositionIndex;
+		var animateToDist = Math.abs( animateToX - _mainScrollPos.x );
+		var finishAnimDuration;
+
+
+		if(!itemChanged && animateToX > _mainScrollPos.x !== _releaseAnimData.lastFlickSpeed.x > 0) {
+			// "return to current" duration, e.g. when dragging from slide 0 to -1
+			finishAnimDuration = 333; 
+		} else {
+			finishAnimDuration = Math.abs(_releaseAnimData.lastFlickSpeed.x) > 0 ? 
+									animateToDist / Math.abs(_releaseAnimData.lastFlickSpeed.x) : 
+									333;
+
+			finishAnimDuration = Math.min(finishAnimDuration, 400);
+			finishAnimDuration = Math.max(finishAnimDuration, 250);
+		}
+
+		if(_currZoomedItemIndex === _currentItemIndex) {
+			itemChanged = false;
+		}
+		
+		_mainScrollAnimating = true;
+		
+		_shout('mainScrollAnimStart');
+
+		_animateProp('mainScroll', _mainScrollPos.x, animateToX, finishAnimDuration, framework.easing.cubic.out, 
+			_moveMainScroll,
+			function() {
+				_stopAllAnimations();
+				_mainScrollAnimating = false;
+				_currZoomedItemIndex = -1;
+				
+				if(itemChanged || _currZoomedItemIndex !== _currentItemIndex) {
+					self.updateCurrItem();
+				}
+				
+				_shout('mainScrollAnimComplete');
+			}
+		);
+
+		if(itemChanged) {
+			self.updateCurrItem(true);
+		}
+
+		return itemChanged;
+	},
+
+	_calculateZoomLevel = function(touchesDistance) {
+		return  1 / _startPointsDistance * touchesDistance * _startZoomLevel;
+	},
+
+	// Resets zoom if it's out of bounds
+	_completeZoomGesture = function() {
+		var destZoomLevel = _currZoomLevel,
+			minZoomLevel = _getMinZoomLevel(),
+			maxZoomLevel = _getMaxZoomLevel();
+
+		if ( _currZoomLevel < minZoomLevel ) {
+			destZoomLevel = minZoomLevel;
+		} else if ( _currZoomLevel > maxZoomLevel ) {
+			destZoomLevel = maxZoomLevel;
+		}
+
+		var destOpacity = 1,
+			onUpdate,
+			initialOpacity = _bgOpacity;
+
+		if(_opacityChanged && !_isZoomingIn && !_wasOverInitialZoom && _currZoomLevel < minZoomLevel) {
+			//_closedByScroll = true;
+			self.close();
+			return true;
+		}
+
+		if(_opacityChanged) {
+			onUpdate = function(now) {
+				_applyBgOpacity(  (destOpacity - initialOpacity) * now + initialOpacity );
+			};
+		}
+
+		self.zoomTo(destZoomLevel, 0, 200,  framework.easing.cubic.out, onUpdate);
+		return true;
+	};
+
+
+_registerModule('Gestures', {
+	publicMethods: {
+
+		initGestures: function() {
+
+			// helper function that builds touch/pointer/mouse events
+			var addEventNames = function(pref, down, move, up, cancel) {
+				_dragStartEvent = pref + down;
+				_dragMoveEvent = pref + move;
+				_dragEndEvent = pref + up;
+				if(cancel) {
+					_dragCancelEvent = pref + cancel;
+				} else {
+					_dragCancelEvent = '';
+				}
+			};
+
+			_pointerEventEnabled = _features.pointerEvent;
+			if(_pointerEventEnabled && _features.touch) {
+				// we don't need touch events, if browser supports pointer events
+				_features.touch = false;
+			}
+
+			if(_pointerEventEnabled) {
+				if(navigator.msPointerEnabled) {
+					// IE10 pointer events are case-sensitive
+					addEventNames('MSPointer', 'Down', 'Move', 'Up', 'Cancel');
+				} else {
+					addEventNames('pointer', 'down', 'move', 'up', 'cancel');
+				}
+			} else if(_features.touch) {
+				addEventNames('touch', 'start', 'move', 'end', 'cancel');
+				_likelyTouchDevice = true;
+			} else {
+				addEventNames('mouse', 'down', 'move', 'up');	
+			}
+
+			_upMoveEvents = _dragMoveEvent + ' ' + _dragEndEvent  + ' ' +  _dragCancelEvent;
+			_downEvents = _dragStartEvent;
+
+			if(_pointerEventEnabled && !_likelyTouchDevice) {
+				_likelyTouchDevice = (navigator.maxTouchPoints > 1) || (navigator.msMaxTouchPoints > 1);
+			}
+			// make variable public
+			self.likelyTouchDevice = _likelyTouchDevice; 
+			
+			_globalEventHandlers[_dragStartEvent] = _onDragStart;
+			_globalEventHandlers[_dragMoveEvent] = _onDragMove;
+			_globalEventHandlers[_dragEndEvent] = _onDragRelease; // the Kraken
+
+			if(_dragCancelEvent) {
+				_globalEventHandlers[_dragCancelEvent] = _globalEventHandlers[_dragEndEvent];
+			}
+
+			// Bind mouse events on device with detected hardware touch support, in case it supports multiple types of input.
+			if(_features.touch) {
+				_downEvents += ' mousedown';
+				_upMoveEvents += ' mousemove mouseup';
+				_globalEventHandlers.mousedown = _globalEventHandlers[_dragStartEvent];
+				_globalEventHandlers.mousemove = _globalEventHandlers[_dragMoveEvent];
+				_globalEventHandlers.mouseup = _globalEventHandlers[_dragEndEvent];
+			}
+
+			if(!_likelyTouchDevice) {
+				// don't allow pan to next slide from zoomed state on Desktop
+				_options.allowPanToNext = false;
+			}
+		}
+
+	}
+});
+
+
+/*>>gestures*/
+
+/*>>show-hide-transition*/
+/**
+ * show-hide-transition.js:
+ *
+ * Manages initial opening or closing transition.
+ *
+ * If you're not planning to use transition for gallery at all,
+ * you may set options hideAnimationDuration and showAnimationDuration to 0,
+ * and just delete startAnimation function.
+ * 
+ */
+
+
+var _showOrHideTimeout,
+	_showOrHide = function(item, img, out, completeFn) {
+
+		if(_showOrHideTimeout) {
+			clearTimeout(_showOrHideTimeout);
+		}
+
+		_initialZoomRunning = true;
+		_initialContentSet = true;
+		
+		// dimensions of small thumbnail {x:,y:,w:}.
+		// Height is optional, as calculated based on large image.
+		var thumbBounds; 
+		if(item.initialLayout) {
+			thumbBounds = item.initialLayout;
+			item.initialLayout = null;
+		} else {
+			thumbBounds = _options.getThumbBoundsFn && _options.getThumbBoundsFn(_currentItemIndex);
+		}
+
+		var duration = out ? _options.hideAnimationDuration : _options.showAnimationDuration;
+
+		var onComplete = function() {
+			_stopAnimation('initialZoom');
+			if(!out) {
+				_applyBgOpacity(1);
+				if(img) {
+					img.style.display = 'block';
+				}
+				framework.addClass(template, 'pswp--animated-in');
+				_shout('initialZoom' + (out ? 'OutEnd' : 'InEnd'));
+			} else {
+				self.template.removeAttribute('style');
+				self.bg.removeAttribute('style');
+			}
+
+			if(completeFn) {
+				completeFn();
+			}
+			_initialZoomRunning = false;
+		};
+
+		// if bounds aren't provided, just open gallery without animation
+		if(!duration || !thumbBounds || thumbBounds.x === undefined) {
+
+			_shout('initialZoom' + (out ? 'Out' : 'In') );
+
+			_currZoomLevel = item.initialZoomLevel;
+			_equalizePoints(_panOffset,  item.initialPosition );
+			_applyCurrentZoomPan();
+
+			template.style.opacity = out ? 0 : 1;
+			_applyBgOpacity(1);
+
+			if(duration) {
+				setTimeout(function() {
+					onComplete();
+				}, duration);
+			} else {
+				onComplete();
+			}
+
+			return;
+		}
+
+		var startAnimation = function() {
+			var closeWithRaf = _closedByScroll,
+				fadeEverything = !self.currItem.src || self.currItem.loadError || _options.showHideOpacity;
+			
+			// apply hw-acceleration to image
+			if(item.miniImg) {
+				item.miniImg.style.webkitBackfaceVisibility = 'hidden';
+			}
+
+			if(!out) {
+				_currZoomLevel = thumbBounds.w / item.w;
+				_panOffset.x = thumbBounds.x;
+				_panOffset.y = thumbBounds.y - _initalWindowScrollY;
+
+				self[fadeEverything ? 'template' : 'bg'].style.opacity = 0.001;
+				_applyCurrentZoomPan();
+			}
+
+			_registerStartAnimation('initialZoom');
+			
+			if(out && !closeWithRaf) {
+				framework.removeClass(template, 'pswp--animated-in');
+			}
+
+			if(fadeEverything) {
+				if(out) {
+					framework[ (closeWithRaf ? 'remove' : 'add') + 'Class' ](template, 'pswp--animate_opacity');
+				} else {
+					setTimeout(function() {
+						framework.addClass(template, 'pswp--animate_opacity');
+					}, 30);
+				}
+			}
+
+			_showOrHideTimeout = setTimeout(function() {
+
+				_shout('initialZoom' + (out ? 'Out' : 'In') );
+				
+
+				if(!out) {
+
+					// "in" animation always uses CSS transitions (instead of rAF).
+					// CSS transition work faster here, 
+					// as developer may also want to animate other things, 
+					// like ui on top of sliding area, which can be animated just via CSS
+					
+					_currZoomLevel = item.initialZoomLevel;
+					_equalizePoints(_panOffset,  item.initialPosition );
+					_applyCurrentZoomPan();
+					_applyBgOpacity(1);
+
+					if(fadeEverything) {
+						template.style.opacity = 1;
+					} else {
+						_applyBgOpacity(1);
+					}
+
+					_showOrHideTimeout = setTimeout(onComplete, duration + 20);
+				} else {
+
+					// "out" animation uses rAF only when PhotoSwipe is closed by browser scroll, to recalculate position
+					var destZoomLevel = thumbBounds.w / item.w,
+						initialPanOffset = {
+							x: _panOffset.x,
+							y: _panOffset.y
+						},
+						initialZoomLevel = _currZoomLevel,
+						initalBgOpacity = _bgOpacity,
+						onUpdate = function(now) {
+							
+							if(now === 1) {
+								_currZoomLevel = destZoomLevel;
+								_panOffset.x = thumbBounds.x;
+								_panOffset.y = thumbBounds.y  - _currentWindowScrollY;
+							} else {
+								_currZoomLevel = (destZoomLevel - initialZoomLevel) * now + initialZoomLevel;
+								_panOffset.x = (thumbBounds.x - initialPanOffset.x) * now + initialPanOffset.x;
+								_panOffset.y = (thumbBounds.y - _currentWindowScrollY - initialPanOffset.y) * now + initialPanOffset.y;
+							}
+							
+							_applyCurrentZoomPan();
+							if(fadeEverything) {
+								template.style.opacity = 1 - now;
+							} else {
+								_applyBgOpacity( initalBgOpacity - now * initalBgOpacity );
+							}
+						};
+
+					if(closeWithRaf) {
+						_animateProp('initialZoom', 0, 1, duration, framework.easing.cubic.out, onUpdate, onComplete);
+					} else {
+						onUpdate(1);
+						_showOrHideTimeout = setTimeout(onComplete, duration + 20);
+					}
+				}
+			
+			}, out ? 25 : 90); // Main purpose of this delay is to give browser time to paint and
+					// create composite layers of PhotoSwipe UI parts (background, controls, caption, arrows).
+					// Which avoids lag at the beginning of scale transition.
+		};
+		startAnimation();
+
+		
+	};
+
+/*>>show-hide-transition*/
+
+/*>>items-controller*/
+/**
+*
+* Controller manages gallery items, their dimensions, and their content.
+* 
+*/
+
+var _items,
+	_tempPanAreaSize = {},
+	_imagesToAppendPool = [],
+	_initialContentSet,
+	_initialZoomRunning,
+	_controllerDefaultOptions = {
+		index: 0,
+		errorMsg: '<div class="pswp__error-msg"><a href="%url%" target="_blank">The image</a> could not be loaded.</div>',
+		forceProgressiveLoading: false, // TODO
+		preload: [1,1],
+		getNumItemsFn: function() {
+			return _items.length;
+		}
+	};
+
+
+var _getItemAt,
+	_getNumItems,
+	_initialIsLoop,
+	_getZeroBounds = function() {
+		return {
+			center:{x:0,y:0}, 
+			max:{x:0,y:0}, 
+			min:{x:0,y:0}
+		};
+	},
+	_calculateSingleItemPanBounds = function(item, realPanElementW, realPanElementH ) {
+		var bounds = item.bounds;
+
+		// position of element when it's centered
+		bounds.center.x = Math.round((_tempPanAreaSize.x - realPanElementW) / 2);
+		bounds.center.y = Math.round((_tempPanAreaSize.y - realPanElementH) / 2) + item.vGap.top;
+
+		// maximum pan position
+		bounds.max.x = (realPanElementW > _tempPanAreaSize.x) ? 
+							Math.round(_tempPanAreaSize.x - realPanElementW) : 
+							bounds.center.x;
+		
+		bounds.max.y = (realPanElementH > _tempPanAreaSize.y) ? 
+							Math.round(_tempPanAreaSize.y - realPanElementH) + item.vGap.top : 
+							bounds.center.y;
+		
+		// minimum pan position
+		bounds.min.x = (realPanElementW > _tempPanAreaSize.x) ? 0 : bounds.center.x;
+		bounds.min.y = (realPanElementH > _tempPanAreaSize.y) ? item.vGap.top : bounds.center.y;
+	},
+	_calculateItemSize = function(item, viewportSize, zoomLevel) {
+
+		if (item.src && !item.loadError) {
+			var isInitial = !zoomLevel;
+			
+			if(isInitial) {
+				if(!item.vGap) {
+					item.vGap = {top:0,bottom:0};
+				}
+				// allows overriding vertical margin for individual items
+				_shout('parseVerticalMargin', item);
+			}
+
+
+			_tempPanAreaSize.x = viewportSize.x;
+			_tempPanAreaSize.y = viewportSize.y - item.vGap.top - item.vGap.bottom;
+
+			if (isInitial) {
+				var hRatio = _tempPanAreaSize.x / item.w;
+				var vRatio = _tempPanAreaSize.y / item.h;
+
+				item.fitRatio = hRatio < vRatio ? hRatio : vRatio;
+				//item.fillRatio = hRatio > vRatio ? hRatio : vRatio;
+
+				var scaleMode = _options.scaleMode;
+
+				if (scaleMode === 'orig') {
+					zoomLevel = 1;
+				} else if (scaleMode === 'fit') {
+					zoomLevel = item.fitRatio;
+				}
+
+				if (zoomLevel > 1) {
+					zoomLevel = 1;
+				}
+
+				item.initialZoomLevel = zoomLevel;
+				
+				if(!item.bounds) {
+					// reuse bounds object
+					item.bounds = _getZeroBounds(); 
+				}
+			}
+
+			if(!zoomLevel) {
+				return;
+			}
+
+			_calculateSingleItemPanBounds(item, item.w * zoomLevel, item.h * zoomLevel);
+
+			if (isInitial && zoomLevel === item.initialZoomLevel) {
+				item.initialPosition = item.bounds.center;
+			}
+
+			return item.bounds;
+		} else {
+			item.w = item.h = 0;
+			item.initialZoomLevel = item.fitRatio = 1;
+			item.bounds = _getZeroBounds();
+			item.initialPosition = item.bounds.center;
+
+			// if it's not image, we return zero bounds (content is not zoomable)
+			return item.bounds;
+		}
+		
+	},
+
+	
+
+
+	_appendImage = function(index, item, baseDiv, img, preventAnimation, keepPlaceholder) {
+		
+
+		if(item.loadError) {
+			return;
+		}
+
+		if(img) {
+
+			item.imageAppended = true;
+			_setImageSize(item, img, (item === self.currItem && _renderMaxResolution) );
+			
+			baseDiv.appendChild(img);
+
+			if(keepPlaceholder) {
+				setTimeout(function() {
+					if(item && item.loaded && item.placeholder) {
+						item.placeholder.style.display = 'none';
+						item.placeholder = null;
+					}
+				}, 500);
+			}
+		}
+	},
+	
+
+
+	_preloadImage = function(item) {
+		item.loading = true;
+		item.loaded = false;
+		var img = item.img = framework.createEl('pswp__img', 'img');
+		var onComplete = function() {
+			item.loading = false;
+			item.loaded = true;
+
+			if(item.loadComplete) {
+				item.loadComplete(item);
+			} else {
+				item.img = null; // no need to store image object
+			}
+			img.onload = img.onerror = null;
+			img = null;
+		};
+		img.onload = onComplete;
+		img.onerror = function() {
+			item.loadError = true;
+			onComplete();
+		};		
+
+		img.src = item.src;// + '?a=' + Math.random();
+
+		return img;
+	},
+	_checkForError = function(item, cleanUp) {
+		if(item.src && item.loadError && item.container) {
+
+			if(cleanUp) {
+				item.container.innerHTML = '';
+			}
+
+			item.container.innerHTML = _options.errorMsg.replace('%url%',  item.src );
+			return true;
+			
+		}
+	},
+	_setImageSize = function(item, img, maxRes) {
+		if(!item.src) {
+			return;
+		}
+
+		if(!img) {
+			img = item.container.lastChild;
+		}
+
+		var w = maxRes ? item.w : Math.round(item.w * item.fitRatio),
+			h = maxRes ? item.h : Math.round(item.h * item.fitRatio);
+		
+		if(item.placeholder && !item.loaded) {
+			item.placeholder.style.width = w + 'px';
+			item.placeholder.style.height = h + 'px';
+		}
+
+		img.style.width = w + 'px';
+		img.style.height = h + 'px';
+	},
+	_appendImagesPool = function() {
+
+		if(_imagesToAppendPool.length) {
+			var poolItem;
+
+			for(var i = 0; i < _imagesToAppendPool.length; i++) {
+				poolItem = _imagesToAppendPool[i];
+				if( poolItem.holder.index === poolItem.index ) {
+					_appendImage(poolItem.index, poolItem.item, poolItem.baseDiv, poolItem.img, false, poolItem.clearPlaceholder);
+				}
+			}
+			_imagesToAppendPool = [];
+		}
+	};
+	
+
+
+_registerModule('Controller', {
+
+	publicMethods: {
+
+		lazyLoadItem: function(index) {
+			index = _getLoopedId(index);
+			var item = _getItemAt(index);
+
+			if(!item || ((item.loaded || item.loading) && !_itemsNeedUpdate)) {
+				return;
+			}
+
+			_shout('gettingData', index, item);
+
+			if (!item.src) {
+				return;
+			}
+
+			_preloadImage(item);
+		},
+		initController: function() {
+			framework.extend(_options, _controllerDefaultOptions, true);
+			self.items = _items = items;
+			_getItemAt = self.getItemAt;
+			_getNumItems = _options.getNumItemsFn; //self.getNumItems;
+
+
+
+			_initialIsLoop = _options.loop;
+			if(_getNumItems() < 3) {
+				_options.loop = false; // disable loop if less then 3 items
+			}
+
+			_listen('beforeChange', function(diff) {
+
+				var p = _options.preload,
+					isNext = diff === null ? true : (diff >= 0),
+					preloadBefore = Math.min(p[0], _getNumItems() ),
+					preloadAfter = Math.min(p[1], _getNumItems() ),
+					i;
+
+
+				for(i = 1; i <= (isNext ? preloadAfter : preloadBefore); i++) {
+					self.lazyLoadItem(_currentItemIndex+i);
+				}
+				for(i = 1; i <= (isNext ? preloadBefore : preloadAfter); i++) {
+					self.lazyLoadItem(_currentItemIndex-i);
+				}
+			});
+
+			_listen('initialLayout', function() {
+				self.currItem.initialLayout = _options.getThumbBoundsFn && _options.getThumbBoundsFn(_currentItemIndex);
+			});
+
+			_listen('mainScrollAnimComplete', _appendImagesPool);
+			_listen('initialZoomInEnd', _appendImagesPool);
+
+
+
+			_listen('destroy', function() {
+				var item;
+				for(var i = 0; i < _items.length; i++) {
+					item = _items[i];
+					// remove reference to DOM elements, for GC
+					if(item.container) {
+						item.container = null; 
+					}
+					if(item.placeholder) {
+						item.placeholder = null;
+					}
+					if(item.img) {
+						item.img = null;
+					}
+					if(item.preloader) {
+						item.preloader = null;
+					}
+					if(item.loadError) {
+						item.loaded = item.loadError = false;
+					}
+				}
+				_imagesToAppendPool = null;
+			});
+		},
+
+
+		getItemAt: function(index) {
+			if (index >= 0) {
+				return _items[index] !== undefined ? _items[index] : false;
+			}
+			return false;
+		},
+
+		allowProgressiveImg: function() {
+			// 1. Progressive image loading isn't working on webkit/blink 
+			//    when hw-acceleration (e.g. translateZ) is applied to IMG element.
+			//    That's why in PhotoSwipe parent element gets zoom transform, not image itself.
+			//    
+			// 2. Progressive image loading sometimes blinks in webkit/blink when applying animation to parent element.
+			//    That's why it's disabled on touch devices (mainly because of swipe transition)
+			//    
+			// 3. Progressive image loading sometimes doesn't work in IE (up to 11).
+
+			// Don't allow progressive loading on non-large touch devices
+			return _options.forceProgressiveLoading || !_likelyTouchDevice || _options.mouseUsed || screen.width > 1200; 
+			// 1200 - to eliminate touch devices with large screen (like Chromebook Pixel)
+		},
+
+		setContent: function(holder, index) {
+
+			if(_options.loop) {
+				index = _getLoopedId(index);
+			}
+
+			var prevItem = self.getItemAt(holder.index);
+			if(prevItem) {
+				prevItem.container = null;
+			}
+	
+			var item = self.getItemAt(index),
+				img;
+			
+			if(!item) {
+				holder.el.innerHTML = '';
+				return;
+			}
+
+			// allow to override data
+			_shout('gettingData', index, item);
+
+			holder.index = index;
+			holder.item = item;
+
+			// base container DIV is created only once for each of 3 holders
+			var baseDiv = item.container = framework.createEl('pswp__zoom-wrap'); 
+
+			
+
+			if(!item.src && item.html) {
+				if(item.html.tagName) {
+					baseDiv.appendChild(item.html);
+				} else {
+					baseDiv.innerHTML = item.html;
+				}
+			}
+
+			_checkForError(item);
+
+			_calculateItemSize(item, _viewportSize);
+			
+			if(item.src && !item.loadError && !item.loaded) {
+
+				item.loadComplete = function(item) {
+
+					// gallery closed before image finished loading
+					if(!_isOpen) {
+						return;
+					}
+
+					// check if holder hasn't changed while image was loading
+					if(holder && holder.index === index ) {
+						if( _checkForError(item, true) ) {
+							item.loadComplete = item.img = null;
+							_calculateItemSize(item, _viewportSize);
+							_applyZoomPanToItem(item);
+
+							if(holder.index === _currentItemIndex) {
+								// recalculate dimensions
+								self.updateCurrZoomItem();
+							}
+							return;
+						}
+						if( !item.imageAppended ) {
+							if(_features.transform && (_mainScrollAnimating || _initialZoomRunning) ) {
+								_imagesToAppendPool.push({
+									item:item,
+									baseDiv:baseDiv,
+									img:item.img,
+									index:index,
+									holder:holder,
+									clearPlaceholder:true
+								});
+							} else {
+								_appendImage(index, item, baseDiv, item.img, _mainScrollAnimating || _initialZoomRunning, true);
+							}
+						} else {
+							// remove preloader & mini-img
+							if(!_initialZoomRunning && item.placeholder) {
+								item.placeholder.style.display = 'none';
+								item.placeholder = null;
+							}
+						}
+					}
+
+					item.loadComplete = null;
+					item.img = null; // no need to store image element after it's added
+
+					_shout('imageLoadComplete', index, item);
+				};
+
+				if(framework.features.transform) {
+					
+					var placeholderClassName = 'pswp__img pswp__img--placeholder'; 
+					placeholderClassName += (item.msrc ? '' : ' pswp__img--placeholder--blank');
+
+					var placeholder = framework.createEl(placeholderClassName, item.msrc ? 'img' : '');
+					if(item.msrc) {
+						placeholder.src = item.msrc;
+					}
+					
+					_setImageSize(item, placeholder);
+
+					baseDiv.appendChild(placeholder);
+					item.placeholder = placeholder;
+
+				}
+				
+
+				
+
+				if(!item.loading) {
+					_preloadImage(item);
+				}
+
+
+				if( self.allowProgressiveImg() ) {
+					// just append image
+					if(!_initialContentSet && _features.transform) {
+						_imagesToAppendPool.push({
+							item:item, 
+							baseDiv:baseDiv, 
+							img:item.img, 
+							index:index, 
+							holder:holder
+						});
+					} else {
+						_appendImage(index, item, baseDiv, item.img, true, true);
+					}
+				}
+				
+			} else if(item.src && !item.loadError) {
+				// image object is created every time, due to bugs of image loading & delay when switching images
+				img = framework.createEl('pswp__img', 'img');
+				img.style.opacity = 1;
+				img.src = item.src;
+				_setImageSize(item, img);
+				_appendImage(index, item, baseDiv, img, true);
+			}
+			
+
+			if(!_initialContentSet && index === _currentItemIndex) {
+				_currZoomElementStyle = baseDiv.style;
+				_showOrHide(item, (img ||item.img) );
+			} else {
+				_applyZoomPanToItem(item);
+			}
+
+			holder.el.innerHTML = '';
+			holder.el.appendChild(baseDiv);
+		},
+
+		cleanSlide: function( item ) {
+			if(item.img ) {
+				item.img.onload = item.img.onerror = null;
+			}
+			item.loaded = item.loading = item.img = item.imageAppended = false;
+		}
+
+	}
+});
+
+/*>>items-controller*/
+
+/*>>tap*/
+/**
+ * tap.js:
+ *
+ * Displatches tap and double-tap events.
+ * 
+ */
+
+var tapTimer,
+	tapReleasePoint = {},
+	_dispatchTapEvent = function(origEvent, releasePoint, pointerType) {		
+		var e = document.createEvent( 'CustomEvent' ),
+			eDetail = {
+				origEvent:origEvent, 
+				target:origEvent.target, 
+				releasePoint: releasePoint, 
+				pointerType:pointerType || 'touch'
+			};
+
+		e.initCustomEvent( 'pswpTap', true, true, eDetail );
+		origEvent.target.dispatchEvent(e);
+	};
+
+_registerModule('Tap', {
+	publicMethods: {
+		initTap: function() {
+			_listen('firstTouchStart', self.onTapStart);
+			_listen('touchRelease', self.onTapRelease);
+			_listen('destroy', function() {
+				tapReleasePoint = {};
+				tapTimer = null;
+			});
+		},
+		onTapStart: function(touchList) {
+			if(touchList.length > 1) {
+				clearTimeout(tapTimer);
+				tapTimer = null;
+			}
+		},
+		onTapRelease: function(e, releasePoint) {
+			if(!releasePoint) {
+				return;
+			}
+
+			if(!_moved && !_isMultitouch && !_numAnimations) {
+				var p0 = releasePoint;
+				if(tapTimer) {
+					clearTimeout(tapTimer);
+					tapTimer = null;
+
+					// Check if taped on the same place
+					if ( _isNearbyPoints(p0, tapReleasePoint) ) {
+						_shout('doubleTap', p0);
+						return;
+					}
+				}
+
+				if(releasePoint.type === 'mouse') {
+					_dispatchTapEvent(e, releasePoint, 'mouse');
+					return;
+				}
+
+				var clickedTagName = e.target.tagName.toUpperCase();
+				// avoid double tap delay on buttons and elements that have class pswp__single-tap
+				if(clickedTagName === 'BUTTON' || framework.hasClass(e.target, 'pswp__single-tap') ) {
+					_dispatchTapEvent(e, releasePoint);
+					return;
+				}
+
+				_equalizePoints(tapReleasePoint, p0);
+
+				tapTimer = setTimeout(function() {
+					_dispatchTapEvent(e, releasePoint);
+					tapTimer = null;
+				}, 300);
+			}
+		}
+	}
+});
+
+/*>>tap*/
+
+/*>>desktop-zoom*/
+/**
+ *
+ * desktop-zoom.js:
+ *
+ * - Binds mousewheel event for paning zoomed image.
+ * - Manages "dragging", "zoomed-in", "zoom-out" classes.
+ *   (which are used for cursors and zoom icon)
+ * - Adds toggleDesktopZoom function.
+ * 
+ */
+
+var _wheelDelta;
+	
+_registerModule('DesktopZoom', {
+
+	publicMethods: {
+
+		initDesktopZoom: function() {
+
+			if(_oldIE) {
+				// no zoom for old IE (<=8)
+				return;
+			}
+
+			if(_likelyTouchDevice) {
+				// if detected hardware touch support, we wait until mouse is used,
+				// and only then apply desktop-zoom features
+				_listen('mouseUsed', function() {
+					self.setupDesktopZoom();
+				});
+			} else {
+				self.setupDesktopZoom(true);
+			}
+
+		},
+
+		setupDesktopZoom: function(onInit) {
+
+			_wheelDelta = {};
+
+			var events = 'wheel mousewheel DOMMouseScroll';
+			
+			_listen('bindEvents', function() {
+				framework.bind(template, events,  self.handleMouseWheel);
+			});
+
+			_listen('unbindEvents', function() {
+				if(_wheelDelta) {
+					framework.unbind(template, events, self.handleMouseWheel);
+				}
+			});
+
+			self.mouseZoomedIn = false;
+
+			var hasDraggingClass,
+				updateZoomable = function() {
+					if(self.mouseZoomedIn) {
+						framework.removeClass(template, 'pswp--zoomed-in');
+						self.mouseZoomedIn = false;
+					}
+					if(_currZoomLevel < 1) {
+						framework.addClass(template, 'pswp--zoom-allowed');
+					} else {
+						framework.removeClass(template, 'pswp--zoom-allowed');
+					}
+					removeDraggingClass();
+				},
+				removeDraggingClass = function() {
+					if(hasDraggingClass) {
+						framework.removeClass(template, 'pswp--dragging');
+						hasDraggingClass = false;
+					}
+				};
+
+			_listen('resize' , updateZoomable);
+			_listen('afterChange' , updateZoomable);
+			_listen('pointerDown', function() {
+				if(self.mouseZoomedIn) {
+					hasDraggingClass = true;
+					framework.addClass(template, 'pswp--dragging');
+				}
+			});
+			_listen('pointerUp', removeDraggingClass);
+
+			if(!onInit) {
+				updateZoomable();
+			}
+			
+		},
+
+		handleMouseWheel: function(e) {
+
+			if(_currZoomLevel <= self.currItem.fitRatio) {
+				if( _options.modal ) {
+
+					if (!_options.closeOnScroll || _numAnimations || _isDragging) {
+						e.preventDefault();
+					} else if(_transformKey && Math.abs(e.deltaY) > 2) {
+						// close PhotoSwipe
+						// if browser supports transforms & scroll changed enough
+						_closedByScroll = true;
+						self.close();
+					}
+
+				}
+				return true;
+			}
+
+			// allow just one event to fire
+			e.stopPropagation();
+
+			// https://developer.mozilla.org/en-US/docs/Web/Events/wheel
+			_wheelDelta.x = 0;
+
+			if('deltaX' in e) {
+				if(e.deltaMode === 1 /* DOM_DELTA_LINE */) {
+					// 18 - average line height
+					_wheelDelta.x = e.deltaX * 18;
+					_wheelDelta.y = e.deltaY * 18;
+				} else {
+					_wheelDelta.x = e.deltaX;
+					_wheelDelta.y = e.deltaY;
+				}
+			} else if('wheelDelta' in e) {
+				if(e.wheelDeltaX) {
+					_wheelDelta.x = -0.16 * e.wheelDeltaX;
+				}
+				if(e.wheelDeltaY) {
+					_wheelDelta.y = -0.16 * e.wheelDeltaY;
+				} else {
+					_wheelDelta.y = -0.16 * e.wheelDelta;
+				}
+			} else if('detail' in e) {
+				_wheelDelta.y = e.detail;
+			} else {
+				return;
+			}
+
+			_calculatePanBounds(_currZoomLevel, true);
+
+			var newPanX = _panOffset.x - _wheelDelta.x,
+				newPanY = _panOffset.y - _wheelDelta.y;
+
+			// only prevent scrolling in nonmodal mode when not at edges
+			if (_options.modal ||
+				(
+				newPanX <= _currPanBounds.min.x && newPanX >= _currPanBounds.max.x &&
+				newPanY <= _currPanBounds.min.y && newPanY >= _currPanBounds.max.y
+				) ) {
+				e.preventDefault();
+			}
+
+			// TODO: use rAF instead of mousewheel?
+			self.panTo(newPanX, newPanY);
+		},
+
+		toggleDesktopZoom: function(centerPoint) {
+			centerPoint = centerPoint || {x:_viewportSize.x/2 + _offset.x, y:_viewportSize.y/2 + _offset.y };
+
+			var doubleTapZoomLevel = _options.getDoubleTapZoom(true, self.currItem);
+			var zoomOut = _currZoomLevel === doubleTapZoomLevel;
+			
+			self.mouseZoomedIn = !zoomOut;
+
+			self.zoomTo(zoomOut ? self.currItem.initialZoomLevel : doubleTapZoomLevel, centerPoint, 333);
+			framework[ (!zoomOut ? 'add' : 'remove') + 'Class'](template, 'pswp--zoomed-in');
+		}
+
+	}
+});
+
+
+/*>>desktop-zoom*/
+
+/*>>history*/
+/**
+ *
+ * history.js:
+ *
+ * - Back button to close gallery.
+ * 
+ * - Unique URL for each slide: example.com/&pid=1&gid=3
+ *   (where PID is picture index, and GID and gallery index)
+ *   
+ * - Switch URL when slides change.
+ * 
+ */
+
+
+var _historyDefaultOptions = {
+	history: true,
+	galleryUID: 1
+};
+
+var _historyUpdateTimeout,
+	_hashChangeTimeout,
+	_hashAnimCheckTimeout,
+	_hashChangedByScript,
+	_hashChangedByHistory,
+	_hashReseted,
+	_initialHash,
+	_historyChanged,
+	_closedFromURL,
+	_urlChangedOnce,
+	_windowLoc,
+
+	_supportsPushState,
+
+	_getHash = function() {
+		return _windowLoc.hash.substring(1);
+	},
+	_cleanHistoryTimeouts = function() {
+
+		if(_historyUpdateTimeout) {
+			clearTimeout(_historyUpdateTimeout);
+		}
+
+		if(_hashAnimCheckTimeout) {
+			clearTimeout(_hashAnimCheckTimeout);
+		}
+	},
+
+	// pid - Picture index
+	// gid - Gallery index
+	_parseItemIndexFromURL = function() {
+		var hash = _getHash(),
+			params = {};
+
+		if(hash.length < 5) { // pid=1
+			return params;
+		}
+
+		var i, vars = hash.split('&');
+		for (i = 0; i < vars.length; i++) {
+			if(!vars[i]) {
+				continue;
+			}
+			var pair = vars[i].split('=');	
+			if(pair.length < 2) {
+				continue;
+			}
+			params[pair[0]] = pair[1];
+		}
+		if(_options.galleryPIDs) {
+			// detect custom pid in hash and search for it among the items collection
+			var searchfor = params.pid;
+			params.pid = 0; // if custom pid cannot be found, fallback to the first item
+			for(i = 0; i < _items.length; i++) {
+				if(_items[i].pid === searchfor) {
+					params.pid = i;
+					break;
+				}
+			}
+		} else {
+			params.pid = parseInt(params.pid,10)-1;
+		}
+		if( params.pid < 0 ) {
+			params.pid = 0;
+		}
+		return params;
+	},
+	_updateHash = function() {
+
+		if(_hashAnimCheckTimeout) {
+			clearTimeout(_hashAnimCheckTimeout);
+		}
+
+
+		if(_numAnimations || _isDragging) {
+			// changing browser URL forces layout/paint in some browsers, which causes noticable lag during animation
+			// that's why we update hash only when no animations running
+			_hashAnimCheckTimeout = setTimeout(_updateHash, 500);
+			return;
+		}
+		
+		if(_hashChangedByScript) {
+			clearTimeout(_hashChangeTimeout);
+		} else {
+			_hashChangedByScript = true;
+		}
+
+
+		var pid = (_currentItemIndex + 1);
+		var item = _getItemAt( _currentItemIndex );
+		if(item.hasOwnProperty('pid')) {
+			// carry forward any custom pid assigned to the item
+			pid = item.pid;
+		}
+		var newHash = _initialHash + '&'  +  'gid=' + _options.galleryUID + '&' + 'pid=' + pid;
+
+		if(!_historyChanged) {
+			if(_windowLoc.hash.indexOf(newHash) === -1) {
+				_urlChangedOnce = true;
+			}
+			// first time - add new hisory record, then just replace
+		}
+
+		var newURL = _windowLoc.href.split('#')[0] + '#' +  newHash;
+
+		if( _supportsPushState ) {
+
+			if('#' + newHash !== window.location.hash) {
+				history[_historyChanged ? 'replaceState' : 'pushState']('', document.title, newURL);
+			}
+
+		} else {
+			if(_historyChanged) {
+				_windowLoc.replace( newURL );
+			} else {
+				_windowLoc.hash = newHash;
+			}
+		}
+		
+		
+
+		_historyChanged = true;
+		_hashChangeTimeout = setTimeout(function() {
+			_hashChangedByScript = false;
+		}, 60);
+	};
+
+
+
+	
+
+_registerModule('History', {
+
+	
+
+	publicMethods: {
+		initHistory: function() {
+
+			framework.extend(_options, _historyDefaultOptions, true);
+
+			if( !_options.history ) {
+				return;
+			}
+
+
+			_windowLoc = window.location;
+			_urlChangedOnce = false;
+			_closedFromURL = false;
+			_historyChanged = false;
+			_initialHash = _getHash();
+			_supportsPushState = ('pushState' in history);
+
+
+			if(_initialHash.indexOf('gid=') > -1) {
+				_initialHash = _initialHash.split('&gid=')[0];
+				_initialHash = _initialHash.split('?gid=')[0];
+			}
+			
+
+			_listen('afterChange', self.updateURL);
+			_listen('unbindEvents', function() {
+				framework.unbind(window, 'hashchange', self.onHashChange);
+			});
+
+
+			var returnToOriginal = function() {
+				_hashReseted = true;
+				if(!_closedFromURL) {
+
+					if(_urlChangedOnce) {
+						history.back();
+					} else {
+
+						if(_initialHash) {
+							_windowLoc.hash = _initialHash;
+						} else {
+							if (_supportsPushState) {
+
+								// remove hash from url without refreshing it or scrolling to top
+								history.pushState('', document.title,  _windowLoc.pathname + _windowLoc.search );
+							} else {
+								_windowLoc.hash = '';
+							}
+						}
+					}
+					
+				}
+
+				_cleanHistoryTimeouts();
+			};
+
+
+			_listen('unbindEvents', function() {
+				if(_closedByScroll) {
+					// if PhotoSwipe is closed by scroll, we go "back" before the closing animation starts
+					// this is done to keep the scroll position
+					returnToOriginal();
+				}
+			});
+			_listen('destroy', function() {
+				if(!_hashReseted) {
+					returnToOriginal();
+				}
+			});
+			_listen('firstUpdate', function() {
+				_currentItemIndex = _parseItemIndexFromURL().pid;
+			});
+
+			
+
+			
+			var index = _initialHash.indexOf('pid=');
+			if(index > -1) {
+				_initialHash = _initialHash.substring(0, index);
+				if(_initialHash.slice(-1) === '&') {
+					_initialHash = _initialHash.slice(0, -1);
+				}
+			}
+			
+
+			setTimeout(function() {
+				if(_isOpen) { // hasn't destroyed yet
+					framework.bind(window, 'hashchange', self.onHashChange);
+				}
+			}, 40);
+			
+		},
+		onHashChange: function() {
+
+			if(_getHash() === _initialHash) {
+
+				_closedFromURL = true;
+				self.close();
+				return;
+			}
+			if(!_hashChangedByScript) {
+
+				_hashChangedByHistory = true;
+				self.goTo( _parseItemIndexFromURL().pid );
+				_hashChangedByHistory = false;
+			}
+			
+		},
+		updateURL: function() {
+
+			// Delay the update of URL, to avoid lag during transition, 
+			// and to not to trigger actions like "refresh page sound" or "blinking favicon" to often
+			
+			_cleanHistoryTimeouts();
+			
+
+			if(_hashChangedByHistory) {
+				return;
+			}
+
+			if(!_historyChanged) {
+				_updateHash(); // first time
+			} else {
+				_historyUpdateTimeout = setTimeout(_updateHash, 800);
+			}
+		}
+	
+	}
+});
+
+
+/*>>history*/
+	framework.extend(self, publicMethods); };
+	return PhotoSwipe;
+});
+
+/***/ }),
+
+/***/ "./node_modules/.pnpm/reframe.js@3.0.3/node_modules/reframe.js/dist/reframe.es.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/.pnpm/reframe.js@3.0.3/node_modules/reframe.js/dist/reframe.es.js ***!
+  \****************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+  reframe.js - Reframe.js: responsive iframes for embedded content
+  @version v3.0.2
+  @link https://github.com/yowainwright/reframe.ts#readme
+  @author Jeff Wainwright <yowainwright@gmail.com> (http://jeffry.in)
+  @license MIT
+**/
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+/**
+ * REFRAME.TS 🖼
+ * ---
+ * @param target
+ * @param cName
+ * @summary defines the height/width ratio of the targeted <element>
+ */
+function reframe(target, cName) {
+    if (cName === void 0) { cName = 'js-reframe'; }
+    var frames = typeof target === 'string' ? __spreadArrays(document.querySelectorAll(target)) : 'length' in target ? __spreadArrays(target) : [target];
+    return frames.forEach(function (frame) {
+        var _a, _b;
+        var hasClass = frame.className.split(' ').indexOf(cName) !== -1;
+        if (hasClass || frame.style.width.indexOf('%') > -1) {
+            return;
+        }
+        // get height width attributes
+        var height = frame.getAttribute('height') || frame.offsetHeight;
+        var width = frame.getAttribute('width') || frame.offsetWidth;
+        var heightNumber = typeof height === 'string' ? parseInt(height) : height;
+        var widthNumber = typeof width === 'string' ? parseInt(width) : width;
+        // general targeted <element> sizes
+        var padding = (heightNumber / widthNumber) * 100;
+        // created element <wrapper> of general reframed item
+        // => set necessary styles of created element <wrapper>
+        var div = document.createElement('div');
+        div.className = cName;
+        var divStyles = div.style;
+        divStyles.position = 'relative';
+        divStyles.width = '100%';
+        divStyles.paddingTop = padding + "%";
+        // set necessary styles of targeted <element>
+        var frameStyle = frame.style;
+        frameStyle.position = 'absolute';
+        frameStyle.width = '100%';
+        frameStyle.height = '100%';
+        frameStyle.left = '0';
+        frameStyle.top = '0';
+        // reframe targeted <element>
+        (_a = frame.parentNode) === null || _a === void 0 ? void 0 : _a.insertBefore(div, frame);
+        (_b = frame.parentNode) === null || _b === void 0 ? void 0 : _b.removeChild(frame);
+        div.appendChild(frame);
+    });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (reframe);
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
+!function() {
+"use strict";
+/*!***************************!*\
+  !*** ./assets/js/main.js ***!
+  \***************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var reframe_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reframe.js */ "./node_modules/.pnpm/reframe.js@3.0.3/node_modules/reframe.js/dist/reframe.es.js");
+/* harmony import */ var _lightbox_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lightbox.js */ "./assets/js/lightbox.js");
+/* harmony import */ var _dropdown_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dropdown.js */ "./assets/js/dropdown.js");
+/* harmony import */ var _pagination_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pagination.js */ "./assets/js/pagination.js");
+
+
+
+
+
+/* Mobile menu burger toggle */
+(function () {
+  const navigation = document.querySelector('.gh-navigation');
+  const burger = navigation.querySelector('.gh-burger');
+  if (!burger) return;
+  burger.addEventListener('click', function () {
+    if (!navigation.classList.contains('is-open')) {
+      navigation.classList.add('is-open');
+      document.documentElement.style.overflowY = 'hidden';
+    } else {
+      navigation.classList.remove('is-open');
+      document.documentElement.style.overflowY = null;
+    }
+  });
+})();
+
+/* Add lightbox to gallery images */
+(function () {
+  (0,_lightbox_js__WEBPACK_IMPORTED_MODULE_1__["default"])('.kg-image-card > .kg-image[width][height], .kg-gallery-image > img');
+})();
+
+/* Responsive video in post content */
+(function () {
+  const sources = ['.gh-content iframe[src*="youtube.com"]', '.gh-content iframe[src*="youtube-nocookie.com"]', '.gh-content iframe[src*="player.vimeo.com"]', '.gh-content iframe[src*="kickstarter.com"][src*="video.html"]', '.gh-content object', '.gh-content embed'];
+  (0,reframe_js__WEBPACK_IMPORTED_MODULE_0__["default"])(document.querySelectorAll(sources.join(',')));
+})();
+
+/* Turn the main nav into dropdown menu when there are more than 5 menu items */
+(function () {
+  (0,_dropdown_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+})();
+
+/* Infinite scroll pagination */
+(function () {
+  if (!document.body.classList.contains('home-template') && !document.body.classList.contains('post-template')) {
+    (0,_pagination_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  }
+})();
+
+/* Responsive HTML table */
+(function () {
+  const tables = document.querySelectorAll('.gh-content > table:not(.gist table)');
+  tables.forEach(function (table) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'gh-table';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+})();
+}();
+/******/ })()
+;
+//# sourceMappingURL=source.js.map

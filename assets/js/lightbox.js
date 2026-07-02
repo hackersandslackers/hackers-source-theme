@@ -1,4 +1,7 @@
-function lightbox(trigger) {
+import PhotoSwipe from 'photoswipe';
+import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default';
+
+export default function lightbox(trigger) {
     var onThumbnailsClick = function (e) {
         e.preventDefault();
 

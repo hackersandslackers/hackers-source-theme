@@ -10,12 +10,19 @@
     {{!-- Preload main styles and scripts for better performance --}}
     <link rel="preload" as="style" href="{{asset "built/screen.css"}}">
     <link rel="preload" as="script" href="{{asset "built/source.js"}}">
+    {{#is "post"}}
+        <link rel="preload" as="style" href="{{asset "built/posts.css"}}">
+        <link rel="preload" as="script" href="{{asset "built/posts.js"}}">
+    {{/is}}
     
     {{!-- Fonts are preloaded and defined in the default template to avoid layout shift --}}
     {{> "typography/fonts"}}
 
     {{!-- Theme assets - use the {{asset}} helper to reference styles & scripts, this will take care of caching and cache-busting automatically --}}
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}">
+    {{#is "post"}}
+        <link rel="stylesheet" type="text/css" href="{{asset "built/posts.css"}}">
+    {{/is}}
 
     {{!-- Custom background color --}}
     <style>
@@ -65,6 +72,9 @@
 
 {{!-- Scripts - handle responsive videos, infinite scroll, and navigation dropdowns --}}
 <script src="{{asset "built/source.js"}}"></script>
+{{#is "post"}}
+<script src="{{asset "built/posts.js"}}"></script>
+{{/is}}
 
 {{!-- Ghost outputs required functional scripts with this tag, it should always be the last thing before the closing body tag --}}
 {{ghost_foot}}
