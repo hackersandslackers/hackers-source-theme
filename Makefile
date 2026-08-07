@@ -24,7 +24,7 @@ all help:
 
 .PHONY: build
 build:
-	yarn run build
+	pnpm run build
 
 
 .PHONY: dev
