@@ -1849,16 +1849,15 @@ Search                         LOGO                    Login Subscribe
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 48px 24px;
-    min-height: 380px;
+    padding: 24px;
     text-align: center;
     background-color: var(--color-lighter-gray);
 }
 
 .gh-about-icon {
-    margin-bottom: 24px;
-    width: 60px;
-    height: 60px;
+    margin-bottom: 12px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
@@ -1875,7 +1874,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-about .gh-button {
-    margin-top: 32px;
+    margin-top: 24px;
 }
 
 .gh-recommendations {

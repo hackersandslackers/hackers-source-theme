@@ -20,7 +20,7 @@
         "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then pnpm version && git push --follow-tags; else echo \"Uncommitted changes found.\" && exit 1; fi",
         "postship": "git fetch && node scripts/release.js"
     },
-    "packageManager": "pnpm@11.7.0",
+    "packageManager": "pnpm@12.8.1",
     "author": {
         "name": "Ghost Foundation",
         "email": "hello@ghost.org",
@@ -43,7 +43,9 @@
         "url": "https://github.com/hackersandslackers/hackers-source-theme.git"
     },
     "bugs": "https://github.com/hackersandslackers/hackers-source-theme/issues",
-    "contributors": ["https://github.com/hackersandslackers/hackers-source-theme/graphs/contributors"],
+    "contributors": [
+        "https://github.com/hackersandslackers/hackers-source-theme/graphs/contributors"
+    ],
     "devDependencies": {
         "@babel/core": "^7.27.0",
         "@babel/preset-env": "^7.27.0",
@@ -52,6 +54,7 @@
         "archiver": "7.0.1",
         "autoprefixer": "10.4.24",
         "babel-loader": "^9.2.1",
+        "babel-plugin-prismjs": "^2.1.0",
         "css-loader": "^7.1.2",
         "css-minimizer-webpack-plugin": "^7.0.0",
         "cssnano": "7.1.2",
@@ -63,7 +66,6 @@
         "postcss": "8.5.10",
         "postcss-import": "^16.1.0",
         "postcss-loader": "^8.1.0",
-        "babel-plugin-prismjs": "^2.1.0",
         "prismjs": "^1.30.0",
         "reframe.js": "^3.0.1",
         "webpack": "^5.99.0",
