@@ -23,7 +23,7 @@
                     {{#match @custom.header_style "Highlight"}}
                         {{#if @custom.show_featured_posts}}
                             {{#match posts.length ">=" 4}}
-                                {{#get "posts" include="authors" limit="16"}}
+                                {{#get "posts" include="authors,tags" limit="16"}}
                                     {{#foreach posts from="5"}}
                                         {{> "post-card" lazyLoad=true}}
                                     {{/foreach}}
@@ -31,7 +31,7 @@
                             {{/match}}
                         {{else}}
                             {{#match posts.length ">=" 10}}
-                                {{#get "posts" include="authors" limit="22"}}
+                                {{#get "posts" include="authors,tags" limit="22"}}
                                     {{#foreach posts from="11"}}
                                         {{> "post-card" lazyLoad=true}}
                                     {{/foreach}}
@@ -40,14 +40,14 @@
                         {{/if}}
                     {{else match @custom.header_style "Magazine"}}
                         {{#match posts.length ">=" 7}}
-                            {{#get "posts" include="authors" limit="19"}}
+                            {{#get "posts" include="authors,tags" limit="19"}}
                                 {{#foreach posts from="8"}}
                                     {{> "post-card" lazyLoad=true}}
                                 {{/foreach}}
                             {{/get}}
                         {{/match}}
                     {{else}}
-                        {{#get "posts" include="authors" limit=@config.posts_per_page}}
+                        {{#get "posts" include="authors,tags" limit=@config.posts_per_page}}
                             {{#foreach posts}}
                                 {{> "post-card" lazyLoad=true}}
                             {{/foreach}}
@@ -58,7 +58,7 @@
                 {{!-- All posts --}}
                 {{#match feed "index"}}
                     {{#match pagination.page 2}}
-                        {{#get "posts" include="authors" limit=@config.posts_per_page as |recent|}}
+                        {{#get "posts" include="authors,tags" limit=@config.posts_per_page as |recent|}}
                             {{#foreach recent}}
                                 {{> "post-card"}}
                             {{/foreach}}
@@ -88,34 +88,17 @@
         {{#if showSidebar}}
             <aside class="gh-sidebar">
                 <div class="gh-sidebar-inner">
-                    <section class="gh-about">
-                        {{#if @site.icon}}
-                            <img class="gh-about-icon" src="{{@site.icon}}" alt="{{@site.title}}" loading="lazy">
-                        {{/if}}
-                        <h3 class="gh-about-title is-title">{{@site.title}}</h3>
-                        {{#if @site.description}}
-                            <p class="gh-about-description is-body">{{@site.description}}</p>
-                        {{/if}}
-                        {{#if @site.members_enabled}}
-                            {{#unless @member}}
-                                <button class="gh-button" data-portal="signup">{{t "Subscribe"}}</button>
-                            {{else}}
-                                {{#if @site.paid_members_enabled}}
-                                    {{#unless @member.paid}}
-                                        <button class="gh-button" data-portal="upgrade">{{t "Upgrade"}}</button>
-                                    {{/unless}}
-                                {{/if}}
-                            {{/unless}}
-                        {{/if}}
-                    </section>
+                    {{> "components/sidebar/about"}}
                     {{#if @site.recommendations_enabled}}
-                        <section class="gh-recommendations">
+                        <section class="gh-recommendations sidebar-widget">
                             <h4 class="gh-sidebar-title">{{t "Recommendations"}}</h4>
                             {{recommendations}}
                             <button data-portal="recommendations">{{t "See all"}} {{> "icons/arrow"}}</button>
                         </section>
                     {{/if}}
-                    {{> "components/tags-widget"}}
+                    {{> "components/sidebar/social"}}
+                    {{> "components/sidebar/tags"}}
+                    
                 </div>
             </aside>
         {{/if}}

@@ -63,15 +63,18 @@ production stylesheet in assets/built/screen.css
     --color-secondary-text: rgb(0 0 0 / 0.55);
     --color-border: rgb(0 0 0 / 0.08);
     --color-dark-border: rgb(0 0 0 / 0.55);
+    --color-main-background: #f4f8fb;
+    --color-card-border: #dae0e9;
     --font-sans: "Sofia Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     --font-sans-heading: "TT Norms Pro", var(--font-sans);
     --font-sans-display: "Camphor Pro", var(--font-sans);
     --font-serif: "EB Garamond", Georgia, Times, serif;
     --font-serif-alt: Georgia, Times, serif;
     --font-mono: "Dank Mono", Menlo, Consolas, Monaco, "Liberation Mono", "Lucida Console", monospace;
-    --container-width: 1320px;
+    --container-width: 1080px;
     --container-gap: clamp(24px, 1.7032rem + 1.9355vw, 48px);
     --grid-gap: 42px;
+    --breakpoint-small-screen: 950px;
 }
 
 :root.has-light-text,
@@ -141,7 +144,7 @@ sub, sup {
 body {
     font-family: var(--gh-font-body, var(--font-sans));
     font-size: 1.6rem;
-    background-color: var(--background-color);
+    background-color: var(--color-main-background);
     color: var(--color-primary-text);
 }
 
@@ -431,6 +434,7 @@ body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-head
     font-weight: 550;
     background-color: var(--background-color);
     color: var(--color-darker-gray);
+    border-bottom: 1px solid var(--color-card-border);
 }
 
 .gh-navigation :is(.gh-navigation-logo, a:not(.gh-button), .gh-icon-button) {
@@ -908,7 +912,6 @@ Search                         LOGO                    Login Subscribe
 .gh-card-link {
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 .gh-card-link:hover {
@@ -931,6 +934,7 @@ Search                         LOGO                    Login Subscribe
 
 .gh-card-wrapper {
     flex-grow: 1;
+    padding: 18px;
 }
 
 .gh-card-tag {
@@ -989,6 +993,10 @@ Search                         LOGO                    Login Subscribe
 .gh-card-author + .gh-card-date::before {
     content: "—";
     margin-right: 4px;
+}
+
+.gh-card.post {
+    background-color: var(--color-white);
 }
 
 /* 8. Header
@@ -1097,7 +1105,7 @@ Search                         LOGO                    Login Subscribe
     background-color: var(--color-border);
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 950px) {
     .gh-header.is-magazine .gh-header-inner {
         grid-template-columns: repeat(12, 1fr);
     }
@@ -1153,7 +1161,7 @@ Search                         LOGO                    Login Subscribe
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 950px) {
     .gh-header.is-magazine .gh-header-left .gh-card:nth-child(2) .gh-card-image {
         display: none;
     }
@@ -1292,7 +1300,7 @@ Search                         LOGO                    Login Subscribe
     display: none;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 950px) {
     .gh-header.is-highlight .gh-header-inner {
         grid-template-columns: repeat(9, 1fr);
     }
@@ -1329,7 +1337,7 @@ Search                         LOGO                    Login Subscribe
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 950px) {
     .gh-header.is-highlight .gh-header-middle .gh-card:nth-child(2) .gh-card-image {
         display: none;
     }
@@ -1550,7 +1558,7 @@ Search                         LOGO                    Login Subscribe
     background-color: var(--color-border);
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 950px) {
     .gh-viewport > .gh-featured .gh-featured-feed {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -1572,7 +1580,7 @@ Search                         LOGO                    Login Subscribe
 
 .gh-container {
     flex-grow: 1;
-    margin-top: 64px;
+    margin-top: 48px;
 }
 
 .gh-container-inner {
@@ -1604,7 +1612,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container.has-sidebar .gh-more {
-    grid-column: span 12;
+    grid-column: span 11;
 }
 
 .home-template .gh-feed:has(> :nth-child(12):last-child) ~ .gh-more {
@@ -1668,7 +1676,7 @@ Search                         LOGO                    Login Subscribe
     grid-column: 1 / -1;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 950px) {
     .gh-container-inner {
         display: block;
         overflow: hidden;
@@ -1705,7 +1713,95 @@ Search                         LOGO                    Login Subscribe
     margin-top: 12px;
 }
 
-/* 12.1. List style */
+/* 12.1. Post card */
+
+.gh-card.post {
+    background-color: var(--color-white);
+    box-shadow: 2px 2px 0px rgba(39, 44, 49, .1);
+    border: 1px solid #e6ecf0;
+}
+
+.gh-card.post .post-card-meta {
+    line-clamp: 1;
+    align-items: center;
+    border-top: 1px solid #ebebeb;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 18px;
+    overflow: hidden;
+    padding: 16px 0 18px;
+    text-overflow: ellipsis;
+    color: #979797;
+}
+
+.gh-card.post .post-card-meta .meta-items-left {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    white-space: nowrap;
+}
+
+.gh-card.post .post-card-meta .post-card-meta-text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gh-card.post .post-card-meta .meta-items-left .post-card-author-avatar {
+    margin-right: 10px;
+    font-size: 1.5em;
+    color: #4e576a;
+    opacity: .8;
+}
+
+.gh-card.post .post-card-meta .meta-items-left .post-card-author-avatar .post-card-author-image {
+    border-radius: 50%;
+    height: 45px;
+    min-width: 45px;
+    border: 1px solid #849ab1;
+}
+
+.gh-card.post .post-card-meta .post-card-author-name {
+    font-weight: 600;
+    color: var(--color-primary-text);
+}
+
+.gh-card.post .post-card-meta .post-card-author-name-mobile {
+    display: none;
+}
+
+.gh-card.post .post-card-meta .post-card-meta-details {
+    font-size: 1.3rem;
+}
+
+.gh-card.post .post-card-meta .post-card-meta-item.separator {
+    margin: 0 4px;
+}
+
+.gh-card.post .post-card-meta .post-card-primary-tag {
+    --tag-color: #78849c;
+    flex-shrink: 0;
+    padding: 4px 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-white);
+    background-color: var(--tag-color);
+    box-shadow: inset 0 0 0 1px var(--tag-color);
+    white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .gh-card.post .post-card-meta .post-card-author-name {
+        display: none;
+    }
+
+    .gh-card.post .post-card-meta .post-card-author-name-mobile {
+        display: inline;
+    }
+}
+
+/* 12.2. List style */
 
 .gh-container.is-list .gh-feed {
     display: flex;
@@ -1717,7 +1813,6 @@ Search                         LOGO                    Login Subscribe
 .gh-container.is-list .gh-card-link {
     flex-direction: column;
     align-items: flex-end;
-    gap: 24px;
 }
 
 .gh-container.is-list .no-image .gh-card-link {
@@ -1726,20 +1821,17 @@ Search                         LOGO                    Login Subscribe
 
 .gh-container.is-list .gh-card-image {
     flex-shrink: 0;
-    width: 640px;
+    width: 100%;
     /* aspect-ratio: 1.618033; */
 }
-
+/* 
 @container list-feed (width < 600px) {
     .gh-container.is-list .gh-card-image {
         width: 160px;
     }
 }
-
-.gh-container.is-list .gh-card:not(.no-image) .gh-card-wrapper {
-    max-width: 640px;
-}
-
+ */
+ 
 .gh-container.is-list .gh-card-title {
     --factor: 2;
 }
@@ -1777,7 +1869,7 @@ Search                         LOGO                    Login Subscribe
     }
 }
 
-/* 12.2. Grid style */
+/* 12.3. Grid style */
 
 .gh-container.is-grid .gh-feed {
     display: grid;
@@ -1819,7 +1911,7 @@ Search                         LOGO                    Login Subscribe
     }
 }
 
-/* 12.3. No image list */
+/* 12.4. No image list */
 
 .gh-container.is-list.no-image .gh-card-image {
     display: none;
@@ -1831,6 +1923,11 @@ Search                         LOGO                    Login Subscribe
 .gh-sidebar-inner {
     position: sticky;
     top: calc(var(--grid-gap) / 2);
+    grid-gap: 20px;
+    display: grid;
+    grid-auto-rows: -webkit-min-content;
+    grid-auto-rows: min-content;
+    grid-template-columns: 1fr;
 }
 
 .gh-sidebar-title {
@@ -1851,7 +1948,6 @@ Search                         LOGO                    Login Subscribe
     align-items: center;
     padding: 24px;
     text-align: center;
-    background-color: var(--color-lighter-gray);
 }
 
 .gh-about-icon {
@@ -1965,6 +2061,67 @@ Search                         LOGO                    Login Subscribe
 
 .gh-recommendations button:hover {
     opacity: 0.8;
+}
+
+.gh-social {
+    display: flex;
+    justify-content: space-between;
+    overflow: visible;
+    height: 70px;
+    align-items: center;
+}
+
+.gh-tags .tag-cloud {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.gh-tags .tag-cloud .tag-cloud-link {
+    border: 1px solid #ccd3dc;
+    color: #78849c;
+    display: inline-block;
+    flex-grow: 1;
+    font-family: SofiaPro-Medium, HelveticaNeue, sans-serif;
+    font-size: .85em !important;
+    line-height: 1.5em;
+    margin: 0 2px 4px;
+    padding: 4px 10px;
+    text-align: center;
+    transition: all .2s ease-out;
+}
+
+.gh-tags .gh-title {
+    color: #687385;
+    font-family: SofiaPro-Medium, HelveticaNeue, sans-serif;
+    font-size: .9em;
+    letter-spacing: 1px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+    border-bottom: 1px solid #dee1e7;
+    padding-bottom: 8px;
+    text-align: left;
+}
+
+.sidebar-widget {
+    background-color: var(--color-white);
+    padding: 18px;
+    box-shadow: 2px 2px 0px rgba(39, 44, 49, .1);
+    border: 1px solid #e6ecf0;
+}
+
+.sidebar-widget button {
+    font-size: 1.7em;
+    background: unset;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: all .2s ease-out;
+    border: 0;
+    color: #a1adc6;
+    fill: #a1adc6;
 }
 
 /* 14. Post/page
@@ -2605,7 +2762,7 @@ figcaption a {
     height: 20px;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 950px) {
     .gh-archive {
         display: block;
     }
@@ -2842,7 +2999,7 @@ body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-head
     margin-top: 40px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 950px) {
     .gh-footer-bar {
         display: flex;
         flex-direction: column;

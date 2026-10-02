@@ -18,6 +18,9 @@
     {{!-- Fonts are preloaded and defined in the default template to avoid layout shift --}}
     {{> "typography/fonts"}}
 
+    {{!-- Icons --}}
+    <script src="https://kit.fontawesome.com/0dae50f8a6.js" crossorigin="anonymous"></script>
+
     {{!-- Theme assets - use the {{asset}} helper to reference styles & scripts, this will take care of caching and cache-busting automatically --}}
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}">
     {{#is "post"}}

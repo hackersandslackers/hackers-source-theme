@@ -29,6 +29,7 @@
                     <p class="gh-card-excerpt is-body">{{excerpt}}</p>
                 {{/if}}
             {{/unless}}
+            {{!--
             <footer class="gh-card-meta">
                 {{#unless access}}
                     {{^has visibility="public"}}
@@ -42,6 +43,48 @@
                     <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
                 {{/if}}<!--
          --></footer>
+         --}}
         </div>
     </a>
+
+    <footer class="post-card-meta">
+        <div class="meta-items-left">
+            {{#if @custom.show_author}}
+            {{#primary_author}}
+                {{#if profile_image}}
+                    <a href="{{url}}" class="post-card-author-avatar">
+                        <img class="post-card-author-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}'s Avatar">
+                    </a>
+                {{else}}
+                    <a href="{{url}}" class="post-card-author-avatar missing-avatar">
+                        <i class="fa-sharp fa-solid fa-user-pen"></i>
+                    </a>
+                {{/if}}
+            {{/primary_author}}
+            {{/if}}
+            <div class="post-card-meta-text">
+                {{#if @custom.show_author}}
+                {{#primary_author}}
+                    <a href="{{url}}" class="post-card-author-name">{{name}}</a>
+                    <a href="{{url}}" class="post-card-author-name-mobile">{{slug}}</a>
+                {{/primary_author}}
+                {{/if}}
+                <div class="post-card-meta-details">
+                    {{#if @custom.show_publish_date}}
+                        <span class="post-card-meta-item date">
+                            <i class="fa-sharp fa-regular fa-calendar"></i>
+                            <time class="post-card-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
+                        </span>
+                    {{/if}}
+                    {{#if reading_time}}
+                        {{#if @custom.show_publish_date}}<span class="post-card-meta-item separator">•</span>{{/if}}
+                        <span class="post-card-meta-item reading-time">{{reading_time minute="1 min" minutes="% mins"}}</span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        {{#primary_tag}}
+            <a href="{{url}}" class="post-card-primary-tag"{{#if accent_color}} style="--tag-color: {{accent_color}};"{{/if}}>{{name}}</a>
+        {{/primary_tag}}
+    </footer>
 </article>
