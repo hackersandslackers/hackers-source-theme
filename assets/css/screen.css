@@ -36,6 +36,7 @@ production stylesheet in assets/built/screen.css
   14.3. Page without header
 15. Content
 16. Cards
+  16.1. Custom Cards
 17. Comments
 18. Recent posts
 19. Archive
@@ -68,6 +69,8 @@ production stylesheet in assets/built/screen.css
     --color-dark-border: rgb(0 0 0 / 0.55);
     --color-main-background: #f4f8fb;
     --color-card-border: #dae0e9;
+    --color-inline-code: #446378;
+    --color-inline-code-bg: rgba(133,176,225,.2);
     /* Fonts */
     --font-sans: "Sofia Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     --font-sans-heading: "TT Norms Pro", var(--font-sans);
@@ -1019,10 +1022,16 @@ Search                         LOGO                    Login Subscribe
 
 .gh-card.post:hover {
     background-color: var(--color-theme);
+    box-shadow: 2px 2px 0px rgba(2, 151, 246, .1);
+    border: 1px solid var(--color-theme);
 }
 
 .gh-card.post:hover * {
     color: var(--color-white) !important;
+}
+
+.gh-card.post .post-card-meta-item i {
+    margin-right: 3px;
 }
 
 /* 8. Header
@@ -1798,7 +1807,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-card.post .post-card-meta .post-card-meta-details {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 .gh-card.post .post-card-meta .post-card-meta-item.separator {
@@ -2458,6 +2467,19 @@ unless a heading is the very first element in the post content */
     font-family: var(--font-mono);
 }
 
+.gh-content p code {
+    display: inline;
+    font-family: dm, SFMono-Regular, monospace;
+    vertical-align: middle;
+    font-weight: 600;
+    padding: .1em .4em;
+    font-size: .78em;
+    line-height: 1.4em;
+    color: var(--color-inline-code);
+    background: var(--color-inline-code-bg);
+    border-radius: 3px;
+}
+
 /* 16. Cards
 /* ---------------------------------------------------------- */
 
@@ -2677,6 +2699,46 @@ figcaption a {
     text-decoration: underline;
 }
 
+/* 16.1. Custom Cards */
+.intro-notice {
+    align-items: flex-start;
+    background: #eceef1;
+    border-radius: 6px;
+    color: #6e7482;
+    display: flex;
+    justify-content: left;
+    font-size: .9em;
+    margin: -10px auto;
+    padding: 15px;
+    box-shadow: 2px 2px 2px -2px rgba(0, 0, 0, .75), 0 0 1px rgba(0, 0, 0, .4);
+}
+
+.intro-notice img {
+    height: 40px;
+    min-width: 40px;
+    opacity: .7;
+    color: #677584;
+    margin: 0;
+    margin-right: 10px !important;
+}
+
+.intro-notice p {
+    color: #677584;
+    letter-spacing: -.2px;
+    margin: 0;
+}
+
+.intro-notice ul {
+    margin: 8px 0 0;
+    padding: 0 0 0 1em;
+}
+
+.intro-notice ul li {
+    color: #6e7482;
+    line-height: 1;
+}
+
+
 /* 17. Comments
 /* ---------------------------------------------------------- */
 
@@ -2696,11 +2758,32 @@ figcaption a {
 }
 
 .post-template .gh-container.is-grid .gh-feed {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.post-template .gh-container .gh-card.post {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-template .gh-container .gh-card.post::after {
+    display: none;
+}
+
+.post-template .gh-container .gh-card.post > .post-card-meta {
+  margin-top: auto;
 }
 
 .post-template .gh-container .gh-container-title {
     display: block;
+}
+
+.post-template .gh-container .gh-card.post .gh-card-title {
+    font-size: calc(2.3rem * var(--factor, 1));
+}
+
+.post-template .gh-container .gh-card.post .gh-card-excerpt {
+    font-size: 1.7rem;
 }
 
 /* 19. Archive
