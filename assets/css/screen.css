@@ -56,6 +56,7 @@ production stylesheet in assets/built/screen.css
 :root {
     /* Colors */
     --color-theme: #0297f6;
+    --color-hover: #40cebb;
     --color-white: #fff;
     --color-lighter-gray: rgb(0 0 0 / 0.05);
     --color-light-gray: #e6e6e6;
@@ -81,7 +82,7 @@ production stylesheet in assets/built/screen.css
     /* Layout */
     --container-width: 1080px;
     --container-gap: clamp(24px, 1.7032rem + 1.9355vw, 48px);
-    --grid-gap: 42px;
+    --grid-gap: 30px;
     --breakpoint-small-screen: 950px;
     /* Transitions */
     --default-transition: all .2s ease-out;
@@ -945,6 +946,7 @@ Search                         LOGO                    Login Subscribe
 .gh-card-wrapper {
     flex-grow: 1;
     padding: 18px;
+    min-width: stretch;
 }
 
 .gh-card-tag {
@@ -1682,6 +1684,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container.has-sidebar .gh-main::after {
+    display: none;
     position: absolute;
     top: 0;
     right: calc(var(--grid-gap) / -2);
@@ -1689,6 +1692,10 @@ Search                         LOGO                    Login Subscribe
     width: 1px;
     height: 100%;
     background-color: var(--color-border);
+}
+
+.gh-container.has-sidebar .gh-container-title {
+    display: none;
 }
 
 /* 11.2. Without sidebar */
@@ -1880,6 +1887,7 @@ Search                         LOGO                    Login Subscribe
 }
 
 .gh-container.is-list .gh-card + .gh-card::before {
+    display: none;
     position: absolute;
     top: calc(var(--grid-gap) / -2);
     left: 0;
@@ -1956,7 +1964,7 @@ Search                         LOGO                    Login Subscribe
 /* ---------------------------------------------------------- */
 
 .gh-sidebar-inner {
-    position: sticky;
+    /* position: sticky; */
     top: calc(var(--grid-gap) / 2);
     grid-gap: 20px;
     display: grid;
@@ -2006,6 +2014,16 @@ Search                         LOGO                    Login Subscribe
 
 .gh-about .gh-button {
     margin-top: 24px;
+}
+
+.gh-social .social-media-button {
+    transition: var(--default-transition);
+}
+
+.gh-social .social-media-button:hover {
+    cursor: pointer;
+    color: var(--color-hover);
+    font-size: 1.9em;
 }
 
 .gh-recommendations {
@@ -2138,6 +2156,16 @@ Search                         LOGO                    Login Subscribe
     border-bottom: 1px solid #dee1e7;
     padding-bottom: 8px;
     text-align: left;
+}
+
+.gh-tags .tag-cloud .tag-cloud-link {
+    transition: var(--default-transition);
+}
+
+.gh-tags .tag-cloud .tag-cloud-link:hover {
+    background: var(--color-theme);
+    color: var(--color-white);
+    border-color: var(--color-theme);
 }
 
 .sidebar-widget {
