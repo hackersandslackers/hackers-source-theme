@@ -1,0 +1,17 @@
+{{#if showSidebar}}
+    <aside class="gh-sidebar">
+            <div class="gh-sidebar-inner">
+                {{> "components/sidebar/about"}}
+                {{#if @site.recommendations_enabled}}
+                    <section class="gh-recommendations sidebar-widget">
+                        <h4 class="gh-sidebar-title">{{t "Recommendations"}}</h4>
+                        {{recommendations}}
+                        <button data-portal="recommendations">{{t "See all"}} {{> "icons/arrow"}}</button>
+                    </section>
+                {{/if}}
+                {{> "components/sidebar/social"}}
+                {{> "components/sidebar/tags"}}
+                {{> "components/sidebar/series"}}
+            </div>
+    </aside>
+{{/if}}

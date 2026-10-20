@@ -1,0 +1,19 @@
+<section class="gh-series sidebar-widget">
+  <h3 class="gh-title">Series'</h3>
+  <div class="series-widget-list">
+    {{#get "tags"
+            limit="all"
+            filter="slug:-[hash-import-2026-06-20-14-29,adventures-in-excel,newsletter,code-snippet-corner,hacking-tableau-server,microsoft-powerpivot,mongodb-cloud,create-an-aws-api]"
+            include="slug,count.posts,meta_title,accent_color"
+            visibility="internal"
+            order="count.posts DESC"
+          }}
+      {{#foreach tags visibility="internal"}}
+        <div class="series-list-link">
+          <a href="/series/{{slug}}/" class="series-list-link-title">{{meta_title}}</a>
+          <span class="series-list-count" style="color:{{accent_color}};border-color:{{accent_color}};">{{count.posts}}</span>
+        </div>
+      {{/foreach}}
+    {{/get}}
+  </div>
+</section>

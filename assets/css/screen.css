@@ -168,10 +168,6 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    opacity: 0.8;
-}
-
 .gh-button {
     display: inline-flex;
     gap: 0.4em;
@@ -527,6 +523,7 @@ body[class^="gh-font-heading"]:not(.gh-font-heading-fira-sans):not(.gh-font-head
 .gh-navigation-members .gh-button {
     font-size: inherit;
     font-weight: 600;
+    padding: 0.6em 1.2em;
 }
 
 .gh-search {
@@ -612,12 +609,6 @@ Home About Collection            LOGO                  Login Subscribe
 
 .gh-navigation.is-middle-logo .gh-navigation-actions {
     gap: 28px;
-}
-
-@media (min-width: 992px) {
-    .gh-navigation.is-middle-logo .gh-navigation-menu {
-        margin-right: 64px;
-    }
 }
 
 /*
@@ -1528,7 +1519,7 @@ Search                         LOGO                    Login Subscribe
 
 .gh-featured-feed {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--grid-gap);
 }
 
@@ -1973,6 +1964,19 @@ Search                         LOGO                    Login Subscribe
     grid-template-columns: 1fr;
 }
 
+.gh-sidebar-inner .gh-title {
+    color: #687385;
+    font-family: SofiaPro-Medium, HelveticaNeue, sans-serif;
+    font-size: .9em;
+    letter-spacing: 1px;
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+    border-bottom: 1px solid #dee1e7;
+    padding-bottom: 8px;
+    text-align: left;
+}
+
 .gh-sidebar-title {
     grid-column: 1 / -1;
     margin-bottom: calc(var(--grid-gap) / 2);
@@ -2145,19 +2149,6 @@ Search                         LOGO                    Login Subscribe
     transition: all .2s ease-out;
 }
 
-.gh-tags .gh-title {
-    color: #687385;
-    font-family: SofiaPro-Medium, HelveticaNeue, sans-serif;
-    font-size: .9em;
-    letter-spacing: 1px;
-    line-height: 1;
-    text-transform: uppercase;
-    margin: 0 0 12px;
-    border-bottom: 1px solid #dee1e7;
-    padding-bottom: 8px;
-    text-align: left;
-}
-
 .gh-tags .tag-cloud .tag-cloud-link {
     transition: var(--default-transition);
 }
@@ -2166,6 +2157,36 @@ Search                         LOGO                    Login Subscribe
     background: var(--color-theme);
     color: var(--color-white);
     border-color: var(--color-theme);
+}
+
+.gh-series .series-list-link {
+    padding: 9px 6px;
+    border-bottom: 1px solid #f0f1f4;
+    font-size: .9em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--default-transition);
+}
+
+.gh-series .series-list-link:last-of-type {
+    border-bottom: unset;
+}
+
+.gh-series .series-list-link:hover {
+    background-color: var(--color-theme);
+    border-bottom: 1px solid var(--color-theme);
+    cursor: pointer;
+}
+
+.gh-series .series-list-link:hover * {
+    color: var(--color-white);
+}
+
+.gh-series .series-list-count {
+    font-family: var(--font-sans-heading);
+    font-weight: 600;
 }
 
 .sidebar-widget {
@@ -2392,8 +2413,17 @@ unless a heading is the very first element in the post content */
 }
 
 .gh-content a {
-    color: var(--ghost-accent-color);
+    color: var(--color-primary-text);
+    border-bottom: 1px solid var(--color-theme);
     text-decoration: underline;
+    word-break: break-word;
+    text-decoration: none;
+    transition: all .2s ease-out;
+}
+
+.gh-content a:hover {
+    color: var(--color-theme);
+    cursor: pointer;
 }
 
 .gh-content .kg-callout-card .kg-callout-text,
@@ -2787,6 +2817,7 @@ figcaption a {
 
 .post-template .gh-container.is-grid .gh-feed {
     grid-template-columns: repeat(3, 1fr);
+    padding: 0px 3px 3px 0;
 }
 
 .post-template .gh-container .gh-card.post {
