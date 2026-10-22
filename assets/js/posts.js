@@ -1,4 +1,4 @@
 import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css';
+import '../css/prism-nord.css';
 
 Prism.highlightAll();

@@ -2566,6 +2566,39 @@ unless a heading is the very first element in the post content */
     margin-left: auto;
 }
 
+/* Code */
+
+.kg-code-card {
+    display: flex;
+    position: relative;
+    flex-direction: column-reverse;
+}
+
+.kg-code-card pre {
+    margin: unset;
+    border-radius: 0 0 5px 5px;
+}
+
+.kg-code-card figcaption {
+    width: 100%;
+    margin: 0 auto;
+    padding: 12px 10px;
+    border-radius: 5px 5px 0 0;
+    background: #1c212b;
+    color: #dee1e3;
+    font-size: .9em;
+    line-height: 1;
+    text-align: left;
+    white-space: normal;
+    order: 0;
+}
+
+.kg-code-card figcaption code {
+    font-family: dm, SFMono-Regular, monospace;
+    color: #9ab5c8;
+    background: rgba(170, 198, 230, .1) !important;
+}
+
 /* Embed */
 
 .kg-embed-card {

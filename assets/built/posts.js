@@ -1,10 +1,10 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/.pnpm/prismjs@1.30.0/node_modules/prismjs/themes/prism-tomorrow.css":
-/*!******************************************************************************************!*\
-  !*** ./node_modules/.pnpm/prismjs@1.30.0/node_modules/prismjs/themes/prism-tomorrow.css ***!
-  \******************************************************************************************/
+/***/ "./assets/css/prism-nord.css":
+/*!***********************************!*\
+  !*** ./assets/css/prism-nord.css ***!
+  \***********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4119,7 +4119,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prismjs_plugins_normalize_whitespace_prism_normalize_whitespace__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(prismjs_plugins_normalize_whitespace_prism_normalize_whitespace__WEBPACK_IMPORTED_MODULE_26__);
 /* harmony import */ var prismjs_plugins_custom_class_prism_custom_class__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! prismjs/plugins/custom-class/prism-custom-class */ "./node_modules/.pnpm/prismjs@1.30.0/node_modules/prismjs/plugins/custom-class/prism-custom-class.js");
 /* harmony import */ var prismjs_plugins_custom_class_prism_custom_class__WEBPACK_IMPORTED_MODULE_27___default = /*#__PURE__*/__webpack_require__.n(prismjs_plugins_custom_class_prism_custom_class__WEBPACK_IMPORTED_MODULE_27__);
-/* harmony import */ var prismjs_themes_prism_tomorrow_css__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! prismjs/themes/prism-tomorrow.css */ "./node_modules/.pnpm/prismjs@1.30.0/node_modules/prismjs/themes/prism-tomorrow.css");
+/* harmony import */ var _css_prism_nord_css__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../css/prism-nord.css */ "./assets/css/prism-nord.css");
 
 
 
